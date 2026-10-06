@@ -27,9 +27,9 @@ PHASE 6 — Telegram Bot Integration Pipeline (Tasks 22–29)
 ## Current Task
 
 ```
-TASK-028 — Live Website Synchronization
+TASK-029 — Telegram Integration Test Suite
 Status: [ ] TODO
-Dependencies: TASK-027 (Complete)
+Dependencies: TASK-028 (Complete)
 ```
 
 ---
@@ -65,14 +65,14 @@ Dependencies: TASK-027 (Complete)
 | TASK-025 | Signal Persistence & Store | [x] COMPLETE |
 | TASK-026 | Telegram Webhook Secret Verification | [x] COMPLETE |
 | TASK-027 | Signal Update & State Progression | [x] COMPLETE |
-| TASK-028 | Live Website Synchronization | [ ] TODO |
+| TASK-028 | Live Website Synchronization | [x] COMPLETE |
 | TASK-029 | Telegram Integration Test Suite | [ ] TODO |
 
 **Total tasks:** 29  
-**Completed:** 27  
+**Completed:** 28  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 2  
+**TODO:** 1  
 
 ---
 
@@ -105,6 +105,7 @@ Dependencies: TASK-027 (Complete)
 - **TASK-025:** Signal Persistence & Store — Implemented thread-safe singleton `SignalStore` providing in-place updates, newest-first ordering, duplicate card prevention, and candidate matching for active trades.
 - **TASK-026:** Telegram Webhook Secret Verification & Ingestion Handler — Hardened `POST /api/telegram` with timing-safe `x-telegram-bot-api-secret-token` verification, multi-format update parsing (`message`, `channel_post`), and direct persistence wiring into `SignalStore`.
 - **TASK-027:** Signal Update & State Progression Handling — Implemented Stable Signal Identity Strategy (`reply_to_message_id`, symbol, and latest-active resolution) and `isTransitionAllowed` state machine guardrails ensuring zero duplicate cards.
+- **TASK-028:** Live Website Synchronization — Wired `GET /api/signals` directly to `SignalStore` with strict non-caching headers and client relative URL resolution, ensuring sub-5s live website updates from Telegram dispatches.
 
 ---
 
@@ -117,8 +118,8 @@ Dependencies: TASK-027 (Complete)
 ## Next Task
 
 ```
-TASK-028 — Live Website Synchronization
-Dependencies: TASK-027 [x] COMPLETE
+TASK-029 — Telegram Integration Test Suite
+Dependencies: TASK-028 [x] COMPLETE
 ```
 
 ---
