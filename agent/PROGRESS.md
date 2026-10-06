@@ -6,12 +6,18 @@
 PHASE 2 — Landing Page Core Components (Tasks 5–8)
 ```
 
+## Current Phase
+
+```
+PHASE 3 — Signal Architecture & Components (Tasks 9–13)
+```
+
 ## Current Task
 
 ```
-TASK-008 — How It Works Section
+TASK-009 — Signal Data Model & Zod Schema
 Status: [ ] TODO
-Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
+Dependencies: TASK-001 (Complete)
 ```
 
 ---
@@ -27,7 +33,7 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 | TASK-005 | Navbar Component | [x] COMPLETE |
 | TASK-006 | Hero Section | [x] COMPLETE |
 | TASK-007 | What Velora AI Does | [x] COMPLETE |
-| TASK-008 | How It Works | [ ] TODO |
+| TASK-008 | How It Works | [x] COMPLETE |
 | TASK-009 | Signal Data Model & Zod Schema | [ ] TODO |
 | TASK-010 | SignalCard Component | [ ] TODO |
 | TASK-011 | Signal State Rendering & Transitions | [ ] TODO |
@@ -43,10 +49,10 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 7  
+**Completed:** 8  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 14  
+**TODO:** 13  
 
 ---
 
@@ -59,6 +65,7 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 - **TASK-005:** Navbar Component — Built sticky, minimal dark navbar with Velora AI branding, Beta badge, section navigation, and responsive mobile menu.
 - **TASK-006:** Hero Section — Built responsive technical hero section with value proposition, Beta telemetry badge, dual CTAs, and performance specifications.
 - **TASK-007:** What Velora AI Does — Created features section with exactly 3 concise, product-focused capabilities.
+- **TASK-008:** How It Works — Created 3-stage process flow section documenting Telegram → Backend → Live Web Dashboard telemetry.
 
 ---
 
@@ -71,8 +78,8 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 ## Next Task
 
 ```
-TASK-008 — How It Works Section
-Dependencies: TASK-002 [x] COMPLETE, TASK-003 [x] COMPLETE, TASK-004 [x] COMPLETE
+TASK-009 — Signal Data Model & Zod Schema
+Dependencies: TASK-001 [x] COMPLETE
 ```
 
 ---

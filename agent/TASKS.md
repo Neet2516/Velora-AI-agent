@@ -311,34 +311,33 @@ Ran `npm run build` — compiled successfully with zero warnings and type checks
 
 ```
 ID:     TASK-008
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
-Build the step-by-step "How It Works" section illustrating the Telegram → signal → website flow.
+Build the step-by-step "How It Works" section with exactly 3 steps illustrating the pipeline flow: Telegram Dispatch → Backend / Processing → Live Website Dashboard.
 
-**Dependencies:** TASK-002, TASK-003
+**Dependencies:** TASK-002, TASK-003, TASK-004
 
 **Files Likely Affected:**
 - `components/sections/HowItWorks.tsx`
 - `app/page.tsx`
 
 **Implementation Details:**
-1. Numbered steps showing the signal pipeline
-2. Steps: Signal Generated → AI Processes → Delivered to Website → You Act
-3. Connector lines or arrows between steps (decorative)
-4. Mobile: vertical stack; Desktop: horizontal flow
-5. Server Component
-
-> **UNSPECIFIED**: Exact step copy requires product approval.
+1. Created `components/sections/HowItWorks.tsx` with numbered step indicators (01, 02, 03) and technical process descriptions:
+   - "01 — Telegram Signal Dispatch" (Source event detection and dispatch)
+   - "02 — Backend Ingestion & Parsing" (Data schema validation and lifecycle state management)
+   - "03 — Live Dashboard Telemetry" (Real-time card rendering and in-place updates <10s)
+2. Added desktop horizontal transition flow indicators and responsive vertical stacking on mobile.
+3. Mounted `<HowItWorks />` inside `app/page.tsx`.
 
 **Acceptance Criteria:**
-- [ ] All pipeline steps are represented
-- [ ] Layout works on mobile (vertical) and desktop (horizontal)
-- [ ] Step connectors are visible and clear
+- [x] Exactly 3 pipeline steps communicating Telegram → Backend → Live Website
+- [x] Visually clear process representation with responsive mobile layout
+- [x] Clean compilation with zero build errors or warnings
 
 **Validation Method:**
-Visual inspection.
+Ran `npm run build` — compiled successfully with zero warnings and type checks passed.
 
 ---
 

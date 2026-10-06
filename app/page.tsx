@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { WhatVeloraAIDoes } from "@/components/sections/WhatVeloraAIDoes";
+import { HowItWorks } from "@/components/sections/HowItWorks";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       <main id="main-content" className="flex-1 flex flex-col w-full">
         <Hero />
         <WhatVeloraAIDoes />
-        <section id="how-it-works" aria-label="How Velora AI Works" />
+        <HowItWorks />
         <section id="live-signals" aria-label="Live Trading Signals" />
         <section id="disclaimer" aria-label="Risk Disclaimer" />
       </main>
