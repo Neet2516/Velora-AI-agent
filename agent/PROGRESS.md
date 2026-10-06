@@ -27,9 +27,9 @@ PHASE 6 — Telegram Bot Integration Pipeline (Tasks 22–29)
 ## Current Task
 
 ```
-TASK-025 — Signal Persistence & Store
+TASK-026 — Telegram Webhook Secret Verification & Ingestion Handler
 Status: [ ] TODO
-Dependencies: TASK-024 (Complete)
+Dependencies: TASK-025 (Complete)
 ```
 
 ---
@@ -62,17 +62,17 @@ Dependencies: TASK-024 (Complete)
 | TASK-022 | Telegram Environment Configuration | [x] COMPLETE |
 | TASK-023 | Telegram Webhook Route Handler Skeleton | [x] COMPLETE |
 | TASK-024 | Signal Parser Implementation | [x] COMPLETE |
-| TASK-025 | Signal Persistence & Store | [ ] TODO |
+| TASK-025 | Signal Persistence & Store | [x] COMPLETE |
 | TASK-026 | Telegram Webhook Secret Verification | [ ] TODO |
 | TASK-027 | Signal Update & State Progression | [ ] TODO |
 | TASK-028 | Live Website Synchronization | [ ] TODO |
 | TASK-029 | Telegram Integration Test Suite | [ ] TODO |
 
 **Total tasks:** 29  
-**Completed:** 24  
+**Completed:** 25  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 5  
+**TODO:** 4  
 
 ---
 
@@ -102,6 +102,7 @@ Dependencies: TASK-024 (Complete)
 - **TASK-022:** Telegram Environment Configuration — Configured server-only environment variables (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`) with zero client leaks, timing-safe secret validation helper, and automated config tests.
 - **TASK-023:** Telegram Webhook Route Handler Skeleton — Created server-side `app/api/telegram/route.ts` receiving and acknowledging JSON updates with dynamic server rendering and verified test coverage.
 - **TASK-024:** Signal Parser Implementation — Implemented robust pure-function regex parser for canonical `NEW SIGNAL` format, `TP1/2/3 HIT` and `SL HIT` updates, and graceful fallback to `UNPARSED` with 10 passing unit tests.
+- **TASK-025:** Signal Persistence & Store — Implemented thread-safe singleton `SignalStore` providing in-place updates, newest-first ordering, duplicate card prevention, and candidate matching for active trades.
 
 ---
 
@@ -114,8 +115,8 @@ Dependencies: TASK-024 (Complete)
 ## Next Task
 
 ```
-TASK-025 — Signal Persistence & Store
-Dependencies: TASK-024 [x] COMPLETE
+TASK-026 — Telegram Webhook Secret Verification & Ingestion Handler
+Dependencies: TASK-025 [x] COMPLETE
 ```
 
 ---

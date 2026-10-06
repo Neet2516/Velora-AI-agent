@@ -938,7 +938,7 @@ Vitest unit tests passed (10/10 tests in parser suite); production build succeed
 
 ```
 ID:     TASK-025
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -948,19 +948,24 @@ Implement the server-side signal store to hold active signals, historical signal
 
 **Files Likely Affected:**
 - `lib/store/signals.ts`
+- `__tests__/signals-store.test.ts`
 
 **Implementation Details:**
-1. Implement thread-safe/singleton in-memory signal store (`SignalStore`) seeded with initial mock signals for development.
-2. Provide methods: `addSignal()`, `updateSignal()`, `getAllSignals()`, `findSignalById()`, `findLatestActive()`.
-3. Ensure signals are stored newest-first by `created_at`.
+1. Created `lib/store/signals.ts` with singleton `SignalStore` instance preserved across global scope.
+2. Implemented seed mechanism using `INITIAL_MOCK_SIGNALS` for graceful fallback.
+3. Implemented `getAll()` strictly sorted newest-first by `created_at`.
+4. Implemented `add()` and `update()` guaranteeing in-place mutation and zero duplicate cards for stable IDs.
+5. Implemented `findLatestActive(symbol?)` filtering out terminal states (`SL_HIT`, `TP3_HIT`) for subsequent trade updates.
+6. Created 6 unit tests in `__tests__/signals-store.test.ts` validating all store operations.
 
 **Acceptance Criteria:**
-- [ ] Signal store safely manages addition and in-place mutation
-- [ ] Newest-first sort order is strictly maintained
-- [ ] Store survives multiple route handler calls
+- [x] Signal store safely manages addition and in-place mutation
+- [x] Newest-first sort order is strictly maintained
+- [x] Zero duplicate cards created for matching signal IDs
+- [x] Store survives multiple route handler calls
 
 **Validation Method:**
-Store unit tests in Vitest.
+Vitest unit tests passed (6/6 tests in store suite); clean production build verified.
 
 ---
 
