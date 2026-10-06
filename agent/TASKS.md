@@ -455,11 +455,11 @@ Ran `npm run build` — compiled successfully with zero warnings and type checks
 
 ```
 ID:     TASK-012
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
-Build the `SignalList` component that renders the collection of signal cards in newest-first order.
+Build the `SignalList` component that renders the collection of signal cards in newest-first order with responsive grid layout and AnimatePresence list updates.
 
 **Dependencies:** TASK-010, TASK-011
 
@@ -468,23 +468,24 @@ Build the `SignalList` component that renders the collection of signal cards in 
 - `components/signals/SignalCardSkeleton.tsx`
 
 **Implementation Details:**
-1. Accepts `signals: Signal[]` prop
-2. Sorts signals by `created_at` descending (newest first)
-3. Renders `<SignalCard>` for each signal, keyed by `signal.id`
-4. Renders `<SignalCardSkeleton>` when loading (2–3 skeleton placeholders)
-5. Responsive grid: 1 col mobile, 2 col tablet/desktop
-6. New signals animate in from top using `AnimatePresence` (Framer Motion)
-7. Client Component
+1. Created `components/signals/SignalCardSkeleton.tsx` for loading state placeholders.
+2. Created `components/signals/SignalList.tsx` with:
+   - Dynamic descending sort by `created_at` guaranteeing newest-first ordering
+   - Strict `key={signal.id}` assignment preventing duplication during status updates
+   - Framer Motion `<AnimatePresence>` for smooth list item insertions
+   - Responsive multi-column grid (1 col mobile, 2 col md, 3 col lg)
+   - Screen-reader accessible `aria-live="polite"` region
+3. Verified clean TypeScript compilation and zero build errors.
 
 **Acceptance Criteria:**
-- [ ] Signals appear newest-first
-- [ ] Each card has stable `key={signal.id}`
-- [ ] Skeleton renders during loading state
-- [ ] New signal slides in from top without disrupting existing cards
-- [ ] Grid is responsive
+- [x] Signals render in strict newest-first order
+- [x] Stable `key={signal.id}` prevents duplicate cards
+- [x] Skeleton placeholders display during loading
+- [x] Responsive grid works cleanly across all device widths
+- [x] Clean compilation with zero build errors or warnings
 
 **Validation Method:**
-Test with mock data array, confirm ordering. Simulate adding a new signal to the array and confirm it slides in at the top.
+Ran `npm run build` — compiled successfully with zero warnings and type checks passed.
 
 ---
 

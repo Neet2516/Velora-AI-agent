@@ -15,9 +15,9 @@ PHASE 3 — Signal Architecture & Components (Tasks 9–13)
 ## Current Task
 
 ```
-TASK-012 — SignalList Component
+TASK-013 — Loading / Empty / Error / Reconnecting States
 Status: [ ] TODO
-Dependencies: TASK-010 (Complete), TASK-011 (Complete)
+Dependencies: TASK-012 (Complete)
 ```
 
 ---
@@ -37,7 +37,7 @@ Dependencies: TASK-010 (Complete), TASK-011 (Complete)
 | TASK-009 | Signal Data Model & Zod Schema | [x] COMPLETE |
 | TASK-010 | SignalCard Component | [x] COMPLETE |
 | TASK-011 | Signal State Rendering & Transitions | [x] COMPLETE |
-| TASK-012 | SignalList Component | [ ] TODO |
+| TASK-012 | SignalList Component | [x] COMPLETE |
 | TASK-013 | Loading / Empty / Error States | [ ] TODO |
 | TASK-014 | API Integration | [ ] TODO |
 | TASK-015 | Live Update Mechanism | [ ] TODO |
@@ -49,10 +49,10 @@ Dependencies: TASK-010 (Complete), TASK-011 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 11  
+**Completed:** 12  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 10  
+**TODO:** 9  
 
 ---
 
@@ -69,6 +69,7 @@ Dependencies: TASK-010 (Complete), TASK-011 (Complete)
 - **TASK-009:** Signal Data Model & Zod Schema — Implemented runtime Zod schemas, TypeScript types, and symbol/direction normalizers.
 - **TASK-010:** SignalCard Component — Built high-fidelity SignalCard with all 6 status states, direction badges, formatted price levels, and unparsed message fallback.
 - **TASK-011:** Signal State Rendering & Transitions — Enhanced SignalCard with Framer Motion layout animations, reduced-motion fallback, and in-place target updates.
+- **TASK-012:** SignalList Component — Built responsive newest-first SignalList with AnimatePresence and stable unique ID keys.
 
 ---
 
@@ -81,8 +82,8 @@ Dependencies: TASK-010 (Complete), TASK-011 (Complete)
 ## Next Task
 
 ```
-TASK-012 — SignalList Component
-Dependencies: TASK-010 [x] COMPLETE, TASK-011 [x] COMPLETE
+TASK-013 — Loading / Empty / Error / Reconnecting States
+Dependencies: TASK-012 [x] COMPLETE
 ```
 
 ---
