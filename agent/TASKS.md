@@ -1009,7 +1009,7 @@ Vitest route integration tests passed (6/6 passing); Next.js production build su
 
 ```
 ID:     TASK-027
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -1020,23 +1020,25 @@ Implement the Stable Signal Identity Strategy so `TP1 HIT` and `SL HIT` update e
 **Files Likely Affected:**
 - `lib/telegram/matcher.ts`
 - `app/api/telegram/route.ts`
+- `__tests__/telegram-matcher.test.ts`
 
 **Implementation Details:**
-1. Implement identity matching hierarchy:
-   - Match by `reply_to_message_id`.
-   - Match by explicit symbol in update text.
-   - Match by most recent active signal in store.
-2. Advance state: `ACTIVE -> TP1_HIT -> TP2_HIT -> TP3_HIT` or `ACTIVE -> SL_HIT`.
-3. Update `updated_at` timestamp.
-4. Retain stable `id` and card parameters.
+1. Created `lib/telegram/matcher.ts` implementing the Stable Signal Identity Strategy with 3 resolution tiers:
+   - Priority 1: `reply_to_message_id` direct correlation.
+   - Priority 2: Explicit symbol match on active signals.
+   - Priority 3: Fallback to most recent active trade.
+2. Implemented `isTransitionAllowed` validating legal forward progression and blocking backward transitions or post-terminal updates (`SL_HIT`, `TP3_HIT`).
+3. Wired matching and state progression into `app/api/telegram/route.ts`.
+4. Created 8 unit tests in `__tests__/telegram-matcher.test.ts` validating resolution priorities and transition guardrails.
 
 **Acceptance Criteria:**
-- [ ] `TP1 HIT` updates existing signal's status in place
-- [ ] Zero duplicate cards created
-- [ ] If no active signal matches, saved as unparsed update event
+- [x] `TP1 HIT`, `TP2 HIT`, `TP3 HIT`, `SL HIT` mutate existing signal's status in place
+- [x] Zero duplicate cards created
+- [x] Terminal states (`SL_HIT`, `TP3_HIT`) cannot be overwritten
+- [x] If no active signal matches, saved safely as unparsed event
 
 **Validation Method:**
-Vitest state machine progression tests.
+Vitest state machine tests passed (8/8 passing); Next.js production build succeeded.
 
 ---
 

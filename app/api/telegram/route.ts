@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateWebhookSecret } from "@/lib/telegram/config";
 import { parseTelegramMessage } from "@/lib/telegram/parser";
+import { matchAndUpdateSignal } from "@/lib/telegram/matcher";
 import { signalStore } from "@/lib/store/signals";
 
 interface TelegramChat {
@@ -118,22 +119,38 @@ export async function POST(req: NextRequest) {
     }
 
     if (parsed.kind === "STATUS_UPDATE") {
-      // Find candidate active signal to mutate in place
-      const candidate = signalStore.findLatestActive(parsed.symbol);
+      const matchResult = matchAndUpdateSignal(
+        {
+          targetStatus: parsed.targetStatus,
+          symbol: parsed.symbol,
+          replyToMessageId: parsed.replyToMessageId,
+          timestamp,
+          rawText: parsed.rawText,
+        },
+        signalStore
+      );
 
-      if (candidate) {
-        const updated = signalStore.update(candidate.id, {
-          status: parsed.targetStatus,
-          updated_at: timestamp,
-        });
-
+      if (matchResult && matchResult.wasMutated) {
         return NextResponse.json(
           {
             ok: true,
             status: "processed",
             action: "updated",
-            signalId: updated?.id || candidate.id,
+            signalId: matchResult.signal.id,
             targetStatus: parsed.targetStatus,
+          },
+          { status: 200 }
+        );
+      }
+
+      if (matchResult && !matchResult.wasMutated) {
+        return NextResponse.json(
+          {
+            ok: true,
+            status: "processed",
+            action: "ignored_forbidden_transition",
+            signalId: matchResult.signal.id,
+            currentStatus: matchResult.signal.status,
           },
           { status: 200 }
         );
