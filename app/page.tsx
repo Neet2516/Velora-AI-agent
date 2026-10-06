@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
+import { Hero } from "@/components/sections/Hero";
 
 export default function Home() {
   return (
@@ -6,9 +7,9 @@ export default function Home() {
       {/* Sticky Navbar */}
       <Navbar />
 
-      {/* Main Landing Page Sections */}
+      {/* Main Landing Page Landmark Structure */}
       <main id="main-content" className="flex-1 flex flex-col w-full">
-        <section id="hero" aria-label="Velora AI Introduction" />
+        <Hero />
         <section id="features" aria-label="What Velora AI Does" />
         <section id="how-it-works" aria-label="How Velora AI Works" />
         <section id="live-signals" aria-label="Live Trading Signals" />
