@@ -1,8 +1,10 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchSignals } from "@/lib/api/signals";
+import { fetchSignals, deduplicateSignals } from "@/lib/api/signals";
 import { PipelineConnectionStatus } from "@/components/signals/SignalStatusBanner";
+
+export { deduplicateSignals };
 
 export function useSignals() {
   const {

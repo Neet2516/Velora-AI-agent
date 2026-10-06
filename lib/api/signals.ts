@@ -4,12 +4,17 @@ import { INITIAL_MOCK_SIGNALS } from "./mockSignals";
 
 /**
  * Deduplicate signals by stable ID to strictly enforce the invariant:
- * TP/SL updates modify existing signals; duplicate cards are impossible.
+ * TP/SL updates modify existing signals in place; duplicate cards are impossible.
+ * Always maintains newest-first ordering by created_at.
  */
-export function deduplicateSignals(signals: Signal[]): Signal[] {
+export function deduplicateSignals(
+  existingOrAll: Signal[],
+  incoming?: Signal[]
+): Signal[] {
+  const all = incoming ? [...existingOrAll, ...incoming] : [...existingOrAll];
   const map = new Map<string, Signal>();
 
-  for (const signal of signals) {
+  for (const signal of all) {
     const existing = map.get(signal.id);
     if (!existing) {
       map.set(signal.id, signal);
@@ -23,8 +28,11 @@ export function deduplicateSignals(signals: Signal[]): Signal[] {
     }
   }
 
-  return Array.from(map.values());
+  return Array.from(map.values()).sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
 }
+
 
 /**
  * Fetch Signals from Velora Backend API
@@ -39,7 +47,7 @@ export async function fetchSignals(): Promise<{ signals: Signal[]; isFallback: b
 
     if (parseResult.success) {
       return {
-        signals: deduplicateSignals(parseResult.data.data),
+        signals: deduplicateSignals(parseResult.data),
         isFallback: false,
       };
     }
@@ -51,10 +59,10 @@ export async function fetchSignals(): Promise<{ signals: Signal[]; isFallback: b
 
     // If API returned an array directly without envelope
     if (Array.isArray(rawData)) {
-      const arrayParse = SignalListResponseSchema.safeParse({ data: rawData });
+      const arrayParse = SignalListResponseSchema.safeParse(rawData);
       if (arrayParse.success) {
         return {
-          signals: deduplicateSignals(arrayParse.data.data),
+          signals: deduplicateSignals(arrayParse.data),
           isFallback: false,
         };
       }

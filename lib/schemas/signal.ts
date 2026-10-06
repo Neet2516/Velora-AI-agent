@@ -32,13 +32,14 @@ export const SignalSchema = z.object({
   asset: z.string().nullable().optional(), // alias support
   direction: SignalDirectionSchema.nullable().optional(),
   entry: z.number().nullable().optional(),
+  entry_price: z.number().nullable().optional(),
   sl: z.number().nullable().optional(),
   tp1: z.number().nullable().optional(),
   tp2: z.number().nullable().optional().default(null),
   tp3: z.number().nullable().optional().default(null),
   status: SignalStatusSchema,
   raw_text: z.string().nullable().optional(),
-  created_at: z.string(),
+  created_at: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid ISO timestamp"),
   updated_at: z.string().optional(),
   confidence: z.number().nullable().optional(),
   source: z.string().optional(),
@@ -54,27 +55,47 @@ export function getSignalSymbol(signal: Signal): string {
 }
 
 /**
+ * Normalizes trading pair strings into standard unified TICKER/BASE format
+ */
+export function normalizeSymbol(symbol?: string | null): string {
+  if (!symbol) return "UNKNOWN";
+  const cleaned = symbol.trim().toUpperCase().replace(/[-_]/g, "/");
+  if (cleaned.includes("/")) return cleaned;
+  if (cleaned.endsWith("USDT") && cleaned.length > 4) {
+    return `${cleaned.slice(0, -4)}/USDT`;
+  }
+  return cleaned;
+}
+
+/**
  * Normalized getter helper for direction
  */
-export function normalizeDirection(direction?: SignalDirection | null): "BUY" | "SELL" | "UNKNOWN" {
+export function normalizeDirection(direction?: string | null): "BUY" | "SELL" | "UNKNOWN" {
   if (!direction) return "UNKNOWN";
-  if (direction === "BUY" || direction === "LONG") return "BUY";
-  if (direction === "SELL" || direction === "SHORT") return "SELL";
+  const upper = direction.toUpperCase();
+  if (upper === "BUY" || upper === "LONG") return "BUY";
+  if (upper === "SELL" || upper === "SHORT") return "SELL";
   return "UNKNOWN";
 }
 
 /**
- * API Response Envelope Schema
+ * API Response Envelope Schema - accepts both direct array and wrapped envelope
  */
-export const SignalListResponseSchema = z.object({
-  data: z.array(SignalSchema),
-  meta: z
+export const SignalListResponseSchema = z.union([
+  z.array(SignalSchema),
+  z
     .object({
-      total: z.number().optional(),
-      limit: z.number().optional(),
-      offset: z.number().optional(),
+      data: z.array(SignalSchema),
+      meta: z
+        .object({
+          total: z.number().optional(),
+          limit: z.number().optional(),
+          offset: z.number().optional(),
+        })
+        .optional(),
     })
-    .optional(),
-});
+    .transform((val) => val.data),
+]);
 
 export type SignalListResponse = z.infer<typeof SignalListResponseSchema>;
+
