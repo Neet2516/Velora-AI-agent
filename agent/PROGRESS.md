@@ -12,12 +12,18 @@ PHASE 2 — Landing Page Core Components (Tasks 5–8)
 PHASE 3 — Signal Architecture & Components (Tasks 9–13)
 ```
 
+## Current Phase
+
+```
+PHASE 4 — API & Live Updates (Tasks 14–16)
+```
+
 ## Current Task
 
 ```
-TASK-013 — Loading / Empty / Error / Reconnecting States
+TASK-014 — API Integration & Signals Hook
 Status: [ ] TODO
-Dependencies: TASK-012 (Complete)
+Dependencies: TASK-009, TASK-013 (All Complete)
 ```
 
 ---
@@ -38,7 +44,7 @@ Dependencies: TASK-012 (Complete)
 | TASK-010 | SignalCard Component | [x] COMPLETE |
 | TASK-011 | Signal State Rendering & Transitions | [x] COMPLETE |
 | TASK-012 | SignalList Component | [x] COMPLETE |
-| TASK-013 | Loading / Empty / Error States | [ ] TODO |
+| TASK-013 | Loading / Empty / Error States | [x] COMPLETE |
 | TASK-014 | API Integration | [ ] TODO |
 | TASK-015 | Live Update Mechanism | [ ] TODO |
 | TASK-016 | Raw Signal Fallback (UNPARSED) | [ ] TODO |
@@ -49,10 +55,10 @@ Dependencies: TASK-012 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 12  
+**Completed:** 13  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 9  
+**TODO:** 8  
 
 ---
 
@@ -70,6 +76,7 @@ Dependencies: TASK-012 (Complete)
 - **TASK-010:** SignalCard Component — Built high-fidelity SignalCard with all 6 status states, direction badges, formatted price levels, and unparsed message fallback.
 - **TASK-011:** Signal State Rendering & Transitions — Enhanced SignalCard with Framer Motion layout animations, reduced-motion fallback, and in-place target updates.
 - **TASK-012:** SignalList Component — Built responsive newest-first SignalList with AnimatePresence and stable unique ID keys.
+- **TASK-013:** Loading / Empty / Error States — Created `SignalListEmpty` ("No signals right now."), `SignalListError`, and `SignalStatusBanner` supporting live, reconnecting, and error modes.
 
 ---
 
@@ -82,8 +89,8 @@ Dependencies: TASK-012 (Complete)
 ## Next Task
 
 ```
-TASK-013 — Loading / Empty / Error / Reconnecting States
-Dependencies: TASK-012 [x] COMPLETE
+TASK-014 — API Integration & Signals Hook
+Dependencies: TASK-009 [x] COMPLETE, TASK-013 [x] COMPLETE
 ```
 
 ---

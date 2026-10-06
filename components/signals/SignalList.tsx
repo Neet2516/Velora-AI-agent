@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { Signal } from "@/lib/types/signal";
 import { SignalCard } from "./SignalCard";
 import { SignalCardSkeleton } from "./SignalCardSkeleton";
+import { SignalListEmpty } from "./SignalListEmpty";
 
 interface SignalListProps {
   signals?: Signal[];
@@ -30,6 +31,10 @@ export function SignalList({ signals = [], isLoading = false, className }: Signa
         <SignalCardSkeleton />
       </div>
     );
+  }
+
+  if (sortedSignals.length === 0) {
+    return <SignalListEmpty />;
   }
 
   return (
