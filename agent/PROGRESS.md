@@ -27,9 +27,9 @@ PHASE 5 — Optimization, Compliance & Production Readiness (Tasks 17–21)
 ## Current Task
 
 ```
-TASK-017 — Responsive Optimization, Disclaimer & Footer
+TASK-018 — Accessibility & Keyboard Navigation Audit
 Status: [ ] TODO
-Dependencies: TASK-016 (Complete)
+Dependencies: TASK-017 (Complete)
 ```
 
 ---
@@ -54,17 +54,17 @@ Dependencies: TASK-016 (Complete)
 | TASK-014 | API Integration | [x] COMPLETE |
 | TASK-015 | Live Update Mechanism | [x] COMPLETE |
 | TASK-016 | Raw Signal Fallback (UNPARSED) | [x] COMPLETE |
-| TASK-017 | Responsive Optimization | [ ] TODO |
+| TASK-017 | Responsive Optimization | [x] COMPLETE |
 | TASK-018 | Accessibility Audit | [ ] TODO |
 | TASK-019 | Performance Optimization | [ ] TODO |
 | TASK-020 | Testing | [ ] TODO |
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 16  
+**Completed:** 17  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 5  
+**TODO:** 4  
 
 ---
 
@@ -86,6 +86,7 @@ Dependencies: TASK-016 (Complete)
 - **TASK-014:** API Integration — Wired `apiClient`, `fetchSignals`, Zod runtime validation, isolated development boundary, and TanStack Query polling hook into `<LiveSignals />`.
 - **TASK-015:** Live Update Mechanism — Enforced 5s polling, deduplication by stable ID, and tab resume sync.
 - **TASK-016:** Raw Signal Fallback — Implemented `sanitizeRawText` utility and safe non-executable raw message fallback rendering.
+- **TASK-017:** Responsive Optimization, Disclaimer & Footer — Mounted complete sequence (Navbar → Hero → Features → How It Works → Live Signals → Disclaimer → Footer) with mobile-first layouts.
 
 ---
 
@@ -98,8 +99,8 @@ Dependencies: TASK-016 (Complete)
 ## Next Task
 
 ```
-TASK-017 — Responsive Optimization, Disclaimer & Footer
-Dependencies: TASK-016 [x] COMPLETE
+TASK-018 — Accessibility & Keyboard Navigation Audit
+Dependencies: TASK-017 [x] COMPLETE
 ```
 
 ---
