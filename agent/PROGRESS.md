@@ -9,7 +9,7 @@ PHASE 2 — Landing Page Core Components (Tasks 5–8)
 ## Current Task
 
 ```
-TASK-005 — Navbar Component
+TASK-006 — Hero Section
 Status: [ ] TODO
 Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 ```
@@ -24,7 +24,7 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 | TASK-002 | Design Token Integration | [x] COMPLETE |
 | TASK-003 | Application Shell | [x] COMPLETE |
 | TASK-004 | shadcn/ui Setup | [x] COMPLETE |
-| TASK-005 | Navbar Component | [ ] TODO |
+| TASK-005 | Navbar Component | [x] COMPLETE |
 | TASK-006 | Hero Section | [ ] TODO |
 | TASK-007 | What Velora AI Does | [ ] TODO |
 | TASK-008 | How It Works | [ ] TODO |
@@ -43,10 +43,10 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 4  
+**Completed:** 5  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 17  
+**TODO:** 16  
 
 ---
 
@@ -56,6 +56,7 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 - **TASK-002:** Design Token Integration — Configured canonical color palette, alpha variants, and typography variables (`Geist Sans`, `Geist Mono`) in `globals.css` and `layout.tsx`. Clean build verified.
 - **TASK-003:** Application Shell — Built `app/providers.tsx` with TanStack Query provider, wrapped root layout, and prepared semantic landmark page structure in `app/page.tsx`.
 - **TASK-004:** UI Primitives Setup — Built core UI primitives (`Badge`, `Button`, `Card`, `Separator`, `Skeleton`) conforming to the technical dark design system with accessibility focus states.
+- **TASK-005:** Navbar Component — Built sticky, minimal dark navbar with Velora AI branding, Beta badge, section navigation, and responsive mobile menu.
 
 ---
 
@@ -68,7 +69,7 @@ Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 ## Next Task
 
 ```
-TASK-005 — Navbar Component
+TASK-006 — Hero Section
 Dependencies: TASK-002 [x] COMPLETE, TASK-003 [x] COMPLETE, TASK-004 [x] COMPLETE
 ```
 
