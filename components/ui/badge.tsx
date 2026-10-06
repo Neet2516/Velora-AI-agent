@@ -19,25 +19,25 @@ export function Badge({
 }: BadgeProps) {
   const variantStyles = {
     default:
-      "bg-primary-10 text-primary border-primary/20",
+      "bg-black text-white border-2 border-black",
     secondary:
-      "bg-muted text-muted-foreground border-border",
+      "bg-[#F2F2F2] text-black border-2 border-black",
     outline:
-      "border-border text-foreground bg-transparent",
+      "border-2 border-black text-black bg-transparent",
     success:
-      "bg-success-10 text-success border-success/25",
+      "bg-black text-white border-2 border-black",
     warning:
-      "bg-warning-10 text-warning border-warning/25",
+      "bg-[#F2F2F2] text-black border-2 border-black",
     destructive:
-      "bg-destructive-10 text-destructive border-destructive/25",
+      "bg-[#FF3000] text-white border-2 border-[#FF3000]",
     beta:
-      "bg-primary-10 text-primary border-primary/30 uppercase tracking-widest font-mono text-[10px] px-2 py-0.5 rounded-full font-semibold",
+      "bg-[#FF3000] text-white border-2 border-[#FF3000] uppercase tracking-widest font-mono text-[10px] px-2 py-0.5 font-bold",
   };
 
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-0.5 text-xs font-medium transition-colors",
+        "inline-flex items-center gap-1.5 rounded-none border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider transition-colors",
         variantStyles[variant],
         className
       )}

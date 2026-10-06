@@ -12,69 +12,65 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
   switch (status) {
     case "ACTIVE":
       return (
-        <Badge
-          variant="warning"
-          className={`gap-1.5 font-mono text-[11px] font-semibold ${className}`}
+        <div
+          className={`inline-flex items-center gap-1.5 rounded-none border-2 border-black bg-black text-white px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-warning animate-ping" />
+          <span className="h-1.5 w-1.5 bg-[#FF3000]" />
           <span>ACTIVE</span>
-        </Badge>
+        </div>
       );
     case "TP1_HIT":
       return (
-        <Badge
-          variant="success"
-          className={`gap-1 font-mono text-[11px] font-semibold ${className}`}
+        <div
+          className={`inline-flex items-center gap-1 rounded-none border-2 border-black bg-[#F2F2F2] text-black px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <Check className="h-3 w-3" />
+          <Check className="h-3 w-3 stroke-[3]" />
           <span>TP1 HIT</span>
-        </Badge>
+        </div>
       );
     case "TP2_HIT":
       return (
-        <Badge
-          variant="success"
-          className={`gap-1 font-mono text-[11px] font-semibold ${className}`}
+        <div
+          className={`inline-flex items-center gap-1 rounded-none border-2 border-black bg-black text-white px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <Check className="h-3 w-3" />
+          <Check className="h-3 w-3 stroke-[3]" />
           <span>TP2 HIT</span>
-        </Badge>
+        </div>
       );
     case "TP3_HIT":
       return (
-        <Badge
-          variant="success"
-          className={`gap-1 font-mono text-[11px] font-semibold bg-emerald-500/20 text-emerald-400 border-emerald-500/30 ${className}`}
+        <div
+          className={`inline-flex items-center gap-1 rounded-none border-2 border-[#FF3000] bg-[#FF3000] text-white px-2 py-0.5 font-mono text-[10px] font-black tracking-wider uppercase ${className || ""}`}
         >
-          <Check className="h-3 w-3" />
+          <Check className="h-3 w-3 stroke-[3]" />
           <span>TP3 HIT (ALL)</span>
-        </Badge>
+        </div>
       );
     case "SL_HIT":
       return (
-        <Badge
-          variant="destructive"
-          className={`gap-1 font-mono text-[11px] font-semibold ${className}`}
+        <div
+          className={`inline-flex items-center gap-1 rounded-none border-2 border-black bg-black text-white px-2 py-0.5 font-mono text-[10px] font-black tracking-wider uppercase ${className || ""}`}
         >
-          <X className="h-3 w-3" />
+          <X className="h-3 w-3 text-[#FF3000] stroke-[3]" />
           <span>SL HIT</span>
-        </Badge>
+        </div>
       );
     case "UNPARSED":
       return (
-        <Badge
-          variant="secondary"
-          className={`gap-1 font-mono text-[11px] font-semibold text-muted-foreground ${className}`}
+        <div
+          className={`inline-flex items-center gap-1 rounded-none border-2 border-black bg-[#F2F2F2] text-black px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <AlertTriangle className="h-3 w-3 text-warning" />
+          <AlertTriangle className="h-3 w-3 text-[#FF3000]" />
           <span>UNPARSED</span>
-        </Badge>
+        </div>
       );
     default:
       return (
-        <Badge variant="outline" className={`font-mono text-[11px] ${className}`}>
+        <div
+          className={`inline-flex items-center rounded-none border-2 border-black bg-white text-black px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
+        >
           {status}
-        </Badge>
+        </div>
       );
   }
 }
@@ -89,31 +85,31 @@ export function DirectionBadge({ direction, className }: DirectionBadgeProps) {
 
   if (normalized === "BUY") {
     return (
-      <Badge
-        variant="success"
-        className={`gap-1 font-mono font-bold tracking-wider text-xs px-2.5 py-0.5 ${className}`}
+      <div
+        className={`inline-flex items-center gap-1 rounded-none border-2 border-black bg-black text-white font-mono font-black text-xs px-2.5 py-0.5 tracking-wider uppercase ${className || ""}`}
       >
-        <ArrowUp className="h-3 w-3 stroke-[3]" />
+        <ArrowUp className="h-3 w-3 stroke-[3] text-[#FF3000]" />
         <span>BUY</span>
-      </Badge>
+      </div>
     );
   }
 
   if (normalized === "SELL") {
     return (
-      <Badge
-        variant="destructive"
-        className={`gap-1 font-mono font-bold tracking-wider text-xs px-2.5 py-0.5 ${className}`}
+      <div
+        className={`inline-flex items-center gap-1 rounded-none border-2 border-black bg-white text-black font-mono font-black text-xs px-2.5 py-0.5 tracking-wider uppercase ${className || ""}`}
       >
         <ArrowDown className="h-3 w-3 stroke-[3]" />
         <span>SELL</span>
-      </Badge>
+      </div>
     );
   }
 
   return (
-    <Badge variant="outline" className={`font-mono text-xs ${className}`}>
+    <div
+      className={`inline-flex items-center rounded-none border-2 border-black bg-white text-black font-mono text-xs px-2 py-0.5 uppercase ${className || ""}`}
+    >
       {direction || "UNKNOWN"}
-    </Badge>
+    </div>
   );
 }

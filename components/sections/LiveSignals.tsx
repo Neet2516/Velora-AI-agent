@@ -39,38 +39,45 @@ export function LiveSignals() {
   }, [signals, activeTab]);
 
   return (
-    <section id="live-signals" className="py-20 md:py-28 border-t border-border/60 bg-background/80 relative">
+    <section id="live-signals" className="py-16 md:py-24 border-b-2 border-black bg-white relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        {/* Section Identifier */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="font-mono text-sm font-black text-[#FF3000]">04</span>
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
+            / LIVE TELEMETRY
+          </span>
+          <div className="h-0.5 w-12 bg-black" />
+          <div className="inline-flex items-center gap-1.5 border border-black px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
+            <span className="h-2 w-2 bg-[#FF3000]" />
+            <span>STREAM ACTIVE</span>
+          </div>
+        </div>
+
+        {/* Section Header & Filters */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b-2 border-black">
           <div>
-            <div className="inline-flex items-center gap-2 mb-3">
-              <Badge variant="outline" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Live Telemetry
-              </Badge>
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Live Signals Feed
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase">
+              LIVE SIGNALS FEED
             </h2>
-            <p className="mt-2 text-base text-muted-foreground max-w-2xl">
+            <p className="mt-2 text-base text-[#555555] font-medium max-w-2xl leading-relaxed">
               Direct telemetry from the Velora algorithmic pipeline. Signals and target hits update in-place within 10 seconds.
             </p>
           </div>
 
-          {/* Filter Tabs */}
+          {/* Filter Tabs in Architectural Sharp Bar */}
           <div
             role="tablist"
             aria-label="Signal status filters"
-            className="flex items-center gap-1.5 p-1 rounded-lg bg-card/80 border border-border overflow-x-auto max-w-full"
+            className="flex items-center border-2 border-black bg-white divide-x-2 divide-black overflow-x-auto max-w-full"
           >
             {(
               [
-                { id: "ALL", label: "All" },
-                { id: "ACTIVE", label: "Active" },
-                { id: "TP_HIT", label: "TP Hits" },
-                { id: "SL_HIT", label: "SL Hits" },
-                { id: "UNPARSED", label: "Unparsed" },
+                { id: "ALL", label: "ALL SIGNALS" },
+                { id: "ACTIVE", label: "ACTIVE" },
+                { id: "TP_HIT", label: "TP HITS" },
+                { id: "SL_HIT", label: "SL HITS" },
+                { id: "UNPARSED", label: "UNPARSED" },
               ] as const
             ).map((tab) => (
               <button
@@ -79,10 +86,10 @@ export function LiveSignals() {
                 aria-selected={activeTab === tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                className={`px-4 py-2.5 text-xs font-mono font-bold tracking-wider uppercase transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-none ${
                   activeTab === tab.id
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-[#F2F2F2]"
                 }`}
               >
                 {tab.label}

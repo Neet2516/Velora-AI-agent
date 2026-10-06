@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-primary/25 selection:text-foreground">
+    <div className="min-h-screen flex flex-col bg-white text-black antialiased selection:bg-[#FF3000] selection:text-white">
       {/* Sticky Top Navbar */}
       <Navbar />
 

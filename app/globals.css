@@ -1,32 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
-  --card: #121215;
-  --card-foreground: #fafafa;
-  --muted: #1e1e24;
-  --muted-foreground: #a1a1aa;
-  --border: #27272a;
-  --primary: #6366f1;
-  --primary-hover: #4f52d9;
-  --primary-foreground: #ffffff;
-  --success: #10b981;
-  --success-foreground: #ffffff;
-  --warning: #f59e0b;
-  --warning-foreground: #09090b;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --foreground: #fafafa;
+  /* Swiss International Style Strict Color Palette */
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --muted: #F2F2F2;
+  --muted-foreground: #555555;
+  --border: #000000;
+  --primary: #000000;
+  --primary-hover: #FF3000;
+  --primary-foreground: #FFFFFF;
+  
+  /* Swiss Red Functional Accent */
+  --swiss-red: #FF3000;
+  --swiss-red-foreground: #FFFFFF;
+  
+  /* Functional States */
+  --success: #000000;
+  --success-foreground: #FFFFFF;
+  --warning: #000000;
+  --warning-foreground: #FFFFFF;
+  --destructive: #FF3000;
+  --destructive-foreground: #FFFFFF;
 
   /* Alpha variants */
-  --primary-10: rgba(99, 102, 241, 0.1);
-  --primary-20: rgba(99, 102, 241, 0.2);
-  --success-10: rgba(16, 185, 129, 0.1);
-  --success-20: rgba(16, 185, 129, 0.2);
-  --warning-10: rgba(245, 158, 11, 0.1);
-  --warning-20: rgba(245, 158, 11, 0.2);
-  --destructive-10: rgba(239, 68, 68, 0.1);
-  --destructive-20: rgba(239, 68, 68, 0.2);
+  --primary-10: rgba(0, 0, 0, 0.05);
+  --primary-20: rgba(0, 0, 0, 0.1);
+  --swiss-red-10: rgba(255, 48, 0, 0.08);
+  --swiss-red-20: rgba(255, 48, 0, 0.15);
 }
 
 @theme inline {
@@ -40,6 +43,8 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
+  --color-swiss-red: var(--swiss-red);
+  --color-swiss-red-foreground: var(--swiss-red-foreground);
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
@@ -47,17 +52,8 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
-  --color-primary-10: var(--primary-10);
-  --color-primary-20: var(--primary-20);
-  --color-success-10: var(--success-10);
-  --color-success-20: var(--success-20);
-  --color-warning-10: var(--warning-10);
-  --color-warning-20: var(--warning-20);
-  --color-destructive-10: var(--destructive-10);
-  --color-destructive-20: var(--destructive-20);
-
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 body {
@@ -65,22 +61,55 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom subtle scrollbar */
+/* Structural CSS Patterns */
+.pattern-grid-24 {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pattern-dot-16 {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.pattern-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.04),
+    rgba(0, 0, 0, 0.04) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+/* Sharp focus indicators */
+*:focus-visible {
+  outline: 2px solid #FF3000 !important;
+  outline-offset: 2px !important;
+}
+
+/* Architectural Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #F2F2F2;
+  border-left: 1px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 4px;
+  background: #000000;
+  border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #FF3000;
 }
+

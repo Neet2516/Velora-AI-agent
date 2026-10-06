@@ -7,21 +7,21 @@ export function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer id="footer" className="w-full border-t border-border bg-card/60 pt-16 pb-12">
+    <footer id="footer" className="w-full border-t-4 border-black bg-white pt-16 pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-border/60">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b-2 border-black">
           {/* Column 1: Brand & Bio */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/25 text-primary">
-                <Activity className="h-4 w-4" />
+            <div className="flex items-center gap-3">
+              <div className="flex h-7 w-7 items-center justify-center bg-black text-white">
+                <span className="font-mono text-xs font-black">V</span>
               </div>
-              <span className="text-lg font-bold tracking-tight text-foreground">
-                VELORA<span className="text-primary font-mono ml-0.5">AI</span>
+              <span className="text-xl font-black tracking-tighter text-black uppercase">
+                VELORA <span className="text-[#FF3000]">AI</span>
               </span>
               <Badge variant="beta">BETA</Badge>
             </div>
-            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+            <p className="text-sm text-[#555555] max-w-md font-medium leading-relaxed">
               Real-time trading signal telemetry mirrored directly from our private Telegram
               and algorithmic backend pipeline. Transparent, instantaneous, and strictly read-only.
             </p>
@@ -29,33 +29,33 @@ export function Footer() {
 
           {/* Column 2: Navigation */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
-              Navigation
+            <h4 className="text-xs font-mono font-black uppercase tracking-widest text-black">
+              INDEX
             </h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-xs font-mono font-bold text-black uppercase">
               <li>
-                <a href="#hero" className="hover:text-foreground transition-colors">
-                  Overview
+                <a href="#hero" className="hover:text-[#FF3000] transition-colors duration-150">
+                  01 / OVERVIEW
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-foreground transition-colors">
-                  What We Do
+                <a href="#features" className="hover:text-[#FF3000] transition-colors duration-150">
+                  02 / CAPABILITIES
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="hover:text-foreground transition-colors">
-                  Pipeline Architecture
+                <a href="#how-it-works" className="hover:text-[#FF3000] transition-colors duration-150">
+                  03 / ARCHITECTURE
                 </a>
               </li>
               <li>
-                <a href="#live-signals" className="hover:text-foreground transition-colors">
-                  Live Signals Feed
+                <a href="#live-signals" className="hover:text-[#FF3000] transition-colors duration-150">
+                  04 / LIVE SIGNALS
                 </a>
               </li>
               <li>
-                <a href="#disclaimer" className="hover:text-foreground transition-colors">
-                  Risk Disclaimer
+                <a href="#disclaimer" className="hover:text-[#FF3000] transition-colors duration-150">
+                  05 / RISK DISCLOSURE
                 </a>
               </li>
             </ul>
@@ -63,23 +63,23 @@ export function Footer() {
 
           {/* Column 3: Community & Access */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-foreground">
-              Community
+            <h4 className="text-xs font-mono font-black uppercase tracking-widest text-black">
+              DISPATCH
             </h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-3 text-xs text-black">
               <li>
                 <a
                   href="https://t.me/VeloraAI"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-foreground hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150"
                 >
-                  <Send className="h-3.5 w-3.5 text-primary" />
-                  <span>Join Telegram</span>
-                  <ArrowUpRight className="h-3 w-3 opacity-60" />
+                  <Send className="h-3.5 w-3.5" />
+                  <span>JOIN TELEGRAM</span>
+                  <ArrowUpRight className="h-3 w-3" />
                 </a>
               </li>
-              <li className="text-xs text-muted-foreground/80 pt-2 leading-relaxed font-mono">
+              <li className="text-xs text-[#555555] font-mono leading-relaxed pt-1">
                 Telemetry feed updates continuously. All signal transmissions subject to market latency.
               </li>
             </ul>
@@ -87,14 +87,17 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground font-mono">
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-black font-mono font-bold">
           <div>
-            &copy; {currentYear} Velora AI. All rights reserved. Beta Phase.
+            &copy; {currentYear} VELORA AI. ALL RIGHTS RESERVED. SWISS TYPOGRAPHIC EDITION.
           </div>
           <div className="flex items-center gap-4">
-            <span>Read-Only Public Dashboard</span>
-            <span className="text-border">•</span>
-            <span className="text-emerald-400">System Status: Normal</span>
+            <span>PUBLIC READ-ONLY DASHBOARD</span>
+            <span>•</span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-2 w-2 bg-[#FF3000]" />
+              <span>SYSTEM STATUS: NORMAL</span>
+            </span>
           </div>
         </div>
       </div>

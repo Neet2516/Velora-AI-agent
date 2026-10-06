@@ -6,17 +6,27 @@ export function RiskDisclaimer() {
     <section
       id="disclaimer"
       aria-label="Risk Disclosure"
-      className="py-14 border-t border-border/60 bg-card/30"
+      className="py-16 md:py-20 border-b-2 border-black bg-white"
     >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-xl border border-border/80 bg-background/60 p-6 sm:p-8 backdrop-blur-sm">
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning-10 text-warning border border-warning/20">
-              <ShieldAlert className="h-5 w-5" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section Identifier */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="font-mono text-sm font-black text-[#FF3000]">05</span>
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
+            / RISK DISCLOSURE
+          </span>
+          <div className="h-0.5 w-12 bg-black" />
+        </div>
+
+        {/* Structured Warning Block */}
+        <div className="border-2 border-black bg-[#F2F2F2] p-6 sm:p-10">
+          <div className="flex flex-col sm:flex-row items-start gap-6">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center border-2 border-black bg-black text-[#FF3000]">
+              <ShieldAlert className="h-6 w-6" />
             </div>
-            <div className="space-y-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              <h3 className="font-semibold text-foreground text-sm sm:text-base">
-                Important Regulatory & Risk Disclaimer
+            <div className="space-y-3 text-xs sm:text-sm text-black font-medium leading-relaxed">
+              <h3 className="font-black text-black text-base sm:text-lg uppercase tracking-tight">
+                IMPORTANT REGULATORY & RISK DISCLOSURE
               </h3>
               <p>
                 Velora AI is an algorithmic intelligence research platform. All signals, trade setups,
