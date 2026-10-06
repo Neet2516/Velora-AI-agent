@@ -59,7 +59,11 @@ export function LiveSignals() {
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex items-center gap-1.5 p-1 rounded-lg bg-card/80 border border-border overflow-x-auto max-w-full">
+          <div
+            role="tablist"
+            aria-label="Signal status filters"
+            className="flex items-center gap-1.5 p-1 rounded-lg bg-card/80 border border-border overflow-x-auto max-w-full"
+          >
             {(
               [
                 { id: "ALL", label: "All" },
@@ -71,9 +75,11 @@ export function LiveSignals() {
             ).map((tab) => (
               <button
                 key={tab.id}
+                role="tab"
+                aria-selected={activeTab === tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-colors whitespace-nowrap cursor-pointer ${
+                className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"

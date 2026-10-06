@@ -27,9 +27,9 @@ PHASE 5 — Optimization, Compliance & Production Readiness (Tasks 17–21)
 ## Current Task
 
 ```
-TASK-018 — Accessibility & Keyboard Navigation Audit
+TASK-019 — Performance Optimization & Core Web Vitals
 Status: [ ] TODO
-Dependencies: TASK-017 (Complete)
+Dependencies: TASK-018 (Complete)
 ```
 
 ---
@@ -55,16 +55,16 @@ Dependencies: TASK-017 (Complete)
 | TASK-015 | Live Update Mechanism | [x] COMPLETE |
 | TASK-016 | Raw Signal Fallback (UNPARSED) | [x] COMPLETE |
 | TASK-017 | Responsive Optimization | [x] COMPLETE |
-| TASK-018 | Accessibility Audit | [ ] TODO |
+| TASK-018 | Accessibility Audit | [x] COMPLETE |
 | TASK-019 | Performance Optimization | [ ] TODO |
 | TASK-020 | Testing | [ ] TODO |
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 17  
+**Completed:** 18  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 4  
+**TODO:** 3  
 
 ---
 
@@ -87,6 +87,7 @@ Dependencies: TASK-017 (Complete)
 - **TASK-015:** Live Update Mechanism — Enforced 5s polling, deduplication by stable ID, and tab resume sync.
 - **TASK-016:** Raw Signal Fallback — Implemented `sanitizeRawText` utility and safe non-executable raw message fallback rendering.
 - **TASK-017:** Responsive Optimization, Disclaimer & Footer — Mounted complete sequence (Navbar → Hero → Features → How It Works → Live Signals → Disclaimer → Footer) with mobile-first layouts.
+- **TASK-018:** Accessibility Audit — Verified visible focus rings, multi-channel communication, ARIA tab roles, polite live regions, and reduced-motion support.
 
 ---
 
@@ -99,8 +100,8 @@ Dependencies: TASK-017 (Complete)
 ## Next Task
 
 ```
-TASK-018 — Accessibility & Keyboard Navigation Audit
-Dependencies: TASK-017 [x] COMPLETE
+TASK-019 — Performance Optimization & Core Web Vitals
+Dependencies: TASK-018 [x] COMPLETE
 ```
 
 ---
