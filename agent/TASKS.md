@@ -868,7 +868,7 @@ Define and document server-only environment variables for the Telegram bot `@Vlg
 
 ```
 ID:     TASK-023
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -878,19 +878,23 @@ Create the server-side Next.js Route Handler skeleton for `POST /api/telegram` t
 
 **Files Likely Affected:**
 - `app/api/telegram/route.ts`
+- `__tests__/telegram-route.test.ts`
 
 **Implementation Details:**
-1. Create `app/api/telegram/route.ts` with `POST` export.
-2. Implement request body JSON extraction and validation.
-3. Reject non-POST requests with `405 Method Not Allowed`.
-4. Return structured response JSON.
+1. Created `app/api/telegram/route.ts` with `POST` export and `GET` method rejection (`405`).
+2. Implemented request body JSON parsing and validation with structured acknowledgement response.
+3. Created unit tests in `__tests__/telegram-route.test.ts` confirming HTTP 200 acknowledgement, HTTP 400 on malformed JSON, and HTTP 405 on GET.
+4. Verified compatibility with Next.js 16 cacheComponents and compiled dynamically.
 
 **Acceptance Criteria:**
-- [ ] `POST /api/telegram` returns `200 OK` on valid JSON payload
-- [ ] Server route is strictly server-side; zero client footprint
+- [x] `POST /api/telegram` returns `200 OK` on valid JSON payload
+- [x] Non-JSON payload returns `400 Bad Request`
+- [x] GET requests return `405 Method Not Allowed`
+- [x] Route is recognized as dynamic server-rendered route (`ƒ /api/telegram`)
+- [x] Zero client bundle footprint
 
 **Validation Method:**
-`curl -X POST http://localhost:3000/api/telegram` or automated Vitest route test.
+Vitest route tests passed; `npm run build` compiled `/api/telegram` dynamically with zero errors.
 
 ---
 
