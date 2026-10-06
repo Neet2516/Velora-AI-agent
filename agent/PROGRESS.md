@@ -9,9 +9,9 @@ PHASE 1 — Foundation (Tasks 1–4)
 ## Current Task
 
 ```
-TASK-002 — Design Token Integration
+TASK-003 — Application Shell
 Status: [ ] TODO
-Dependencies: TASK-001 (Complete)
+Dependencies: TASK-001 (Complete), TASK-002 (Complete)
 ```
 
 ---
@@ -21,7 +21,7 @@ Dependencies: TASK-001 (Complete)
 | Task | Title | Status |
 |---|---|---|
 | TASK-001 | Project Initialization | [x] COMPLETE |
-| TASK-002 | Design Token Integration | [ ] TODO |
+| TASK-002 | Design Token Integration | [x] COMPLETE |
 | TASK-003 | Application Shell | [ ] TODO |
 | TASK-004 | shadcn/ui Setup | [ ] TODO |
 | TASK-005 | Navbar Component | [ ] TODO |
@@ -43,16 +43,17 @@ Dependencies: TASK-001 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 1  
+**Completed:** 2  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 20  
+**TODO:** 19  
 
 ---
 
 ## Completed Tasks
 
 - **TASK-001:** Project Initialization — Scaffolded Next.js App Router, configured TypeScript in strict mode, installed Tailwind CSS and core packages (`lucide-react`, `framer-motion`, `@tanstack/react-query`, `zod`, `clsx`, `tailwind-merge`), initialized `lib/utils.ts`, `.env.example`, verified `npm run build` with zero errors.
+- **TASK-002:** Design Token Integration — Configured canonical color palette, alpha variants, and typography variables (`Geist Sans`, `Geist Mono`) in `globals.css` and `layout.tsx`. Clean build verified.
 
 ---
 
@@ -65,8 +66,8 @@ Dependencies: TASK-001 (Complete)
 ## Next Task
 
 ```
-TASK-002 — Design Token Integration
-Dependencies: TASK-001 [x] COMPLETE
+TASK-003 — Application Shell
+Dependencies: TASK-001 [x] COMPLETE, TASK-002 [x] COMPLETE
 ```
 
 ---
