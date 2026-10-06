@@ -27,9 +27,9 @@ PHASE 6 — Telegram Bot Integration Pipeline (Tasks 22–29)
 ## Current Task
 
 ```
-TASK-022 — Telegram Environment Configuration
+TASK-023 — Telegram Webhook Route Handler Skeleton
 Status: [ ] TODO
-Dependencies: TASK-021 (Complete)
+Dependencies: TASK-022 (Complete)
 ```
 
 ---
@@ -59,7 +59,7 @@ Dependencies: TASK-021 (Complete)
 | TASK-019 | Performance Optimization | [x] COMPLETE |
 | TASK-020 | Testing | [x] COMPLETE |
 | TASK-021 | Production Readiness | [x] COMPLETE |
-| TASK-022 | Telegram Environment Configuration | [ ] TODO |
+| TASK-022 | Telegram Environment Configuration | [x] COMPLETE |
 | TASK-023 | Telegram Webhook Route Handler Skeleton | [ ] TODO |
 | TASK-024 | Signal Parser Implementation | [ ] TODO |
 | TASK-025 | Signal Persistence & Store | [ ] TODO |
@@ -69,10 +69,10 @@ Dependencies: TASK-021 (Complete)
 | TASK-029 | Telegram Integration Test Suite | [ ] TODO |
 
 **Total tasks:** 29  
-**Completed:** 21  
+**Completed:** 22  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 8  
+**TODO:** 7  
 
 ---
 
@@ -99,6 +99,7 @@ Dependencies: TASK-021 (Complete)
 - **TASK-019:** Performance Optimization — Configured package import tree-shaking for icons, compression, poweredByHeader removal, and verified zero-JS Server Components.
 - **TASK-020:** Testing — Configured Vitest and implemented unit tests covering Zod schemas, data normalizers, utilities (`cn`, `sanitizeRawText` XSS protection), and signal deduplication logic. All 21 tests pass with zero warnings.
 - **TASK-021:** Production Readiness — Hardened Next.js security headers, Open Graph & Twitter meta tags, `robots.ts`, `sitemap.ts`, branded `icon.svg`, and verified zero secrets with deployment-ready documentation.
+- **TASK-022:** Telegram Environment Configuration — Configured server-only environment variables (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`) with zero client leaks, timing-safe secret validation helper, and automated config tests.
 
 ---
 
@@ -111,8 +112,8 @@ Dependencies: TASK-021 (Complete)
 ## Next Task
 
 ```
-TASK-022 — Telegram Environment Configuration
-Dependencies: TASK-021 [x] COMPLETE
+TASK-023 — Telegram Webhook Route Handler Skeleton
+Dependencies: TASK-022 [x] COMPLETE
 ```
 
 ---

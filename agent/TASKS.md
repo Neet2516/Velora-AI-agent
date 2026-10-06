@@ -832,7 +832,7 @@ Final production checklist — environment configuration, metadata/OG tags, secu
 
 ```
 ID:     TASK-022
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -844,20 +844,23 @@ Define and document server-only environment variables for the Telegram bot `@Vlg
 - `.env.example`
 - `.env.local`
 - `lib/telegram/config.ts`
+- `__tests__/telegram-config.test.ts`
 
 **Implementation Details:**
-1. Add `TELEGRAM_BOT_TOKEN=` and `TELEGRAM_WEBHOOK_SECRET=` placeholders to `.env.example`.
-2. Add safe local placeholder variables in `.env.local`.
-3. Create server-side config helper `lib/telegram/config.ts` verifying that variables are strictly server-side and never prefixed with `NEXT_PUBLIC_`.
-4. Ensure `.gitignore` continues to ignore all `.env*.local` files.
+1. Updated `.env.example` with clear documentation and safe placeholders for `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET`.
+2. Created `.env.local` with development placeholder strings.
+3. Created `lib/telegram/config.ts` with `getTelegramConfig()` and timing-safe `validateWebhookSecret()`, enforcing server-only access.
+4. Created `__tests__/telegram-config.test.ts` covering environment variable reading and timing-safe comparison.
+5. Confirmed `.env*.local` is strictly ignored by Git and will not leak secrets.
 
 **Acceptance Criteria:**
-- [ ] `.env.example` documents `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` with zero real secrets
-- [ ] No `NEXT_PUBLIC_` prefix on Telegram bot secrets
-- [ ] Build and test commands pass with clean environment resolution
+- [x] `.env.example` documents `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` with zero real secrets
+- [x] No `NEXT_PUBLIC_` prefix on Telegram bot secrets
+- [x] Timing-safe secret comparison prevents side-channel timing attacks
+- [x] Build and test commands pass with clean environment resolution
 
 **Validation Method:**
-`npm run build` and `git status` audit confirming zero secrets in staged files.
+`npm test` and `npm run build` both passed cleanly with zero warnings or errors.
 
 ---
 
