@@ -1081,7 +1081,7 @@ Vitest route tests passed (3/3 passing); Next.js production build compiled `/api
 
 ```
 ID:     TASK-029
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -1091,34 +1091,35 @@ Implement the comprehensive 15-case test suite in Vitest verifying all bot parse
 
 **Files Likely Affected:**
 - `__tests__/telegram-integration.test.ts`
-- `__tests__/telegram-parser.test.ts`
 
 **Implementation Details:**
-Cover all 15 scenarios specified in `TEST_PLAN.md` Section 11:
-1. Valid BUY signal
-2. Valid SELL signal
-3. Signal with only TP1
-4. Signal with TP1 + TP2
-5. Signal with TP1 + TP2 + TP3
-6. `TP1 HIT` update
-7. `TP2 HIT` update
-8. `TP3 HIT` update
-9. `SL HIT` update
-10. Malformed signal
-11. Empty message
-12. Duplicate message
-13. Invalid webhook secret
-14. Unexpected update
-15. Rapid consecutive signals
+1. Created `__tests__/telegram-integration.test.ts` executing all 15 scenarios against the live webhook handler (`POST /api/telegram`) and signals feed (`GET /api/signals`):
+   - Scenario 1: Valid BUY signal with complete parameters.
+   - Scenario 2: Valid SELL signal.
+   - Scenario 3: Signal with only TP1.
+   - Scenario 4: Signal with TP1 + TP2.
+   - Scenario 5: Signal with TP1 + TP2 + TP3.
+   - Scenario 6: `TP1 HIT` in-place status update (no duplicate cards).
+   - Scenario 7: `TP2 HIT` state progression.
+   - Scenario 8: `TP3 HIT` state progression.
+   - Scenario 9: `SL HIT` stop-loss mutation.
+   - Scenario 10: Malformed signal fallback to `UNPARSED` with preserved `raw_text`.
+   - Scenario 11: Empty Telegram message ignored gracefully.
+   - Scenario 12: Duplicate message idempotency (zero card duplicates).
+   - Scenario 13: Invalid webhook secret rejected with 401 Unauthorized.
+   - Scenario 14: Unexpected non-message update ignored with HTTP 200.
+   - Scenario 15: Rapid consecutive signals with preserved order and unique IDs.
+2. Verified all 73 tests across 10 test files pass in Vitest with zero failures.
 
 **Acceptance Criteria:**
-- [ ] All 15 scenarios pass with 0 failures
-- [ ] Zero warnings in test runner
-- [ ] `npm test` and `npm run build` pass completely
+- [x] All 15 scenarios pass with 0 failures
+- [x] Zero warnings in test runner
+- [x] `npm test` and `npm run build` pass completely
+- [x] Verified zero duplicate cards on status updates
 
 **Validation Method:**
-`npm test` — all test suites pass green.
+`npm test` — all 73 tests across 10 test files passed in 532ms; `npm run build` completed successfully.
 
 ---
 
-*Last updated: Phase 6 planned — Tasks 22 to 29 registered for Telegram Bot integration.*
+*Last updated: Final milestone — all 29 tasks across Phase 1 through Phase 6 [x] COMPLETE (100%).*
