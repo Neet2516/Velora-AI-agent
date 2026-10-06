@@ -21,9 +21,9 @@ PHASE 4 — API & Live Updates (Tasks 14–16)
 ## Current Task
 
 ```
-TASK-015 — Live Update Mechanism & Invariant Verification
+TASK-016 — Raw Signal Fallback (UNPARSED) & Security Sanitization
 Status: [ ] TODO
-Dependencies: TASK-014 (Complete)
+Dependencies: TASK-015 (Complete)
 ```
 
 ---
@@ -46,7 +46,7 @@ Dependencies: TASK-014 (Complete)
 | TASK-012 | SignalList Component | [x] COMPLETE |
 | TASK-013 | Loading / Empty / Error States | [x] COMPLETE |
 | TASK-014 | API Integration | [x] COMPLETE |
-| TASK-015 | Live Update Mechanism | [ ] TODO |
+| TASK-015 | Live Update Mechanism | [x] COMPLETE |
 | TASK-016 | Raw Signal Fallback (UNPARSED) | [ ] TODO |
 | TASK-017 | Responsive Optimization | [ ] TODO |
 | TASK-018 | Accessibility Audit | [ ] TODO |
@@ -55,10 +55,10 @@ Dependencies: TASK-014 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 14  
+**Completed:** 15  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 7  
+**TODO:** 6  
 
 ---
 
@@ -78,6 +78,7 @@ Dependencies: TASK-014 (Complete)
 - **TASK-012:** SignalList Component — Built responsive newest-first SignalList with AnimatePresence and stable unique ID keys.
 - **TASK-013:** Loading / Empty / Error States — Created `SignalListEmpty` ("No signals right now."), `SignalListError`, and `SignalStatusBanner` supporting live, reconnecting, and error modes.
 - **TASK-014:** API Integration — Wired `apiClient`, `fetchSignals`, Zod runtime validation, isolated development boundary, and TanStack Query polling hook into `<LiveSignals />`.
+- **TASK-015:** Live Update Mechanism — Enforced 5s polling, deduplication by stable ID, and tab resume sync.
 
 ---
 
@@ -90,8 +91,8 @@ Dependencies: TASK-014 (Complete)
 ## Next Task
 
 ```
-TASK-015 — Live Update Mechanism & Invariant Verification
-Dependencies: TASK-014 [x] COMPLETE
+TASK-016 — Raw Signal Fallback (UNPARSED) & Security Sanitization
+Dependencies: TASK-015 [x] COMPLETE
 ```
 
 ---

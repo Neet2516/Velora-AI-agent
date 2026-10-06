@@ -3,6 +3,30 @@ import { apiClient } from "./client";
 import { INITIAL_MOCK_SIGNALS } from "./mockSignals";
 
 /**
+ * Deduplicate signals by stable ID to strictly enforce the invariant:
+ * TP/SL updates modify existing signals; duplicate cards are impossible.
+ */
+export function deduplicateSignals(signals: Signal[]): Signal[] {
+  const map = new Map<string, Signal>();
+
+  for (const signal of signals) {
+    const existing = map.get(signal.id);
+    if (!existing) {
+      map.set(signal.id, signal);
+    } else {
+      // If duplicate ID exists, merge with latest status and timestamps
+      map.set(signal.id, {
+        ...existing,
+        ...signal,
+        updated_at: signal.updated_at || new Date().toISOString(),
+      });
+    }
+  }
+
+  return Array.from(map.values());
+}
+
+/**
  * Fetch Signals from Velora Backend API
  * Validates payload against Zod schema and handles fallback cleanly.
  */
@@ -15,7 +39,7 @@ export async function fetchSignals(): Promise<{ signals: Signal[]; isFallback: b
 
     if (parseResult.success) {
       return {
-        signals: parseResult.data.data,
+        signals: deduplicateSignals(parseResult.data.data),
         isFallback: false,
       };
     }
@@ -30,7 +54,7 @@ export async function fetchSignals(): Promise<{ signals: Signal[]; isFallback: b
       const arrayParse = SignalListResponseSchema.safeParse({ data: rawData });
       if (arrayParse.success) {
         return {
-          signals: arrayParse.data.data,
+          signals: deduplicateSignals(arrayParse.data.data),
           isFallback: false,
         };
       }
@@ -38,16 +62,13 @@ export async function fetchSignals(): Promise<{ signals: Signal[]; isFallback: b
 
     // Graceful fallback to initial mock fixtures when API shape is incomplete
     return {
-      signals: INITIAL_MOCK_SIGNALS,
+      signals: deduplicateSignals(INITIAL_MOCK_SIGNALS),
       isFallback: true,
     };
-  } catch (err) {
+  } catch {
     // When backend API is offline during development, utilize the development boundary
-    console.info(
-      "[Velora API] Backend API currently unreachable. Using development telemetry feed."
-    );
     return {
-      signals: INITIAL_MOCK_SIGNALS,
+      signals: deduplicateSignals(INITIAL_MOCK_SIGNALS),
       isFallback: true,
     };
   }

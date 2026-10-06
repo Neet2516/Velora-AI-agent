@@ -16,8 +16,10 @@ export function useSignals() {
   } = useQuery({
     queryKey: ["signals"],
     queryFn: fetchSignals,
-    refetchInterval: 5000, // Poll every 5s to guarantee <10s latency
+    refetchInterval: 5000, // 5s interval guarantees <10s latency target
     refetchIntervalInBackground: false,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
     retry: 2,
     staleTime: 3000,
   });
