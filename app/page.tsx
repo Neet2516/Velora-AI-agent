@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { WhatVeloraAIDoes } from "@/components/sections/WhatVeloraAIDoes";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { LiveSignals } from "@/components/sections/LiveSignals";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
         <Hero />
         <WhatVeloraAIDoes />
         <HowItWorks />
-        <section id="live-signals" aria-label="Live Trading Signals" />
+        <LiveSignals />
         <section id="disclaimer" aria-label="Risk Disclaimer" />
       </main>
 

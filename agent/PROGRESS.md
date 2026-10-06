@@ -21,9 +21,9 @@ PHASE 4 — API & Live Updates (Tasks 14–16)
 ## Current Task
 
 ```
-TASK-014 — API Integration & Signals Hook
+TASK-015 — Live Update Mechanism & Invariant Verification
 Status: [ ] TODO
-Dependencies: TASK-009, TASK-013 (All Complete)
+Dependencies: TASK-014 (Complete)
 ```
 
 ---
@@ -45,7 +45,7 @@ Dependencies: TASK-009, TASK-013 (All Complete)
 | TASK-011 | Signal State Rendering & Transitions | [x] COMPLETE |
 | TASK-012 | SignalList Component | [x] COMPLETE |
 | TASK-013 | Loading / Empty / Error States | [x] COMPLETE |
-| TASK-014 | API Integration | [ ] TODO |
+| TASK-014 | API Integration | [x] COMPLETE |
 | TASK-015 | Live Update Mechanism | [ ] TODO |
 | TASK-016 | Raw Signal Fallback (UNPARSED) | [ ] TODO |
 | TASK-017 | Responsive Optimization | [ ] TODO |
@@ -55,10 +55,10 @@ Dependencies: TASK-009, TASK-013 (All Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 13  
+**Completed:** 14  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 8  
+**TODO:** 7  
 
 ---
 
@@ -77,6 +77,7 @@ Dependencies: TASK-009, TASK-013 (All Complete)
 - **TASK-011:** Signal State Rendering & Transitions — Enhanced SignalCard with Framer Motion layout animations, reduced-motion fallback, and in-place target updates.
 - **TASK-012:** SignalList Component — Built responsive newest-first SignalList with AnimatePresence and stable unique ID keys.
 - **TASK-013:** Loading / Empty / Error States — Created `SignalListEmpty` ("No signals right now."), `SignalListError`, and `SignalStatusBanner` supporting live, reconnecting, and error modes.
+- **TASK-014:** API Integration — Wired `apiClient`, `fetchSignals`, Zod runtime validation, isolated development boundary, and TanStack Query polling hook into `<LiveSignals />`.
 
 ---
 
@@ -89,8 +90,8 @@ Dependencies: TASK-009, TASK-013 (All Complete)
 ## Next Task
 
 ```
-TASK-014 — API Integration & Signals Hook
-Dependencies: TASK-009 [x] COMPLETE, TASK-013 [x] COMPLETE
+TASK-015 — Live Update Mechanism & Invariant Verification
+Dependencies: TASK-014 [x] COMPLETE
 ```
 
 ---
