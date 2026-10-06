@@ -902,7 +902,7 @@ Vitest route tests passed; `npm run build` compiled `/api/telegram` dynamically 
 
 ```
 ID:     TASK-024
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -913,21 +913,24 @@ Implement robust, pure-function signal parsing for canonical Telegram messages a
 **Files Likely Affected:**
 - `lib/telegram/parser.ts`
 - `lib/telegram/types.ts`
+- `__tests__/telegram-parser.test.ts`
 
 **Implementation Details:**
-1. Implement parser for `NEW SIGNAL` format: Symbol, Type (`BUY`/`SELL`/`LONG`/`SHORT`), Entry, SL, TP1, optional TP2, optional TP3.
-2. Implement parser for update events: `TP1 HIT`, `TP2 HIT`, `TP3 HIT`, `SL HIT`.
-3. Preserve `raw_text` on all outputs.
-4. Fallback to `UNPARSED` status on malformed text without throwing exceptions.
+1. Created `lib/telegram/types.ts` defining `ParsedTelegramResult` union (`NEW_SIGNAL`, `STATUS_UPDATE`, `UNPARSED`).
+2. Implemented `parseTelegramMessage()` in `lib/telegram/parser.ts` supporting regex extraction for Symbol, Type, Entry, SL, TP1, TP2, and TP3.
+3. Implemented status update parsing recognizing `TP1 HIT`, `TP2 HIT`, `TP3 HIT`, `SL HIT` with optional symbol prefixes and reply-to message metadata.
+4. Guaranteed non-crashing fallback: empty, null, or malformed inputs return structured `UNPARSED` objects preserving `raw_text`.
+5. Created 10 automated unit tests in `__tests__/telegram-parser.test.ts` validating all scenarios.
 
 **Acceptance Criteria:**
-- [ ] Correctly parses valid BUY and SELL signals
-- [ ] Correctly handles single TP, 2 TPs, and 3 TPs
-- [ ] Correctly parses update phrases
-- [ ] Returns structured `UNPARSED` object on malformed messages
+- [x] Correctly parses valid BUY and SELL signals
+- [x] Correctly handles single TP, 2 TPs, and 3 TPs
+- [x] Correctly parses update phrases (TP1/2/3 HIT, SL HIT)
+- [x] Returns structured `UNPARSED` object on malformed messages without throwing
+- [x] Preserves verbatim `raw_text` on every parsed or unparsed entity
 
 **Validation Method:**
-Unit tests in `__tests__/telegram-parser.test.ts`.
+Vitest unit tests passed (10/10 tests in parser suite); production build succeeded.
 
 ---
 

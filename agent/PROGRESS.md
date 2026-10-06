@@ -27,9 +27,9 @@ PHASE 6 — Telegram Bot Integration Pipeline (Tasks 22–29)
 ## Current Task
 
 ```
-TASK-024 — Signal Parser Implementation
+TASK-025 — Signal Persistence & Store
 Status: [ ] TODO
-Dependencies: TASK-023 (Complete)
+Dependencies: TASK-024 (Complete)
 ```
 
 ---
@@ -61,7 +61,7 @@ Dependencies: TASK-023 (Complete)
 | TASK-021 | Production Readiness | [x] COMPLETE |
 | TASK-022 | Telegram Environment Configuration | [x] COMPLETE |
 | TASK-023 | Telegram Webhook Route Handler Skeleton | [x] COMPLETE |
-| TASK-024 | Signal Parser Implementation | [ ] TODO |
+| TASK-024 | Signal Parser Implementation | [x] COMPLETE |
 | TASK-025 | Signal Persistence & Store | [ ] TODO |
 | TASK-026 | Telegram Webhook Secret Verification | [ ] TODO |
 | TASK-027 | Signal Update & State Progression | [ ] TODO |
@@ -69,10 +69,10 @@ Dependencies: TASK-023 (Complete)
 | TASK-029 | Telegram Integration Test Suite | [ ] TODO |
 
 **Total tasks:** 29  
-**Completed:** 23  
+**Completed:** 24  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 6  
+**TODO:** 5  
 
 ---
 
@@ -101,6 +101,7 @@ Dependencies: TASK-023 (Complete)
 - **TASK-021:** Production Readiness — Hardened Next.js security headers, Open Graph & Twitter meta tags, `robots.ts`, `sitemap.ts`, branded `icon.svg`, and verified zero secrets with deployment-ready documentation.
 - **TASK-022:** Telegram Environment Configuration — Configured server-only environment variables (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`) with zero client leaks, timing-safe secret validation helper, and automated config tests.
 - **TASK-023:** Telegram Webhook Route Handler Skeleton — Created server-side `app/api/telegram/route.ts` receiving and acknowledging JSON updates with dynamic server rendering and verified test coverage.
+- **TASK-024:** Signal Parser Implementation — Implemented robust pure-function regex parser for canonical `NEW SIGNAL` format, `TP1/2/3 HIT` and `SL HIT` updates, and graceful fallback to `UNPARSED` with 10 passing unit tests.
 
 ---
 
@@ -113,8 +114,8 @@ Dependencies: TASK-023 (Complete)
 ## Next Task
 
 ```
-TASK-024 — Signal Parser Implementation
-Dependencies: TASK-023 [x] COMPLETE
+TASK-025 — Signal Persistence & Store
+Dependencies: TASK-024 [x] COMPLETE
 ```
 
 ---
