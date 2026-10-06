@@ -973,7 +973,7 @@ Vitest unit tests passed (6/6 tests in store suite); clean production build veri
 
 ```
 ID:     TASK-026
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
@@ -983,21 +983,25 @@ Harden `POST /api/telegram` by verifying `x-telegram-bot-api-secret-token` again
 
 **Files Likely Affected:**
 - `app/api/telegram/route.ts`
+- `__tests__/telegram-route.test.ts`
 
 **Implementation Details:**
-1. Read `x-telegram-bot-api-secret-token` header from incoming `NextRequest`.
-2. Compare against `TELEGRAM_WEBHOOK_SECRET` with constant-time equality check if secret is configured.
-3. Reject unauthorized requests with `401 Unauthorized`.
-4. Extract text from `message` or `channel_post`.
-5. Dispatch to `parseTelegramMessage()` and persist in `SignalStore`.
+1. Implemented timing-safe header verification checking `x-telegram-bot-api-secret-token` against `TELEGRAM_WEBHOOK_SECRET`.
+2. Reject unauthorized incoming webhook calls with HTTP 401 Unauthorized.
+3. Supported Telegram `message`, `channel_post`, `edited_message`, and `edited_channel_post` structures.
+4. Filtered out non-message or empty updates with HTTP 200 `{ ok: true, status: "ignored" }`.
+5. Connected parser output (`NEW_SIGNAL`, `UNPARSED`, `STATUS_UPDATE`) directly into `signalStore`.
+6. Verified with 6 integration tests in `__tests__/telegram-route.test.ts`.
 
 **Acceptance Criteria:**
-- [ ] Missing or invalid secret token returns `401 Unauthorized`
-- [ ] Valid secret token processes message and returns `200 OK`
-- [ ] Channel posts and direct messages both supported
+- [x] Missing or invalid secret token returns `401 Unauthorized`
+- [x] Valid secret token processes message and returns `200 OK`
+- [x] Channel posts and direct messages both supported
+- [x] Non-message updates handled gracefully without throwing
+- [x] Stored signals persist in SignalStore
 
 **Validation Method:**
-Vitest route handler integration tests.
+Vitest route integration tests passed (6/6 passing); Next.js production build succeeded.
 
 ---
 
