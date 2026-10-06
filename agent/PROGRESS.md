@@ -9,9 +9,9 @@ PHASE 1 — Foundation (Tasks 1–4)
 ## Current Task
 
 ```
-TASK-003 — Application Shell
+TASK-004 — shadcn/ui Setup & Primitives
 Status: [ ] TODO
-Dependencies: TASK-001 (Complete), TASK-002 (Complete)
+Dependencies: TASK-001 (Complete), TASK-002 (Complete), TASK-003 (Complete)
 ```
 
 ---
@@ -22,7 +22,7 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete)
 |---|---|---|
 | TASK-001 | Project Initialization | [x] COMPLETE |
 | TASK-002 | Design Token Integration | [x] COMPLETE |
-| TASK-003 | Application Shell | [ ] TODO |
+| TASK-003 | Application Shell | [x] COMPLETE |
 | TASK-004 | shadcn/ui Setup | [ ] TODO |
 | TASK-005 | Navbar Component | [ ] TODO |
 | TASK-006 | Hero Section | [ ] TODO |
@@ -43,10 +43,10 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 2  
+**Completed:** 3  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 19  
+**TODO:** 18  
 
 ---
 
@@ -54,6 +54,7 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete)
 
 - **TASK-001:** Project Initialization — Scaffolded Next.js App Router, configured TypeScript in strict mode, installed Tailwind CSS and core packages (`lucide-react`, `framer-motion`, `@tanstack/react-query`, `zod`, `clsx`, `tailwind-merge`), initialized `lib/utils.ts`, `.env.example`, verified `npm run build` with zero errors.
 - **TASK-002:** Design Token Integration — Configured canonical color palette, alpha variants, and typography variables (`Geist Sans`, `Geist Mono`) in `globals.css` and `layout.tsx`. Clean build verified.
+- **TASK-003:** Application Shell — Built `app/providers.tsx` with TanStack Query provider, wrapped root layout, and prepared semantic landmark page structure in `app/page.tsx`.
 
 ---
 
@@ -66,8 +67,8 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete)
 ## Next Task
 
 ```
-TASK-003 — Application Shell
-Dependencies: TASK-001 [x] COMPLETE, TASK-002 [x] COMPLETE
+TASK-004 — shadcn/ui Setup & Primitives
+Dependencies: TASK-001 [x] COMPLETE, TASK-002 [x] COMPLETE, TASK-003 [x] COMPLETE
 ```
 
 ---
