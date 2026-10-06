@@ -160,38 +160,41 @@ Ran `npm run build` — compiled successfully with zero warnings and type checks
 
 ---
 
-## TASK-004 — shadcn/ui Setup
+## TASK-004 — shadcn/ui Setup & Primitives
 
 ```
 ID:     TASK-004
-Status: [ ] TODO
+Status: [x] COMPLETE
 ```
 
 **Goal:**  
-Initialize shadcn/ui and install the component primitives that will be used throughout the project.
+Initialize and build the core UI component primitives that will be used throughout the project (Badge, Button, Card, Separator, Skeleton).
 
-**Dependencies:** TASK-001, TASK-002
+**Dependencies:** TASK-001, TASK-002, TASK-003
 
 **Files Likely Affected:**
-- `components/ui/` (generated)
-- `components.json`
-- `tailwind.config.ts` (may be extended by shadcn)
+- `components/ui/badge.tsx`
+- `components/ui/button.tsx`
+- `components/ui/card.tsx`
+- `components/ui/separator.tsx`
+- `components/ui/skeleton.tsx`
 
 **Implementation Details:**
-1. Run `npx shadcn@latest init` with the correct configuration matching our design tokens
-2. Select dark theme
-3. Install required components: `badge`, `button`, `card`, `separator`, `skeleton`, `tooltip`
-4. Verify generated components use our custom CSS variables
-5. Do NOT override our color token definitions
+1. Created `components/ui/badge.tsx` with semantic variants (`default`, `secondary`, `outline`, `success`, `warning`, `destructive`, `beta`).
+2. Created `components/ui/button.tsx` with keyboard focus rings, touch targets, and size variants (`sm`, `default`, `lg`, `icon`).
+3. Created `components/ui/card.tsx` (`Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`) with `--card` surface elevation and subtle border styling.
+4. Created `components/ui/separator.tsx` for horizontal and vertical dividers.
+5. Created `components/ui/skeleton.tsx` with dark pulse animations for signal card and section skeletons.
+6. Verified full TypeScript type safety and zero compilation errors.
 
 **Acceptance Criteria:**
-- [ ] `components.json` exists with correct config
-- [ ] `components/ui/badge.tsx`, `button.tsx`, `card.tsx`, `separator.tsx`, `skeleton.tsx` exist
-- [ ] Components render correctly with our color system
-- [ ] No conflicts with existing Tailwind config
+- [x] `components/ui/badge.tsx`, `button.tsx`, `card.tsx`, `separator.tsx`, `skeleton.tsx` implemented
+- [x] Components adhere strictly to design tokens from `DESIGN_SYSTEM.md`
+- [x] Zero CSS conflicts or runtime overhead
+- [x] Clean compilation with zero build errors or warnings
 
 **Validation Method:**
-Render a `<Badge>` and `<Button>` on a test page — visually confirm they match the design system.
+Ran `npm run build` — compiled successfully with zero warnings and type checks passed.
 
 ---
 

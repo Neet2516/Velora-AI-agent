@@ -3,15 +3,15 @@
 ## Current Phase
 
 ```
-PHASE 1 — Foundation (Tasks 1–4)
+PHASE 2 — Landing Page Core Components (Tasks 5–8)
 ```
 
 ## Current Task
 
 ```
-TASK-004 — shadcn/ui Setup & Primitives
+TASK-005 — Navbar Component
 Status: [ ] TODO
-Dependencies: TASK-001 (Complete), TASK-002 (Complete), TASK-003 (Complete)
+Dependencies: TASK-002, TASK-003, TASK-004 (All Complete)
 ```
 
 ---
@@ -23,7 +23,7 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete), TASK-003 (Complete)
 | TASK-001 | Project Initialization | [x] COMPLETE |
 | TASK-002 | Design Token Integration | [x] COMPLETE |
 | TASK-003 | Application Shell | [x] COMPLETE |
-| TASK-004 | shadcn/ui Setup | [ ] TODO |
+| TASK-004 | shadcn/ui Setup | [x] COMPLETE |
 | TASK-005 | Navbar Component | [ ] TODO |
 | TASK-006 | Hero Section | [ ] TODO |
 | TASK-007 | What Velora AI Does | [ ] TODO |
@@ -43,10 +43,10 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete), TASK-003 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 3  
+**Completed:** 4  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 18  
+**TODO:** 17  
 
 ---
 
@@ -55,6 +55,7 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete), TASK-003 (Complete)
 - **TASK-001:** Project Initialization — Scaffolded Next.js App Router, configured TypeScript in strict mode, installed Tailwind CSS and core packages (`lucide-react`, `framer-motion`, `@tanstack/react-query`, `zod`, `clsx`, `tailwind-merge`), initialized `lib/utils.ts`, `.env.example`, verified `npm run build` with zero errors.
 - **TASK-002:** Design Token Integration — Configured canonical color palette, alpha variants, and typography variables (`Geist Sans`, `Geist Mono`) in `globals.css` and `layout.tsx`. Clean build verified.
 - **TASK-003:** Application Shell — Built `app/providers.tsx` with TanStack Query provider, wrapped root layout, and prepared semantic landmark page structure in `app/page.tsx`.
+- **TASK-004:** UI Primitives Setup — Built core UI primitives (`Badge`, `Button`, `Card`, `Separator`, `Skeleton`) conforming to the technical dark design system with accessibility focus states.
 
 ---
 
@@ -67,8 +68,8 @@ Dependencies: TASK-001 (Complete), TASK-002 (Complete), TASK-003 (Complete)
 ## Next Task
 
 ```
-TASK-004 — shadcn/ui Setup & Primitives
-Dependencies: TASK-001 [x] COMPLETE, TASK-002 [x] COMPLETE, TASK-003 [x] COMPLETE
+TASK-005 — Navbar Component
+Dependencies: TASK-002 [x] COMPLETE, TASK-003 [x] COMPLETE, TASK-004 [x] COMPLETE
 ```
 
 ---
