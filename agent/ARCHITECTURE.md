@@ -198,18 +198,42 @@ FRONTEND (this repository)
 ├── Live signals display
 └── Calls: NEXT_PUBLIC_API_URL
 
-BACKEND (separate repository — not in scope)
-├── Telegram bot receiver
-├── Signal parser
-├── Database (stores signals)
-└── Velora API (serves signals to frontend)
+## Telegram Ingestion Pipeline & Webhook Architecture (Case B)
+
+```
+Telegram Infrastructure (@VlgSignal_bot / Channel)
+               │
+               ▼
+   [HTTPS POST /api/telegram]
+               │
+               ▼
+ Next.js Server Route Handler (`app/api/telegram/route.ts`)
+ ├── 1. Validate header: `x-telegram-bot-api-secret-token` == TELEGRAM_WEBHOOK_SECRET
+ ├── 2. Extract Telegram update (message or channel_post)
+ ├── 3. Signal Parser (`lib/telegram/parser.ts`)
+ │      ├── Match canonical syntax ("NEW SIGNAL\nSymbol: XAUUSD...")
+ │      ├── Match update triggers ("TP1 HIT", "SL HIT")
+ │      └── Fallback: Record UNPARSED with raw_text
+ ├── 4. Signal Store / Persistence (`lib/store/signals.ts`)
+ │      ├── Mutate existing signals in-place on TP/SL hits
+ │      └── Insert new signals or UNPARSED items
+ └── 5. Acknowledge Telegram with HTTP 200 `{ ok: true }`
+               │
+               ▼
+ Internal Store / Database
+               │
+               ▼
+ Next.js API Route (`app/api/signals/route.ts` / GET endpoint)
+               │
+               ▼
+ Web Client Dashboard (`hooks/useSignals.ts`)
 ```
 
-**Critical rules:**
-- The frontend **never** connects to Telegram directly.
-- The frontend **never** stores Telegram credentials.
-- The frontend is a **display layer only**.
-- All secrets live in `NEXT_PUBLIC_API_URL` (public) or server-only env vars.
+**Critical Security Rules:**
+- The Telegram bot token (`TELEGRAM_BOT_TOKEN`) is strictly server-side and must never be exposed.
+- Never prefix bot tokens or webhook secrets with `NEXT_PUBLIC_`.
+- The frontend client bundle is a **display layer only**.
+- Webhook endpoint validates the shared secret token on every request.
 
 ---
 
@@ -217,10 +241,12 @@ BACKEND (separate repository — not in scope)
 
 | Variable | Scope | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | Client + Server | Base URL for the Velora API |
+| `NEXT_PUBLIC_API_URL` | Client + Server | Base URL for the Velora API (e.g. `http://localhost:3000` or production URL) |
 | `NEXT_PUBLIC_APP_ENV` | Client + Server | `development`, `staging`, `production` |
-
-> **UNSPECIFIED**: Whether the Velora API requires authentication (API key, JWT). If so, auth headers must be added — and if the key is secret, it must be a server-only env var used in a Next.js Route Handler proxy, never exposed to the browser.
+| `NEXT_PUBLIC_SITE_URL` | Client + Server | Canonical URL for metadata / SEO |
+| `TELEGRAM_BOT_TOKEN` | **Server-Only** | Dedicated Bot token for `@VlgSignal_bot` (API requests / webhook management) |
+| `TELEGRAM_WEBHOOK_SECRET` | **Server-Only** | Webhook verification secret checked against `x-telegram-bot-api-secret-token` |
+| `DATABASE_URL` | **Server-Only** | Database connection string (optional in mock/in-memory mode) |
 
 ---
 

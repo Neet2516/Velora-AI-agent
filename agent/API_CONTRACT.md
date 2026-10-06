@@ -253,10 +253,80 @@ The frontend API layer must:
 
 ---
 
-## Rate Limits
+## Telegram Webhook Endpoint (`POST /api/telegram`)
 
-> **UNSPECIFIED**: No rate limit information provided. With 5-second polling, the frontend makes ~12 requests/minute per user. The backend must be capable of handling this load times the number of concurrent users.
+### Overview
+Server-side webhook receiver accepting real-time update notifications from Telegram Bot API for `@VlgSignal_bot`.
+
+### Request
+
+```http
+POST /api/telegram HTTP/1.1
+Host: velora.ai
+Content-Type: application/json
+x-telegram-bot-api-secret-token: <TELEGRAM_WEBHOOK_SECRET>
+```
+
+#### Headers
+| Header | Required | Description |
+|---|---|---|
+| `x-telegram-bot-api-secret-token` | Yes | Shared secret token configured with Telegram's `setWebhook`. Must match server environment variable `TELEGRAM_WEBHOOK_SECRET`. |
+| `Content-Type` | Yes | `application/json` |
+
+#### Payload Body (Telegram Update)
+```json
+{
+  "update_id": 100001,
+  "message": {
+    "message_id": 42,
+    "date": 1728216000,
+    "chat": {
+      "id": -100123456789,
+      "title": "Velora VIP Signals",
+      "type": "channel"
+    },
+    "text": "NEW SIGNAL\nSymbol: XAUUSD\nType: BUY\nEntry: 2650.50\nSL: 2645.00\nTP1: 2656.00\nTP2: 2661.00\nTP3: 2666.00"
+  }
+}
+```
+*(Also supports `channel_post` updates).*
+
+### Responses
+
+#### 200 OK — Update Processed Successfully
+```json
+{
+  "ok": true,
+  "status": "processed",
+  "action": "created",
+  "signalId": "sig-xauusd-2650-50"
+}
+```
+
+#### 200 OK — Ignored (Non-message update / Non-actionable)
+```json
+{
+  "ok": true,
+  "status": "ignored",
+  "reason": "no_text_payload"
+}
+```
+
+#### 401 Unauthorized — Invalid Webhook Secret
+```json
+{
+  "error": "Unauthorized: invalid webhook secret"
+}
+```
+
+#### 400 Bad Request — Malformed JSON
+```json
+{
+  "error": "Invalid request body"
+}
+```
 
 ---
 
-*Last updated: Initial planning phase — contract is EXPECTED, not confirmed.*
+*Last updated: Post-TASK-021 — Telegram webhook endpoint POST /api/telegram added.*
+

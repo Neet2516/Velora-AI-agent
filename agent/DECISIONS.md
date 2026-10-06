@@ -270,4 +270,36 @@ Status:     DECIDED
 
 ---
 
-*Last updated: Initial planning phase — ADRs recorded for pre-implementation decisions.*
+## ADR-011: Telegram Integration Architecture — CASE B (Telegram Webhook Ingestion)
+
+```
+Decision:   Adopt CASE B (Telegram Webhook Ingestion Pipeline) with support for external/channel dispatch.
+Context:    Velora AI has created a dedicated Telegram bot (@VlgSignal_bot). We must determine
+            whether the bot is a direct signal-producer dispatching outward (Case A) or a webhook listener
+            receiving messages from a Telegram channel/group and parsing them into signals (Case B).
+Options:
+  A. CASE A: Signal Generator directly produces canonical signals, writing simultaneously to database
+     and broadcasting outward to Telegram.
+  B. CASE B: Telegram is the transmission medium where signals and updates are posted; the Telegram bot
+     receives channel posts/messages via server-side webhook, parses raw text, and writes to the database.
+Chosen:     B — CASE B (Telegram Webhook Ingestion & Parser Pipeline)
+Reason:     The entire existing repository architecture is specifically built around Case B:
+            1. PROJECT_CONTEXT.md explicitly diagrams: Telegram Message -> Backend Receiver -> Database -> API.
+            2. The product requirements mandate an UNPARSED state with raw_text preservation when a Telegram
+               message fails parsing, which only occurs if human/bot text is received from Telegram.
+            3. The user specification defines canonical message syntax ("NEW SIGNAL\nSymbol: XAUUSD..."),
+               update triggers ("TP1 HIT", "SL HIT"), and a webhook endpoint (POST /api/telegram).
+            4. If Velora's internal signal engine produces signals, it publishes them to the Telegram channel,
+               where @VlgSignal_bot ingests them via webhook for the website, ensuring Telegram remains the
+               public source of truth for channel subscribers while the web mirrors it in near real time.
+Security:   1. TELEGRAM_BOT_TOKEN must ONLY exist as a server-side environment variable.
+            2. Webhook endpoint POST /api/telegram validates secret via TELEGRAM_WEBHOOK_SECRET.
+            3. Neither token nor secret shall ever be exposed to the browser, NEXT_PUBLIC_*, logs, or Git.
+Date:       2026-10-06
+Status:     DECIDED
+```
+
+---
+
+*Last updated: Post-TASK-021 — Telegram bot @VlgSignal_bot integrated into execution architecture.*
+

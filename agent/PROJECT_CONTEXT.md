@@ -106,36 +106,72 @@ The following fields are expected on a signal. Fields marked `UNSPECIFIED` are i
 
 ---
 
-## Telegram / Backend Flow
+## Telegram Bot Integration (@VlgSignal_bot)
 
-```
-Telegram Message
-      ↓
-Backend Receiver (parses Telegram webhook/bot message)
-      ↓
-Database (stores structured signal + raw text)
-      ↓
-Velora API (REST or WebSocket, serves signals to frontend)
-      ↓
-Website (fetches / subscribes to signals)
-      ↓
-Live Signal Cards (rendered in browser)
-```
+A dedicated Telegram bot has been established for the Velora AI ecosystem:
+- **Bot Username:** `@VlgSignal_bot`
+- **Role:** Webhook listener & pipeline ingestion receiver for signals and telemetry updates.
+- **Server Environment Variable:** `TELEGRAM_BOT_TOKEN` (Server-side ONLY; strictly forbidden in client code or Git).
+- **Webhook Secret:** `TELEGRAM_WEBHOOK_SECRET` (Validated on `POST /api/telegram`).
 
-- The website does **not** connect directly to Telegram.
-- The website does **not** contain Telegram bot tokens.
-- All Telegram credentials remain on the backend.
-- The website only communicates with the Velora API.
+### Canonical Telegram Signal Format
+The ingestion engine recognizes standard Velora format messages:
+```text
+NEW SIGNAL
+Symbol: XAUUSD
+Type: BUY
+Entry: 2650.50
+SL: 2645.00
+TP1: 2656.00
+TP2: 2661.00
+TP3: 2666.00
+```
+- **Supported Fields:** `Symbol`, `Type` (`BUY`/`SELL`/`LONG`/`SHORT`), `Entry`, `SL`, `TP1`, optional `TP2`, optional `TP3`.
+- **raw_text Preservation:** Every received Telegram message retains its exact `raw_text` payload.
+
+### Signal Status Update Logic
+Follow-up messages in the channel/chat trigger state transitions on the existing signal:
+- `TP1 HIT` → transitions status to `TP1_HIT`
+- `TP2 HIT` → transitions status to `TP2_HIT`
+- `TP3 HIT` → transitions status to `TP3_HIT`
+- `SL HIT` → transitions status to `SL_HIT`
+
+**Invariant:** Updates mutate the corresponding active signal in-place. Duplicate cards are strictly prohibited.
 
 ---
 
-## Raw Message Fallback
+## Telegram / Backend Flow (Case B)
 
-When the backend cannot parse a Telegram message into a structured signal:
-- A signal with `status: UNPARSED` is created.
-- The `raw_text` field contains the original message.
-- The frontend must display this in a readable fallback format.
-- Malformed messages must **not** be silently dropped.
+```
+Telegram Channel / Message (dispatched to @VlgSignal_bot)
+      ↓
+POST /api/telegram (Webhook endpoint with secret token validation)
+      ↓
+Backend Receiver & Parser (parses structured text or updates)
+      ↓
+Database / Store (stores structured signal + raw text)
+      ↓
+Velora API (/api/signals)
+      ↓
+Website (React Query polling / live updates)
+      ↓
+Live Signal Cards (rendered in browser without duplicate cards)
+```
+
+- The website does **not** connect directly to Telegram.
+- The website client bundle does **not** contain Telegram bot tokens.
+- `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` are server-only environment variables.
+- The frontend only communicates with `/api/signals`.
+
+---
+
+## Raw Message Fallback (UNPARSED)
+
+When a Telegram message cannot be parsed into the canonical signal structure:
+- DO NOT DROP IT.
+- Store `raw_text`, `created_at`, `source: "telegram"`, and `status: "UNPARSED"`.
+- Numeric pricing fields are set to `null`.
+- The frontend renders the message safely with sanitized plaintext, preventing XSS and application crashes.
 
 ---
 

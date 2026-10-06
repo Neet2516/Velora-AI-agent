@@ -824,4 +824,277 @@ Final production checklist — environment configuration, metadata/OG tags, secu
 
 ---
 
-*Last updated: Final milestone — all 21 tasks [x] COMPLETE (100%).*
+# PHASE 6 — Telegram Bot Integration Pipeline (Tasks 22–29)
+
+---
+
+## TASK-022 — Telegram Environment Configuration
+
+```
+ID:     TASK-022
+Status: [ ] TODO
+```
+
+**Goal:**  
+Define and document server-only environment variables for the Telegram bot `@VlgSignal_bot` without exposing any secrets to client bundles or source control.
+
+**Dependencies:** TASK-021
+
+**Files Likely Affected:**
+- `.env.example`
+- `.env.local`
+- `lib/telegram/config.ts`
+
+**Implementation Details:**
+1. Add `TELEGRAM_BOT_TOKEN=` and `TELEGRAM_WEBHOOK_SECRET=` placeholders to `.env.example`.
+2. Add safe local placeholder variables in `.env.local`.
+3. Create server-side config helper `lib/telegram/config.ts` verifying that variables are strictly server-side and never prefixed with `NEXT_PUBLIC_`.
+4. Ensure `.gitignore` continues to ignore all `.env*.local` files.
+
+**Acceptance Criteria:**
+- [ ] `.env.example` documents `TELEGRAM_BOT_TOKEN` and `TELEGRAM_WEBHOOK_SECRET` with zero real secrets
+- [ ] No `NEXT_PUBLIC_` prefix on Telegram bot secrets
+- [ ] Build and test commands pass with clean environment resolution
+
+**Validation Method:**
+`npm run build` and `git status` audit confirming zero secrets in staged files.
+
+---
+
+## TASK-023 — Telegram Integration Architecture & Webhook Route Handler Skeleton
+
+```
+ID:     TASK-023
+Status: [ ] TODO
+```
+
+**Goal:**  
+Create the server-side Next.js Route Handler skeleton for `POST /api/telegram` to receive updates from `@VlgSignal_bot`.
+
+**Dependencies:** TASK-022
+
+**Files Likely Affected:**
+- `app/api/telegram/route.ts`
+
+**Implementation Details:**
+1. Create `app/api/telegram/route.ts` with `POST` export.
+2. Implement request body JSON extraction and validation.
+3. Reject non-POST requests with `405 Method Not Allowed`.
+4. Return structured response JSON.
+
+**Acceptance Criteria:**
+- [ ] `POST /api/telegram` returns `200 OK` on valid JSON payload
+- [ ] Server route is strictly server-side; zero client footprint
+
+**Validation Method:**
+`curl -X POST http://localhost:3000/api/telegram` or automated Vitest route test.
+
+---
+
+## TASK-024 — Signal Parser Implementation
+
+```
+ID:     TASK-024
+Status: [ ] TODO
+```
+
+**Goal:**  
+Implement robust, pure-function signal parsing for canonical Telegram messages and follow-up updates.
+
+**Dependencies:** TASK-023
+
+**Files Likely Affected:**
+- `lib/telegram/parser.ts`
+- `lib/telegram/types.ts`
+
+**Implementation Details:**
+1. Implement parser for `NEW SIGNAL` format: Symbol, Type (`BUY`/`SELL`/`LONG`/`SHORT`), Entry, SL, TP1, optional TP2, optional TP3.
+2. Implement parser for update events: `TP1 HIT`, `TP2 HIT`, `TP3 HIT`, `SL HIT`.
+3. Preserve `raw_text` on all outputs.
+4. Fallback to `UNPARSED` status on malformed text without throwing exceptions.
+
+**Acceptance Criteria:**
+- [ ] Correctly parses valid BUY and SELL signals
+- [ ] Correctly handles single TP, 2 TPs, and 3 TPs
+- [ ] Correctly parses update phrases
+- [ ] Returns structured `UNPARSED` object on malformed messages
+
+**Validation Method:**
+Unit tests in `__tests__/telegram-parser.test.ts`.
+
+---
+
+## TASK-025 — Signal Persistence & Store
+
+```
+ID:     TASK-025
+Status: [ ] TODO
+```
+
+**Goal:**  
+Implement the server-side signal store to hold active signals, historical signals, and unparsed events with concurrency safety.
+
+**Dependencies:** TASK-024
+
+**Files Likely Affected:**
+- `lib/store/signals.ts`
+
+**Implementation Details:**
+1. Implement thread-safe/singleton in-memory signal store (`SignalStore`) seeded with initial mock signals for development.
+2. Provide methods: `addSignal()`, `updateSignal()`, `getAllSignals()`, `findSignalById()`, `findLatestActive()`.
+3. Ensure signals are stored newest-first by `created_at`.
+
+**Acceptance Criteria:**
+- [ ] Signal store safely manages addition and in-place mutation
+- [ ] Newest-first sort order is strictly maintained
+- [ ] Store survives multiple route handler calls
+
+**Validation Method:**
+Store unit tests in Vitest.
+
+---
+
+## TASK-026 — Telegram Webhook Secret Verification & Ingestion Handler
+
+```
+ID:     TASK-026
+Status: [ ] TODO
+```
+
+**Goal:**  
+Harden `POST /api/telegram` by verifying `x-telegram-bot-api-secret-token` against `TELEGRAM_WEBHOOK_SECRET` and wiring parser output to the store.
+
+**Dependencies:** TASK-025
+
+**Files Likely Affected:**
+- `app/api/telegram/route.ts`
+
+**Implementation Details:**
+1. Read `x-telegram-bot-api-secret-token` header from incoming `NextRequest`.
+2. Compare against `TELEGRAM_WEBHOOK_SECRET` with constant-time equality check if secret is configured.
+3. Reject unauthorized requests with `401 Unauthorized`.
+4. Extract text from `message` or `channel_post`.
+5. Dispatch to `parseTelegramMessage()` and persist in `SignalStore`.
+
+**Acceptance Criteria:**
+- [ ] Missing or invalid secret token returns `401 Unauthorized`
+- [ ] Valid secret token processes message and returns `200 OK`
+- [ ] Channel posts and direct messages both supported
+
+**Validation Method:**
+Vitest route handler integration tests.
+
+---
+
+## TASK-027 — Signal Update & State Progression Handling
+
+```
+ID:     TASK-027
+Status: [ ] TODO
+```
+
+**Goal:**  
+Implement the Stable Signal Identity Strategy so `TP1 HIT` and `SL HIT` update existing signals in place without creating duplicate cards.
+
+**Dependencies:** TASK-026
+
+**Files Likely Affected:**
+- `lib/telegram/matcher.ts`
+- `app/api/telegram/route.ts`
+
+**Implementation Details:**
+1. Implement identity matching hierarchy:
+   - Match by `reply_to_message_id`.
+   - Match by explicit symbol in update text.
+   - Match by most recent active signal in store.
+2. Advance state: `ACTIVE -> TP1_HIT -> TP2_HIT -> TP3_HIT` or `ACTIVE -> SL_HIT`.
+3. Update `updated_at` timestamp.
+4. Retain stable `id` and card parameters.
+
+**Acceptance Criteria:**
+- [ ] `TP1 HIT` updates existing signal's status in place
+- [ ] Zero duplicate cards created
+- [ ] If no active signal matches, saved as unparsed update event
+
+**Validation Method:**
+Vitest state machine progression tests.
+
+---
+
+## TASK-028 — Live Website Synchronization
+
+```
+ID:     TASK-028
+Status: [ ] TODO
+```
+
+**Goal:**  
+Wire `app/api/signals/route.ts` (`GET /api/signals`) to the shared `SignalStore` so live website polling renders incoming Telegram signals in real time.
+
+**Dependencies:** TASK-027
+
+**Files Likely Affected:**
+- `app/api/signals/route.ts`
+- `lib/api/signals.ts`
+
+**Implementation Details:**
+1. Create `app/api/signals/route.ts` returning `{ data: SignalStore.getAllSignals() }`.
+2. Configure caching headers (`Cache-Control: no-store, must-revalidate`).
+3. Connect frontend `useSignals` query to the local `/api/signals` route.
+4. Verify sub-5s polling picks up newly ingested Telegram webhook signals.
+
+**Acceptance Criteria:**
+- [ ] `GET /api/signals` serves current signals from the store
+- [ ] Newly ingested webhook signals appear on website within 5s
+- [ ] Frontend handles UNPARSED and updated signals seamlessly
+
+**Validation Method:**
+End-to-end integration flow: post mock webhook -> query signals -> verify response.
+
+---
+
+## TASK-029 — Telegram Integration Test Suite
+
+```
+ID:     TASK-029
+Status: [ ] TODO
+```
+
+**Goal:**  
+Implement the comprehensive 15-case test suite in Vitest verifying all bot parser scenarios, webhook security, duplicate prevention, and UNPARSED resilience.
+
+**Dependencies:** TASK-028
+
+**Files Likely Affected:**
+- `__tests__/telegram-integration.test.ts`
+- `__tests__/telegram-parser.test.ts`
+
+**Implementation Details:**
+Cover all 15 scenarios specified in `TEST_PLAN.md` Section 11:
+1. Valid BUY signal
+2. Valid SELL signal
+3. Signal with only TP1
+4. Signal with TP1 + TP2
+5. Signal with TP1 + TP2 + TP3
+6. `TP1 HIT` update
+7. `TP2 HIT` update
+8. `TP3 HIT` update
+9. `SL HIT` update
+10. Malformed signal
+11. Empty message
+12. Duplicate message
+13. Invalid webhook secret
+14. Unexpected update
+15. Rapid consecutive signals
+
+**Acceptance Criteria:**
+- [ ] All 15 scenarios pass with 0 failures
+- [ ] Zero warnings in test runner
+- [ ] `npm test` and `npm run build` pass completely
+
+**Validation Method:**
+`npm test` — all test suites pass green.
+
+---
+
+*Last updated: Phase 6 planned — Tasks 22 to 29 registered for Telegram Bot integration.*

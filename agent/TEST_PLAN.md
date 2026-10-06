@@ -262,6 +262,32 @@ Additional SignalCard tests:
 
 ---
 
+---
+
+### 11. Telegram Bot & Webhook Ingestion Testing (`TASK-029`)
+
+**Target:** Webhook secret validation, parser grammar, signal updates, and UNPARSED resilience.
+
+| # | Test Scenario | Input / Action | Expected Result |
+|---|---|---|---|
+| 1 | Valid BUY signal | `NEW SIGNAL\nSymbol: XAUUSD\nType: BUY\nEntry: 2650.50\nSL: 2645.00\nTP1: 2656.00\nTP2: 2661.00\nTP3: 2666.00` | Parses into `ACTIVE` BUY Signal object with all fields populated |
+| 2 | Valid SELL signal | `NEW SIGNAL\nSymbol: BTCUSDT\nType: SELL\nEntry: 98000\nSL: 99000\nTP1: 97000` | Parses into `ACTIVE` SELL Signal with entry and TP1 |
+| 3 | Signal with only TP1 | Signal text omitting TP2 and TP3 | `tp1` is number; `tp2` and `tp3` are `null`; status `ACTIVE` |
+| 4 | Signal with TP1 + TP2 | Signal text with TP1 and TP2 | `tp1`, `tp2` are numbers; `tp3` is `null` |
+| 5 | Signal with TP1 + TP2 + TP3 | Full multi-target text | All three TPs populated |
+| 6 | TP1 HIT update | Message `TP1 HIT` following active signal | Existing signal status mutated to `TP1_HIT`; zero duplicate cards |
+| 7 | TP2 HIT update | Message `TP2 HIT` | Existing signal status mutated to `TP2_HIT` |
+| 8 | TP3 HIT update | Message `TP3 HIT` | Existing signal status mutated to `TP3_HIT` |
+| 9 | SL HIT update | Message `SL HIT` | Existing signal status mutated to `SL_HIT` |
+| 10 | Malformed signal | Unrecognized message (e.g. `Join VIP group for 50% discount`) | Stored as `UNPARSED` with preserved `raw_text`; does not crash |
+| 11 | Empty Telegram message | Update with empty text or whitespace | Stored as `UNPARSED` with fallback text |
+| 12 | Duplicate message | Same `update_id` or same Telegram message sent twice | Idempotent handling; no duplicate entries |
+| 13 | Invalid webhook secret | `POST /api/telegram` with invalid or missing secret header | Returns HTTP `401 Unauthorized`; update rejected |
+| 14 | Unexpected Telegram update | Update with `inline_query`, `callback_query`, etc. | Handled gracefully without error; returns HTTP 200 `{ ok: true, status: "ignored" }` |
+| 15 | Rapid consecutive signals | Multiple signals arriving in sub-second succession | In-order processing; distinct stable IDs; newest-first ordering maintained |
+
+---
+
 ## Critical Acceptance Criteria (Product Level)
 
 These are the non-negotiable product requirements that tests must verify:
@@ -278,7 +304,10 @@ These are the non-negotiable product requirements that tests must verify:
 | 8 | No XSS via raw_text | XSS injection test |
 | 9 | No secrets in frontend code | Code review + `git grep` |
 | 10 | App is accessible (WCAG 2.1 AA) | axe scan + keyboard test |
+| 11 | Telegram webhook verifies secret token | Webhook security test |
+| 12 | Telegram bot token is server-only | Environment audit |
 
 ---
 
-*Last updated: Initial planning phase — tests to be implemented in TASK-020.*
+*Last updated: Post-TASK-021 — Telegram Bot testing suite added.*
+

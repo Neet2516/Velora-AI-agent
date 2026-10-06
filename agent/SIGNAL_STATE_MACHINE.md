@@ -218,17 +218,76 @@ When a signal card's status changes (polling picks up an update):
 
 ---
 
-## Backend Delivery Notes
+## Telegram Parser Grammar & Ingestion Specification
 
-The backend is responsible for:
-- Ensuring each signal has a stable, unique `id` that never changes
-- Sending TP/SL updates as modifications to the original signal record (same `id`)
-- Not sending duplicate signals (same `id` twice in the same response)
-- Populating `raw_text` for UNPARSED signals
-- Setting `updated_at` correctly on every status change
+### 1. Canonical Signal Message Syntax
+The parser accepts structured Telegram text messages with the following format:
+```text
+NEW SIGNAL
+Symbol: XAUUSD
+Type: BUY
+Entry: 2650.50
+SL: 2645.00
+TP1: 2656.00
+TP2: 2661.00
+TP3: 2666.00
+```
+- **Header:** Case-insensitive match on `NEW SIGNAL`.
+- **Symbol:** Alphanumeric asset/pair (e.g. `XAUUSD`, `BTC/USDT`, `EURUSD`). Normalized to uppercase.
+- **Type:** Directional action (`BUY`, `SELL`, `LONG`, `SHORT`).
+- **Entry:** Floating point decimal entry price.
+- **SL:** Floating point decimal Stop Loss level.
+- **TP1:** Required first Take Profit level.
+- **TP2:** Optional second Take Profit level.
+- **TP3:** Optional third Take Profit level.
+- **raw_text:** The complete verbatim string received in the Telegram update.
 
-The frontend **trusts** the backend to follow these rules. The frontend validates the shape of data (Zod) but cannot validate semantic correctness (e.g., whether a signal ID is truly stable).
+### 2. Follow-Up Update Trigger Syntax
+When an active trade hits a milestone, a concise update is dispatched to the Telegram channel:
+- `TP1 HIT` (or `[SYMBOL] TP1 HIT`)
+- `TP2 HIT` (or `[SYMBOL] TP2 HIT`)
+- `TP3 HIT` (or `[SYMBOL] TP3 HIT`)
+- `SL HIT` (or `[SYMBOL] SL HIT`)
 
 ---
 
-*Last updated: Initial planning phase — pre-implementation.*
+## Stable Signal Identity Strategy
+
+To guarantee the architectural invariant **"Do NOT create duplicate cards"**, the ingestion pipeline applies the following resolution hierarchy to match an update message (`TP1 HIT` / `SL HIT`) to an existing signal:
+
+1. **Resolution Priority 1 — Telegram Message Reply Mapping:**  
+   If the update message is a Telegram reply (`reply_to_message.message_id`), match directly against the signal that was spawned from that original Telegram message ID.
+2. **Resolution Priority 2 — Symbol Match on Active Signals:**  
+   If the update mentions a specific symbol (e.g. `XAUUSD TP1 HIT`), locate the most recent signal with `status: ACTIVE` (or previous TP status) matching that symbol.
+3. **Resolution Priority 3 — Most Recent Active Signal:**  
+   If the update is a simple broadcast (e.g. `TP1 HIT` with no symbol and no reply), locate the most recent signal in the database with status `ACTIVE`.
+4. **In-Place Mutation:**  
+   When matched:
+   - Update `signal.status` to the target state (`TP1_HIT`, `TP2_HIT`, `TP3_HIT`, or `SL_HIT`).
+   - Update `signal.updated_at` to the current ISO timestamp.
+   - Retain the exact same stable `signal.id`.
+   - **Do NOT insert a new record or create a duplicate card.**
+5. **No Match Fallback:**  
+   If an update message cannot be matched to any active signal, persist it as an `UNPARSED` informational event so it is not dropped silently.
+
+---
+
+## UNPARSED Message Handling
+
+If a received Telegram message does not conform to the `NEW SIGNAL` grammar or recognized update syntax:
+- **Rule:** DO NOT DROP IT.
+- Generate a new Signal entity:
+  - `id`: Unique generated identifier (e.g. `sig-unparsed-<timestamp>`)
+  - `status`: `"UNPARSED"`
+  - `raw_text`: Exact verbatim Telegram message
+  - `entry_price`: `null`
+  - `sl`: `null`
+  - `tp1`: `null`, `tp2`: `null`, `tp3`: `null`
+  - `created_at`: Telegram update timestamp in ISO format
+  - `source`: `"telegram"`
+- The frontend renders the raw text securely inside a sanitized monospace container without throwing runtime exceptions.
+
+---
+
+*Last updated: Post-TASK-021 — Telegram parser grammar and Stable Identity Strategy established.*
+
