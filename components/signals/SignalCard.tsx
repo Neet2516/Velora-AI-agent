@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Signal, getSignalSymbol } from "@/lib/types/signal";
+import { sanitizeRawText } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { StatusBadge, DirectionBadge } from "./SignalBadge";
 import { Check, X, Clock, Terminal } from "lucide-react";
@@ -119,7 +120,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                 <span>Raw Telegram Transmission</span>
               </div>
               <pre className="font-mono text-xs text-foreground/90 whitespace-pre-wrap break-words leading-relaxed select-text">
-                {signal.raw_text || "Malformed signal received. Structured parameters unavailable."}
+                {sanitizeRawText(signal.raw_text)}
               </pre>
             </div>
           ) : (

@@ -18,12 +18,18 @@ PHASE 3 — Signal Architecture & Components (Tasks 9–13)
 PHASE 4 — API & Live Updates (Tasks 14–16)
 ```
 
+## Current Phase
+
+```
+PHASE 5 — Optimization, Compliance & Production Readiness (Tasks 17–21)
+```
+
 ## Current Task
 
 ```
-TASK-016 — Raw Signal Fallback (UNPARSED) & Security Sanitization
+TASK-017 — Responsive Optimization, Disclaimer & Footer
 Status: [ ] TODO
-Dependencies: TASK-015 (Complete)
+Dependencies: TASK-016 (Complete)
 ```
 
 ---
@@ -47,7 +53,7 @@ Dependencies: TASK-015 (Complete)
 | TASK-013 | Loading / Empty / Error States | [x] COMPLETE |
 | TASK-014 | API Integration | [x] COMPLETE |
 | TASK-015 | Live Update Mechanism | [x] COMPLETE |
-| TASK-016 | Raw Signal Fallback (UNPARSED) | [ ] TODO |
+| TASK-016 | Raw Signal Fallback (UNPARSED) | [x] COMPLETE |
 | TASK-017 | Responsive Optimization | [ ] TODO |
 | TASK-018 | Accessibility Audit | [ ] TODO |
 | TASK-019 | Performance Optimization | [ ] TODO |
@@ -55,10 +61,10 @@ Dependencies: TASK-015 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 15  
+**Completed:** 16  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 6  
+**TODO:** 5  
 
 ---
 
@@ -79,6 +85,7 @@ Dependencies: TASK-015 (Complete)
 - **TASK-013:** Loading / Empty / Error States — Created `SignalListEmpty` ("No signals right now."), `SignalListError`, and `SignalStatusBanner` supporting live, reconnecting, and error modes.
 - **TASK-014:** API Integration — Wired `apiClient`, `fetchSignals`, Zod runtime validation, isolated development boundary, and TanStack Query polling hook into `<LiveSignals />`.
 - **TASK-015:** Live Update Mechanism — Enforced 5s polling, deduplication by stable ID, and tab resume sync.
+- **TASK-016:** Raw Signal Fallback — Implemented `sanitizeRawText` utility and safe non-executable raw message fallback rendering.
 
 ---
 
@@ -91,8 +98,8 @@ Dependencies: TASK-015 (Complete)
 ## Next Task
 
 ```
-TASK-016 — Raw Signal Fallback (UNPARSED) & Security Sanitization
-Dependencies: TASK-015 [x] COMPLETE
+TASK-017 — Responsive Optimization, Disclaimer & Footer
+Dependencies: TASK-016 [x] COMPLETE
 ```
 
 ---
