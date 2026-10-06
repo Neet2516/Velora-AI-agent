@@ -15,9 +15,9 @@ PHASE 3 — Signal Architecture & Components (Tasks 9–13)
 ## Current Task
 
 ```
-TASK-011 — Signal State Rendering & Transitions
+TASK-012 — SignalList Component
 Status: [ ] TODO
-Dependencies: TASK-010 (Complete)
+Dependencies: TASK-010 (Complete), TASK-011 (Complete)
 ```
 
 ---
@@ -36,7 +36,7 @@ Dependencies: TASK-010 (Complete)
 | TASK-008 | How It Works | [x] COMPLETE |
 | TASK-009 | Signal Data Model & Zod Schema | [x] COMPLETE |
 | TASK-010 | SignalCard Component | [x] COMPLETE |
-| TASK-011 | Signal State Rendering & Transitions | [ ] TODO |
+| TASK-011 | Signal State Rendering & Transitions | [x] COMPLETE |
 | TASK-012 | SignalList Component | [ ] TODO |
 | TASK-013 | Loading / Empty / Error States | [ ] TODO |
 | TASK-014 | API Integration | [ ] TODO |
@@ -49,10 +49,10 @@ Dependencies: TASK-010 (Complete)
 | TASK-021 | Production Readiness | [ ] TODO |
 
 **Total tasks:** 21  
-**Completed:** 10  
+**Completed:** 11  
 **In Progress:** 0  
 **Blocked:** 0  
-**TODO:** 11  
+**TODO:** 10  
 
 ---
 
@@ -68,6 +68,7 @@ Dependencies: TASK-010 (Complete)
 - **TASK-008:** How It Works — Created 3-stage process flow section documenting Telegram → Backend → Live Web Dashboard telemetry.
 - **TASK-009:** Signal Data Model & Zod Schema — Implemented runtime Zod schemas, TypeScript types, and symbol/direction normalizers.
 - **TASK-010:** SignalCard Component — Built high-fidelity SignalCard with all 6 status states, direction badges, formatted price levels, and unparsed message fallback.
+- **TASK-011:** Signal State Rendering & Transitions — Enhanced SignalCard with Framer Motion layout animations, reduced-motion fallback, and in-place target updates.
 
 ---
 
@@ -80,8 +81,8 @@ Dependencies: TASK-010 (Complete)
 ## Next Task
 
 ```
-TASK-011 — Signal State Rendering & Transitions
-Dependencies: TASK-010 [x] COMPLETE
+TASK-012 — SignalList Component
+Dependencies: TASK-010 [x] COMPLETE, TASK-011 [x] COMPLETE
 ```
 
 ---
