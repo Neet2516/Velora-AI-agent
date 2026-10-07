@@ -164,7 +164,15 @@ export function SignalListEmpty() {
 
           <div className="p-3 bg-white border border-black flex items-center justify-between font-mono text-[11px]">
             <span className="text-[#555555]">CONNECTED BOT:</span>
-            <span className="font-bold text-black">@VlgSignal_bot (Signal Terminal)</span>
+            <a
+              href="https://t.me/VlgSignal_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-black hover:text-[#FF3000] underline inline-flex items-center gap-1"
+            >
+              <span>@VlgSignal_bot (Signal Terminal)</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
           </div>
         </div>
       </div>

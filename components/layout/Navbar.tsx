@@ -58,68 +58,32 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Desktop Action Buttons */}
-        <div className="hidden md:flex items-center gap-3 shrink-0">
-          <a
-            href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-            download="Velora_AI_Agent_Pipeline_Beta.pdf"
-            title="Download Velora Pipeline Specification (PDF 1.8 MB)"
-            className="shrink-0"
-          >
+        {/* Desktop Action Buttons: Only Signals Feed as requested */}
+        <div className="hidden sm:flex items-center gap-3 shrink-0">
+          <a href="#live-signals" className="shrink-0">
             <Button
               variant="secondary"
               size="sm"
-              className="h-9 px-3 text-xs font-mono font-bold uppercase gap-1.5 border-2 border-black hover:border-[#FF3000] hover:bg-[#FF3000] hover:text-white transition-colors"
+              className="h-9 px-4 text-xs font-mono font-bold uppercase gap-2 border-2 border-black hover:border-[#FF3000] hover:text-[#FF3000] transition-colors"
             >
-              <Download className="h-3.5 w-3.5 text-[#FF3000] group-hover:text-white" />
-              <span>PDF SPEC</span>
-            </Button>
-          </a>
-
-          <a
-            href="https://t.me/VeloraAI"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Join Velora Telegram Channel (opens in new tab)"
-            className="shrink-0"
-          >
-            <Button
-              size="sm"
-              className="h-9 px-4 text-xs font-mono font-bold uppercase gap-2 bg-black text-white hover:bg-[#FF3000] hover:border-[#FF3000] border-2 border-black transition-colors"
-            >
-              <Send className="h-3.5 w-3.5" />
-              <span>TELEGRAM</span>
+              <span>SIGNALS FEED</span>
             </Button>
           </a>
         </div>
 
-        {/* Mobile Actions & Hamburger Toggle */}
+        {/* Mobile Hamburger Toggle */}
         <div className="flex items-center gap-2 lg:hidden shrink-0">
           <a
-            href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-            download="Velora_AI_Agent_Pipeline_Beta.pdf"
-            className="md:hidden"
-            title="Download PDF Spec"
+            href="#live-signals"
+            className="sm:hidden"
+            title="Signals Feed"
           >
             <Button
               variant="secondary"
               size="sm"
-              className="h-9 px-2.5 text-[11px] font-mono font-bold gap-1 border-2 border-black"
+              className="h-9 px-2.5 text-[11px] font-mono font-bold border-2 border-black"
             >
-              <Download className="h-3.5 w-3.5 text-[#FF3000]" />
-              <span>PDF</span>
-            </Button>
-          </a>
-          <a
-            href="https://t.me/VeloraAI"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sm:hidden"
-            title="Telegram"
-          >
-            <Button size="sm" className="h-9 px-2.5 text-[11px] font-mono font-bold gap-1">
-              <Send className="h-3 w-3" />
-              <span>TG</span>
+              <span>FEED</span>
             </Button>
           </a>
           <button
@@ -171,15 +135,15 @@ export function Navbar() {
                 </Button>
               </a>
               <a
-                href="https://t.me/VeloraAI"
+                href="https://t.me/+SUyvL9H24dtmOGQ9"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full"
               >
-                <Button size="sm" className="w-full justify-center gap-2">
+                <Button size="sm" className="w-full justify-center gap-2 bg-black text-white hover:bg-[#FF3000]">
                   <Send className="h-3.5 w-3.5" />
-                  <span>Join Telegram</span>
+                  <span>Join Telegram Channel</span>
                   <ArrowUpRight className="h-3 w-3" />
                 </Button>
               </a>

@@ -88,14 +88,28 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://t.me/VeloraAI"
+                  href="https://t.me/+SUyvL9H24dtmOGQ9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Send className="h-3.5 w-3.5 text-[#FF3000]" />
+                    <span>JOIN TELEGRAM CHANNEL</span>
+                  </span>
+                  <ArrowUpRight className="h-3 w-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/VlgSignal_bot"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
                 >
                   <span className="flex items-center gap-1.5">
                     <Send className="h-3.5 w-3.5" />
-                    <span>JOIN TELEGRAM</span>
+                    <span>TELEGRAM BOT (@VlgSignal_bot)</span>
                   </span>
                   <ArrowUpRight className="h-3 w-3" />
                 </a>

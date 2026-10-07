@@ -65,7 +65,7 @@ export function Hero() {
                 </Button>
               </a>
               <a
-                href="https://t.me/VeloraAI"
+                href="https://t.me/+SUyvL9H24dtmOGQ9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
@@ -73,10 +73,10 @@ export function Hero() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="w-full sm:w-auto gap-2.5"
+                  className="w-full sm:w-auto gap-2.5 hover:bg-black hover:text-white transition-colors"
                 >
-                  <Send className="h-4 w-4" />
-                  <span>JOIN TELEGRAM</span>
+                  <Send className="h-4 w-4 text-[#FF3000]" />
+                  <span>JOIN TELEGRAM BOT</span>
                 </Button>
               </a>
             </div>
