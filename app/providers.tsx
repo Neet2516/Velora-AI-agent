@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { VeloraLoader } from "@/components/ui/VeloraLoader";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -21,6 +22,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
+        <VeloraLoader />
         {children}
       </ThemeProvider>
     </QueryClientProvider>
