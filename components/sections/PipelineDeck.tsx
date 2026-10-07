@@ -116,21 +116,6 @@ export function PipelineDeck() {
       className="py-14 sm:py-16 md:py-24 border-b-2 border-black dark:border-[#263B70] bg-transparent relative transition-colors duration-300"
     >
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
-        {/* Section Identifier */}
-        <div className="flex items-center gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#5B7CFF]">
-            04
-          </span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
-            / PIPELINE SPECIFICATION
-          </span>
-          <div className="h-0.5 w-10 sm:w-14 bg-black" />
-          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-0.5 text-[11px] font-bold font-mono uppercase shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-[#5B7CFF]" />
-            <span className="text-gray-800">OFFICIAL BETA DECK</span>
-          </div>
-        </div>
-
         {/* Section Header & Primary Actions */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-gray-200/80">
           <div>

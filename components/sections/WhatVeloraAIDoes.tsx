@@ -28,17 +28,6 @@ export function WhatVeloraAIDoes() {
   return (
     <section id="features" className="py-14 sm:py-16 md:py-24 border-b border-gray-200/80 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Identifier */}
-        <div className="flex items-center gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#5B7CFF]">
-            02
-          </span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
-            / CAPABILITIES
-          </span>
-          <div className="h-0.5 w-10 sm:w-14 bg-black" />
-        </div>
-
         {/* Section Header */}
         <div className="mb-10 sm:mb-12">
           <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase leading-tight">

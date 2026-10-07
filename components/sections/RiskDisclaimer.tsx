@@ -9,15 +9,6 @@ export function RiskDisclaimer() {
       className="py-16 md:py-20 border-b-2 border-black dark:border-[#263B70] bg-white dark:bg-[#050A1F]"
     >
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
-        {/* Section Identifier */}
-        <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#FF4B2B]">06</span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">
-            / RISK DISCLOSURE
-          </span>
-          <div className="h-0.5 w-8 sm:w-12 bg-black dark:bg-[#263B70]" />
-        </div>
-
         {/* Structured Warning Block */}
         <div className="border-2 border-black dark:border-[#263B70] bg-[#F2F2F2] dark:bg-[#081331] p-6 sm:p-10 shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.6)]">
           <div className="flex flex-col sm:flex-row items-start gap-6">

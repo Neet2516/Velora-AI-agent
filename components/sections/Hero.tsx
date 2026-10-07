@@ -8,18 +8,6 @@ export function Hero() {
       className="relative overflow-hidden pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-16 md:pb-20 transition-colors duration-300"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Identifier */}
-        <div className="flex items-center gap-3 mb-6 sm:mb-8 flex-wrap">
-          <span className="font-mono text-xs font-bold text-gray-900 tracking-wider">
-            01 / OVERVIEW
-          </span>
-          <div className="h-0.5 w-10 sm:w-14 bg-gray-900" />
-          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/90 backdrop-blur-sm px-3 py-1 text-[11px] font-mono font-bold text-gray-800 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-[#00D2FF]" />
-            <span>NEAR REAL-TIME TELEMETRY</span>
-          </div>
-        </div>
-
         {/* Asymmetric Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Main Headline & Description (8 columns) */}
@@ -32,10 +20,6 @@ export function Hero() {
                 DELIVERED{" "}
                 <span className="bg-gradient-to-r from-[#00D2FF] via-[#5B7CFF] to-[#FF4B8B] bg-clip-text text-transparent">
                   LIVE.
-                </span>
-                <span className="inline-flex items-center gap-1.5 ml-3 align-middle px-2.5 py-0.5 rounded-full border border-pink-200 bg-white/95 text-[11px] font-mono font-bold text-[#FF3366] shadow-sm -translate-y-4">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#FF3366] animate-pulse" />
-                  <span>LIVE</span>
                 </span>
               </h1>
             </div>
