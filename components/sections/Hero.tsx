@@ -1,5 +1,5 @@
 import React from "react";
-import { Activity, ArrowRight, FileText, Send } from "lucide-react";
+import { Activity, ArrowRight, FileText } from "lucide-react";
 
 export function Hero() {
   return (
@@ -41,8 +41,8 @@ export function Hero() {
             </div>
 
             <p className="max-w-xl text-sm sm:text-base md:text-lg text-gray-600 font-medium leading-relaxed pt-1">
-              Velora AI continuously mirrors algorithmic market signals from our private
-              Telegram and backend intelligence pipeline into a live, transparent dashboard.
+              Velora AI continuously mirrors algorithmic market signals from our autonomous
+              multi-agent intelligence pipeline into a live, transparent dashboard.
               Zero execution latency delay, strictly read-only for public verification.
             </p>
 
@@ -59,17 +59,6 @@ export function Hero() {
                 <button className="w-full sm:w-auto h-12 px-5 rounded-lg bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 font-mono text-xs font-bold tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all">
                   <FileText className="h-4 w-4 text-[#3B82F6]" />
                   <span>READ SPEC DECK</span>
-                </button>
-              </a>
-              <a
-                href="https://t.me/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
-                <button className="w-full sm:w-auto h-12 px-5 rounded-lg bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 font-mono text-xs font-bold tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all">
-                  <Send className="h-4 w-4 text-[#3B82F6]" />
-                  <span>JOIN TELEGRAM BOT</span>
                 </button>
               </a>
             </div>
@@ -97,7 +86,7 @@ export function Hero() {
                 &lt; 10 SECONDS
               </div>
               <p className="text-xs text-gray-500 leading-relaxed font-normal">
-                Sub-second webhook ingestion from Telegram Bot API with instant client propagation.
+                Sub-second webhook ingestion from autonomous multi-agent consensus pipeline with instant client propagation.
               </p>
             </div>
 
