@@ -130,7 +130,7 @@ export class SignalStore {
 
 // Export singleton instance attached to globalThis in development
 export const signalStore: SignalStore =
-  globalThis.__veloraSignalStore ?? new SignalStore();
+  globalThis.__veloraSignalStore ?? new SignalStore(INITIAL_MOCK_SIGNALS);
 
 if (process.env.NODE_ENV !== "production") {
   globalThis.__veloraSignalStore = signalStore;

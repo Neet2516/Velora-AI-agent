@@ -73,6 +73,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, message: "Buffer cleared", total: 0 });
     }
 
+    if (action === "reset") {
+      signalStore.reset();
+      return NextResponse.json({ ok: true, message: "Reset to realistic 2026 demo dataset", total: signalStore.count() });
+    }
+
     if (action === "simulate_xauusd") {
       const now = new Date().toISOString();
       const rawText = `@Velora Multi-Agent Feed [SIMULATED]\nNEW SIGNAL\nSymbol: XAUUSD\nType: BUY\nEntry: 4112.50\nSL: 4103.50\nTP1: 4121.50\nTP2: 4130.50\nTP3: 4139.50`;
