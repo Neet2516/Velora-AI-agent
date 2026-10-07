@@ -4,7 +4,6 @@ import { WhatVeloraAIDoes } from "@/components/sections/WhatVeloraAIDoes";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { PipelineDeck } from "@/components/sections/PipelineDeck";
 import { LiveSignals } from "@/components/sections/LiveSignals";
-import { RiskDisclaimer } from "@/components/sections/RiskDisclaimer";
 import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
@@ -32,12 +31,9 @@ export default function Home() {
 
         {/* 5. Live Signals */}
         <LiveSignals />
-
-        {/* 6. Risk Disclaimer */}
-        <RiskDisclaimer />
       </main>
 
-      {/* 7. Footer */}
+      {/* 6. Footer */}
       <Footer />
     </div>
   );

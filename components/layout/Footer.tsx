@@ -51,11 +51,6 @@ export function Footer() {
                   05 / LIVE SIGNALS
                 </a>
               </li>
-              <li>
-                <a href="#disclaimer" className="hover:text-[#FF4B2B] transition-colors duration-150">
-                  06 / RISK DISCLOSURE
-                </a>
-              </li>
             </ul>
           </div>
 
