@@ -5,9 +5,6 @@ import { useSignals } from "@/hooks/useSignals";
 import { SignalList } from "@/components/signals/SignalList";
 import { SignalStatusBanner } from "@/components/signals/SignalStatusBanner";
 import { SignalListError } from "@/components/signals/SignalListError";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Radio, Filter } from "lucide-react";
 
 type FilterTab = "ALL" | "ACTIVE" | "TP_HIT" | "SL_HIT" | "UNPARSED";
 
@@ -39,28 +36,30 @@ export function LiveSignals() {
   }, [signals, activeTab]);
 
   return (
-    <section id="live-signals" className="py-16 md:py-24 border-b-2 border-black bg-white relative">
+    <section id="live-signals" className="py-16 md:py-24 border-b-2 border-black dark:border-[#263B70] bg-transparent relative transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
         <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#FF3000]">05</span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
+          <span className="font-mono text-sm font-black text-[#5B7CFF] dark:text-[#6F94FF]">
+            05
+          </span>
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">
             / LIVE TELEMETRY
           </span>
-          <div className="h-0.5 w-8 sm:w-12 bg-black" />
-          <div className="inline-flex items-center gap-1.5 border border-black px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
-            <span className="h-2 w-2 bg-[#FF3000]" />
-            <span>STREAM ACTIVE</span>
+          <div className="h-0.5 w-8 sm:w-12 bg-black dark:bg-[#263B70]" />
+          <div className="inline-flex items-center gap-1.5 border border-black dark:border-[#263B70] bg-white dark:bg-[#081331] px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
+            <span className="h-2 w-2 rounded-full bg-[#FF4B2B] animate-pulse" />
+            <span className="text-foreground">STREAM ACTIVE</span>
           </div>
         </div>
 
         {/* Section Header & Filters */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b-2 border-black">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b-2 border-black dark:border-[#263B70]">
           <div>
-            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase leading-tight">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-foreground uppercase leading-tight">
               LIVE SIGNALS FEED
             </h2>
-            <p className="mt-2 text-base text-[#555555] font-medium max-w-2xl leading-relaxed">
+            <p className="mt-2 text-base text-muted-foreground font-medium max-w-2xl leading-relaxed">
               Direct telemetry from the Velora algorithmic pipeline. Signals and target hits update in-place within 10 seconds.
             </p>
           </div>
@@ -69,7 +68,7 @@ export function LiveSignals() {
           <div
             role="tablist"
             aria-label="Signal status filters"
-            className="flex items-center border-2 border-black bg-white divide-x-2 divide-black overflow-x-auto max-w-full"
+            className="flex items-center border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] divide-x-2 divide-black dark:divide-[#263B70] dark-glow-card overflow-x-auto max-w-full"
           >
             {(
               [
@@ -88,8 +87,8 @@ export function LiveSignals() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2.5 text-xs font-mono font-bold tracking-wider uppercase transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-none ${
                   activeTab === tab.id
-                    ? "bg-black text-white"
-                    : "bg-white text-black hover:bg-[#F2F2F2]"
+                    ? "bg-black dark:bg-[#5B7CFF] text-white"
+                    : "bg-white dark:bg-[#081331] text-foreground hover:bg-[#F2F4F8] dark:hover:bg-[#0D1838]"
                 }`}
               >
                 {tab.label}

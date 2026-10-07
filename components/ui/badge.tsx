@@ -19,19 +19,19 @@ export function Badge({
 }: BadgeProps) {
   const variantStyles = {
     default:
-      "bg-black text-white border-2 border-black",
+      "bg-black dark:bg-[#5B7CFF] text-white border-2 border-black dark:border-[#6F94FF]",
     secondary:
-      "bg-[#F2F2F2] text-black border-2 border-black",
+      "bg-[#F2F4F8] dark:bg-[#0D1838] text-foreground border-2 border-black dark:border-[#263B70]",
     outline:
-      "border-2 border-black text-black bg-transparent",
+      "border-2 border-black dark:border-[#263B70] text-foreground bg-transparent",
     success:
-      "bg-black text-white border-2 border-black",
+      "bg-black dark:bg-[#101D42] text-[#5B7CFF] dark:text-[#6F94FF] border-2 border-black dark:border-[#263B70]",
     warning:
-      "bg-[#F2F2F2] text-black border-2 border-black",
+      "bg-[#F2F4F8] dark:bg-[#0D1838] text-foreground border-2 border-black dark:border-[#263B70]",
     destructive:
-      "bg-[#FF3000] text-white border-2 border-[#FF3000]",
+      "bg-[#FF4B2B] text-white border-2 border-[#FF4B2B]",
     beta:
-      "bg-[#FF3000] text-white border-2 border-[#FF3000] uppercase tracking-widest font-mono text-[10px] px-2 py-0.5 font-bold",
+      "bg-[#FF5722] text-white border border-[#FF5722] rounded-md uppercase tracking-widest font-mono text-[10px] px-2 py-0.5 font-black shadow-sm",
   };
 
   return (

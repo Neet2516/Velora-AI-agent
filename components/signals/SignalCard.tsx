@@ -117,40 +117,40 @@ export function SignalCard({ signal, className }: SignalCardProps) {
       className="w-full"
     >
       <div
-        className={`relative overflow-hidden rounded-none border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000000] transition-all duration-150 ${
-          signal.status === "ACTIVE" ? "ring-2 ring-black" : ""
+        className={`relative overflow-hidden rounded-none border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.6)] dark-glow-card transition-all duration-150 ${
+          signal.status === "ACTIVE" ? "ring-2 ring-black dark:ring-[var(--velora-blue)]" : ""
         } ${className || ""}`}
       >
         {/* Top Status Accent Bar */}
         <div
           className={`h-2 w-full transition-colors duration-150 ${
             signal.status === "ACTIVE"
-              ? "bg-[#FF3000]"
+              ? "bg-[#FF4B2B]"
               : tp3Hit || tp2Hit || tp1Hit
-              ? "bg-black"
+              ? "bg-black dark:bg-[var(--velora-blue)]"
               : slHit
-              ? "bg-[#FF3000]"
-              : "bg-black"
+              ? "bg-[#FF4B2B]"
+              : "bg-black dark:bg-[#263B70]"
           }`}
         />
 
         {/* Card Header Bar */}
-        <div className="p-4 sm:p-5 bg-white border-b-2 border-black flex flex-wrap items-center justify-between gap-3">
+        <div className="p-4 sm:p-5 bg-white dark:bg-[#081331] border-b-2 border-black dark:border-[#263B70] flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="font-mono text-2xl sm:text-3xl font-black tracking-tight text-black">
+            <span className="font-mono text-2xl sm:text-3xl font-black tracking-tight text-foreground">
               {isUnparsed ? "TRANSMISSION" : symbol}
             </span>
             {!isUnparsed && signal.direction && (
               <DirectionBadge direction={signal.direction} />
             )}
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-black bg-[#F2F2F2] font-mono text-[10px] font-bold uppercase text-black">
-              <Send className="h-3 w-3 text-[#FF3000]" />
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-black dark:border-[#263B70] bg-[#F2F2F2] dark:bg-[#0D1838] font-mono text-[10px] font-bold uppercase text-foreground">
+              <Send className="h-3 w-3 text-[#FF4B2B]" />
               <span>TELEGRAM DISPATCH</span>
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs text-[#555555] font-mono font-bold">
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono font-bold">
               <Clock className="h-3 w-3" />
               <span>{formattedTime}</span>
               <span>/</span>
@@ -163,39 +163,39 @@ export function SignalCard({ signal, className }: SignalCardProps) {
         {/* Card Body: Interactive Two-Column Split Architecture */}
         {isUnparsed ? (
           /* UNPARSED RAW MESSAGE FALLBACK */
-          <div className="p-5 sm:p-6 bg-[#F2F2F2]">
-            <div className="flex items-center justify-between pb-2 mb-3 border-b border-black/20">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-black">
-                <Terminal className="h-3.5 w-3.5 text-[#FF3000]" />
+          <div className="p-5 sm:p-6 bg-[#F2F2F2] dark:bg-[#0D1838]">
+            <div className="flex items-center justify-between pb-2 mb-3 border-b border-black/20 dark:border-white/10">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-foreground">
+                <Terminal className="h-3.5 w-3.5 text-[#FF4B2B]" />
                 <span>RAW TELEGRAM PAYLOAD</span>
               </div>
               <button
                 type="button"
                 onClick={handleCopy}
-                className="text-[11px] font-mono font-bold uppercase text-[#FF3000] hover:text-black transition-colors cursor-pointer"
+                className="text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-foreground transition-colors cursor-pointer"
               >
                 {copied ? "COPIED!" : "COPY"}
               </button>
             </div>
-            <pre className="font-mono text-xs text-black whitespace-pre-wrap break-words leading-relaxed select-text font-medium bg-white p-4 border border-black">
+            <pre className="font-mono text-xs text-foreground whitespace-pre-wrap break-words leading-relaxed select-text font-medium bg-white dark:bg-[#081331] p-4 border border-black dark:border-[#263B70]">
               {sanitizeRawText(signal.raw_text)}
             </pre>
           </div>
         ) : (
           /* TWO-COLUMN LAYOUT: Column 1 (Telegram Dispatch) | Column 2 (Execution Matrix) */
-          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-black">
+          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-black dark:divide-[#263B70]">
             {/* COLUMN 1: Original Telegram Message Dispatch (5 Cols) */}
-            <div className="lg:col-span-5 p-5 bg-[#FAFAFA] flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-5 p-5 bg-[#FAFAFA] dark:bg-[#0B1536] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-black/20">
-                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-black">
-                    <Terminal className="h-3.5 w-3.5 text-[#FF3000]" />
+                <div className="flex items-center justify-between pb-2 border-b border-black/20 dark:border-white/10">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-foreground">
+                    <Terminal className="h-3.5 w-3.5 text-[#FF4B2B]" />
                     <span>01 / TELEGRAM DISPATCH</span>
                   </div>
                   <button
                     type="button"
                     onClick={handleCopy}
-                    className="inline-flex items-center gap-1 text-[11px] font-mono font-bold uppercase text-[#FF3000] hover:text-black transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-foreground transition-colors cursor-pointer"
                     title="Copy original Telegram message"
                   >
                     {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -204,10 +204,10 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                 </div>
 
                 {/* Telegram Chat Bubble Window */}
-                <div className="border-2 border-black bg-[#111111] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
+                <div className="border-2 border-black dark:border-[#263B70] bg-[#111111] dark:bg-[#050A1F] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
                   <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/20 text-[10px] text-white/60">
                     <span>@Velora Telegram Channel</span>
-                    <span className="text-[#FF3000] font-bold">VERIFIED</span>
+                    <span className="text-[#FF4B2B] font-bold">VERIFIED</span>
                   </div>
                   <pre className="font-mono text-xs whitespace-pre-wrap leading-relaxed text-white">
                     {rawTextDisplay}
@@ -216,14 +216,14 @@ export function SignalCard({ signal, className }: SignalCardProps) {
               </div>
 
               {/* Telegram Channel Link & Source info */}
-              <div className="pt-2 flex items-center justify-between font-mono text-[10px] text-[#555555]">
+              <div className="pt-2 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                 <a
                   href="https://t.me/+SUyvL9H24dtmOGQ9"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-black font-bold hover:text-[#FF3000] transition-colors"
+                  className="inline-flex items-center gap-1 text-foreground font-bold hover:text-[#FF4B2B] transition-colors"
                 >
-                  <Send className="h-3 w-3 text-[#FF3000]" />
+                  <Send className="h-3 w-3 text-[#FF4B2B]" />
                   <span>View in Channel</span>
                   <ExternalLink className="h-2.5 w-2.5" />
                 </a>
@@ -232,29 +232,29 @@ export function SignalCard({ signal, className }: SignalCardProps) {
             </div>
 
             {/* COLUMN 2: Execution Levels & Take Profit Matrix (7 Cols) */}
-            <div className="lg:col-span-7 p-5 bg-white flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-7 p-5 bg-white dark:bg-[#081331] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-black/20">
-                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-black">
-                    <Target className="h-3.5 w-3.5 text-[#FF3000]" />
+                <div className="flex items-center justify-between pb-2 border-b border-black/20 dark:border-white/10">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-foreground">
+                    <Target className="h-3.5 w-3.5 text-[#FF4B2B]" />
                     <span>02 / EXECUTION LEVELS & TARGETS</span>
                   </div>
                   {rrRatio && (
-                    <span className="font-mono text-[10px] font-black bg-black text-white px-2 py-0.5 uppercase">
+                    <span className="font-mono text-[10px] font-black bg-black dark:bg-[#101D42] text-white px-2 py-0.5 uppercase border border-transparent dark:border-[#263B70]">
                       R : R = {rrRatio}
                     </span>
                   )}
                 </div>
 
                 {/* Structured Architectural Price Grid */}
-                <div className="border-2 border-black divide-y-2 divide-black text-xs font-mono">
+                <div className="border-2 border-black dark:border-[#263B70] divide-y-2 divide-black dark:divide-[#263B70] text-xs font-mono">
                   {/* Entry Price */}
-                  <div className="flex items-center justify-between p-2.5 bg-white">
+                  <div className="flex items-center justify-between p-2.5 bg-white dark:bg-[#081331]">
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-black" />
-                      <span className="font-bold text-[#555555] uppercase tracking-wider">ENTRY PRICE</span>
+                      <span className="h-2 w-2 bg-black dark:bg-[var(--velora-blue)]" />
+                      <span className="font-bold text-muted-foreground uppercase tracking-wider">ENTRY PRICE</span>
                     </div>
-                    <span className="font-black text-black text-sm">
+                    <span className="font-black text-foreground text-sm">
                       {formatPrice(signal.entry)}
                     </span>
                   </div>
@@ -263,12 +263,12 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                   <div
                     className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                       slHit
-                        ? "bg-[#FF3000] text-white font-black"
-                        : "bg-white text-black"
+                        ? "bg-[#FF4B2B] text-white font-black"
+                        : "bg-white dark:bg-[#081331] text-foreground"
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-[#FF3000]" />
+                      <span className="h-2 w-2 bg-[#FF4B2B]" />
                       <span className="font-bold uppercase tracking-wider">STOP LOSS (SL)</span>
                       {signal.entry && signal.sl && (
                         <span className="text-[10px] opacity-70">
@@ -286,19 +286,19 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                   <div
                     className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                       tp1Hit
-                        ? "bg-black text-white font-black"
-                        : "bg-white text-black"
+                        ? "bg-black dark:bg-[#101D42] text-white font-black"
+                        : "bg-white dark:bg-[#081331] text-foreground"
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-black" />
+                      <span className="h-2 w-2 bg-black dark:bg-[var(--velora-blue)]" />
                       <span className="font-bold uppercase tracking-wider">TARGET 01 (TP1)</span>
                       {signal.entry && signal.tp1 && (
                         <span className="text-[10px] opacity-70">
                           ({formatDistance(signal.entry, signal.tp1)} pts)
                         </span>
                       )}
-                      {tp1Hit && <Check className="h-3.5 w-3.5 text-[#FF3000] stroke-[3]" />}
+                      {tp1Hit && <Check className="h-3.5 w-3.5 text-[#FF4B2B] stroke-[3]" />}
                     </div>
                     <span className="font-black text-sm">
                       {formatPrice(signal.tp1)}
@@ -310,19 +310,19 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     <div
                       className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                         tp2Hit
-                          ? "bg-black text-white font-black"
-                          : "bg-white text-black"
+                          ? "bg-black dark:bg-[#101D42] text-white font-black"
+                          : "bg-white dark:bg-[#081331] text-foreground"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 bg-black" />
+                        <span className="h-2 w-2 bg-black dark:bg-[var(--velora-blue)]" />
                         <span className="font-bold uppercase tracking-wider">TARGET 02 (TP2)</span>
                         {signal.entry && signal.tp2 && (
                           <span className="text-[10px] opacity-70">
                             ({formatDistance(signal.entry, signal.tp2)} pts)
                           </span>
                         )}
-                        {tp2Hit && <Check className="h-3.5 w-3.5 text-[#FF3000] stroke-[3]" />}
+                        {tp2Hit && <Check className="h-3.5 w-3.5 text-[#FF4B2B] stroke-[3]" />}
                       </div>
                       <span className="font-black text-sm">
                         {formatPrice(signal.tp2)}
@@ -335,12 +335,12 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     <div
                       className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                         tp3Hit
-                          ? "bg-[#FF3000] text-white font-black"
-                          : "bg-white text-black"
+                          ? "bg-[#FF4B2B] text-white font-black"
+                          : "bg-white dark:bg-[#081331] text-foreground"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 bg-[#FF3000]" />
+                        <span className="h-2 w-2 bg-[#FF4B2B]" />
                         <span className="font-bold uppercase tracking-wider">TARGET 03 (TP3)</span>
                         {signal.entry && signal.tp3 && (
                           <span className="text-[10px] opacity-70">
@@ -358,9 +358,9 @@ export function SignalCard({ signal, className }: SignalCardProps) {
               </div>
 
               {/* Status Milestone Indicator Footer */}
-              <div className="p-2.5 bg-[#F2F2F2] border border-black flex items-center justify-between font-mono text-[11px]">
-                <span className="text-[#555555] font-bold">STATE TRANSITION:</span>
-                <span className="font-black text-black">
+              <div className="p-2.5 bg-[#F2F2F2] dark:bg-[#0D1838] border border-black dark:border-[#263B70] flex items-center justify-between font-mono text-[11px]">
+                <span className="text-muted-foreground font-bold">STATE TRANSITION:</span>
+                <span className="font-black text-foreground">
                   {tp3Hit
                     ? "COMPLETED (TP3 HIT)"
                     : tp2Hit

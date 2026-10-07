@@ -6,26 +6,26 @@ export function RiskDisclaimer() {
     <section
       id="disclaimer"
       aria-label="Risk Disclosure"
-      className="py-16 md:py-20 border-b-2 border-black bg-white"
+      className="py-16 md:py-20 border-b-2 border-black dark:border-[#263B70] bg-white dark:bg-[#050A1F]"
     >
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
         <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#FF3000]">06</span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
+          <span className="font-mono text-sm font-black text-[#FF4B2B]">06</span>
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">
             / RISK DISCLOSURE
           </span>
-          <div className="h-0.5 w-8 sm:w-12 bg-black" />
+          <div className="h-0.5 w-8 sm:w-12 bg-black dark:bg-[#263B70]" />
         </div>
 
         {/* Structured Warning Block */}
-        <div className="border-2 border-black bg-[#F2F2F2] p-6 sm:p-10">
+        <div className="border-2 border-black dark:border-[#263B70] bg-[#F2F2F2] dark:bg-[#081331] p-6 sm:p-10 shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.6)]">
           <div className="flex flex-col sm:flex-row items-start gap-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center border-2 border-black bg-black text-[#FF3000]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center border-2 border-black dark:border-[#263B70] bg-black dark:bg-[#101D42] text-[#FF4B2B]">
               <ShieldAlert className="h-6 w-6" />
             </div>
-            <div className="space-y-3 text-xs sm:text-sm text-black font-medium leading-relaxed">
-              <h3 className="font-black text-black text-base sm:text-lg uppercase tracking-tight">
+            <div className="space-y-3 text-xs sm:text-sm text-foreground/90 font-medium leading-relaxed">
+              <h3 className="font-black text-foreground text-base sm:text-lg uppercase tracking-tight">
                 IMPORTANT REGULATORY & RISK DISCLOSURE
               </h3>
               <p>

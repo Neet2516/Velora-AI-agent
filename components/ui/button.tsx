@@ -28,19 +28,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const variantStyles = {
       default:
-        "bg-black text-white border-2 border-black hover:bg-[#FF3000] hover:border-[#FF3000] active:translate-y-px",
+        "bg-black dark:bg-[#5B7CFF] text-white border-2 border-black dark:border-[#6F94FF] hover:bg-[#5B7CFF] dark:hover:bg-[#4A6FE8] hover:border-[#5B7CFF] dark:hover:border-[#8BA8FF] dark:hover:shadow-[0_0_15px_rgba(111,148,255,0.35)] active:translate-y-px transition-all",
       secondary:
-        "bg-white text-black border-2 border-black hover:bg-black hover:text-white active:translate-y-px",
+        "bg-white dark:bg-[#081331] text-foreground border-2 border-black dark:border-[#263B70] hover:border-[#5B7CFF] hover:text-[#5B7CFF] dark:hover:border-[#6F94FF] dark:hover:text-[#6F94FF] dark:hover:shadow-[0_0_12px_rgba(111,148,255,0.2)] active:translate-y-px transition-all",
       outline:
-        "bg-transparent text-black border-2 border-black hover:bg-black hover:text-white active:translate-y-px",
+        "bg-transparent text-foreground border-2 border-black dark:border-[#263B70] hover:border-[#5B7CFF] dark:hover:border-[#6F94FF] active:translate-y-px transition-all",
       ghost:
-        "bg-transparent text-black hover:bg-muted border-2 border-transparent active:translate-y-px",
+        "bg-transparent text-foreground hover:bg-black/5 dark:hover:bg-white/5 border-2 border-transparent active:translate-y-px transition-all",
       link:
-        "text-black underline-offset-4 hover:text-[#FF3000] hover:underline p-0 h-auto border-0",
+        "text-foreground underline-offset-4 hover:text-[#5B7CFF] dark:hover:text-[#6F94FF] hover:underline p-0 h-auto border-0",
       success:
-        "bg-black text-white border-2 border-black hover:bg-[#FF3000] hover:border-[#FF3000] active:translate-y-px",
+        "bg-black dark:bg-[#5B7CFF] text-white border-2 border-black dark:border-[#6F94FF] hover:bg-[#5B7CFF] active:translate-y-px transition-all",
       destructive:
-        "bg-[#FF3000] text-white border-2 border-[#FF3000] hover:bg-black hover:border-black active:translate-y-px",
+        "bg-[#FF4B2B] text-white border-2 border-[#FF4B2B] hover:bg-black dark:hover:bg-[#101D42] active:translate-y-px transition-all",
     };
 
     const sizeStyles = {
@@ -55,7 +55,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none font-bold transition-all duration-150 ease-linear focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3000] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 cursor-pointer select-none",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none font-bold transition-all duration-150 ease-linear focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5B7CFF] dark:focus-visible:ring-[#6F94FF] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 cursor-pointer select-none",
           variantStyles[variant],
           sizeStyles[size],
           className

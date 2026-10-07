@@ -1,59 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  /* Swiss International Style Strict Color Palette */
-  --background: #FFFFFF;
-  --foreground: #000000;
-  --card: #FFFFFF;
-  --card-foreground: #000000;
-  --muted: #F2F2F2;
-  --muted-foreground: #555555;
-  --border: #000000;
-  --primary: #000000;
-  --primary-hover: #FF3000;
-  --primary-foreground: #FFFFFF;
+  /* THEME 01 — LIGHT MODE */
+  --background: #F8F9FB;
+  --surface: #FFFFFF;
+  --surface-secondary: #F2F4F8;
+  --surface-elevated: #FFFFFF;
+  --foreground: #080B12;
+  --text-secondary: #4B5563;
+  --border: #111827;
+  --border-subtle: #D9DEE8;
   
-  /* Swiss Red Functional Accent */
-  --swiss-red: #FF3000;
-  --swiss-red-foreground: #FFFFFF;
+  --velora-blue: #5B7CFF;
+  --blue-hover: #7EA7FF;
+  --blue-soft: #DCE6FF;
+  --trading-orange: #FF4B2B;
   
-  /* Functional States */
-  --success: #000000;
-  --success-foreground: #FFFFFF;
-  --warning: #000000;
-  --warning-foreground: #FFFFFF;
-  --destructive: #FF3000;
-  --destructive-foreground: #FFFFFF;
+  --grid-line: rgba(17, 24, 39, 0.05);
+  --blue-glow: transparent;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --bg-overlay-opacity: 0.65;
+  --bg-overlay-blend: normal;
 
-  /* Alpha variants */
-  --primary-10: rgba(0, 0, 0, 0.05);
-  --primary-20: rgba(0, 0, 0, 0.1);
-  --swiss-red-10: rgba(255, 48, 0, 0.08);
-  --swiss-red-20: rgba(255, 48, 0, 0.15);
+  /* Card and muted mappings */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --muted: var(--surface-secondary);
+  --muted-foreground: var(--text-secondary);
+}
+
+[data-theme="dark"],
+.dark {
+  /* THEME 02 — DARK MODE */
+  --background: #050A1F;
+  --surface: #081331;
+  --surface-secondary: #0D1838;
+  --surface-elevated: #101D42;
+  --foreground: #F5F7FF;
+  --text-secondary: #AAB7D4;
+  --border: #263B70;
+  --border-subtle: #182A52;
+  
+  --velora-blue: #6F94FF;
+  --blue-hover: #8BA8FF;
+  --blue-soft: #182A52;
+  --trading-orange: #FF4B2B;
+  
+  --grid-line: rgba(91, 124, 255, 0.07);
+  --blue-glow: rgba(91, 124, 255, 0.25);
+  --card-shadow: 0 4px 20px rgba(5, 10, 31, 0.6), 0 0 1px rgba(111, 148, 255, 0.2);
+  --bg-overlay-opacity: 0.35;
+  --bg-overlay-blend: screen;
+
+  /* Card and muted mappings */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --muted: var(--surface-secondary);
+  --muted-foreground: var(--text-secondary);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  
+  --color-velora-blue: var(--velora-blue);
+  --color-blue-hover: var(--blue-hover);
+  --color-blue-soft: var(--blue-soft);
+  --color-trading-orange: var(--trading-orange);
+  
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-swiss-red: var(--swiss-red);
-  --color-swiss-red-foreground: var(--swiss-red-foreground);
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
 
   --font-sans: var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -62,34 +93,47 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Velora Background Overlay (uses velora-background.png) */
+.velora-background-canvas {
+  background-image: url('/velora-background.png');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  opacity: var(--bg-overlay-opacity);
+  mix-blend-mode: var(--bg-overlay-blend);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 /* Structural CSS Patterns */
 .pattern-grid-24 {
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .pattern-dot-16 {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 
-.pattern-diagonal {
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.04),
-    rgba(0, 0, 0, 0.04) 1px,
-    transparent 1px,
-    transparent 8px
-  );
+/* Subtle Blue Glow effects for Dark Mode */
+.dark-glow-card {
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-glow-card:hover {
+  box-shadow: 0 6px 24px rgba(91, 124, 255, 0.2), 0 0 1px rgba(111, 148, 255, 0.4);
 }
 
 /* Sharp focus indicators */
 *:focus-visible {
-  outline: 2px solid #FF3000 !important;
+  outline: 2px solid var(--velora-blue) !important;
   outline-offset: 2px !important;
 }
 
@@ -100,16 +144,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F2F2F2;
-  border-left: 1px solid #000000;
+  background: var(--surface-secondary);
+  border-left: 1px solid var(--border-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: var(--border);
   border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF3000;
+  background: var(--velora-blue);
 }
-

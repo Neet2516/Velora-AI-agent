@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="8" fill="#09090b"/>
-  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#27272a"/>
-  <!-- Velora Geometric V -->
-  <path d="M8 9 L16 23 L24 9" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Telemetry Live Pulse -->
-  <circle cx="23" cy="9" r="2.5" fill="#10b981"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 32" width="48" height="32">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stopColor="#00D2FF" />
+      <stop offset="35%" stopColor="#5B7CFF" />
+      <stop offset="70%" stopColor="#9B51E0" />
+      <stop offset="100%" stopColor="#FF4B8B" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="32" rx="8" fill="#050A1F"/>
+  <path
+    d="M14 8 C8 8, 4 12, 4 16 C4 20, 8 24, 14 24 C20 24, 24 18, 24 16 C24 14, 28 8, 34 8 C40 8, 44 12, 44 16 C44 20, 40 24, 34 24 C28 24, 24 18, 24 16 C24 14, 20 8, 14 8 Z"
+    stroke="url(#favGrad)"
+    strokeWidth="4"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    fill="none"
+  />
 </svg>
