@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Send, Menu, X, ArrowUpRight, Download } from "lucide-react";
+import { Send, Menu, X, ArrowUpRight } from "lucide-react";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -114,17 +114,7 @@ export function Navbar() {
               </a>
             ))}
             <div className="pt-3 mt-2 border-t-2 border-black flex flex-col gap-2">
-              <a
-                href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-                download="Velora_AI_Agent_Pipeline_Beta.pdf"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full"
-              >
-                <Button size="sm" className="w-full justify-center gap-2 bg-[#FF3000] hover:bg-black text-white">
-                  <Download className="h-3.5 w-3.5" />
-                  <span>Download Spec PDF (1.8 MB)</span>
-                </Button>
-              </a>
+
               <a
                 href="#live-signals"
                 onClick={() => setMobileMenuOpen(false)}

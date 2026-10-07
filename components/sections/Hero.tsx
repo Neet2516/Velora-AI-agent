@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Activity, Send, ArrowDown, ShieldCheck, Zap, Radio, Download, FileText } from "lucide-react";
+import { Activity, Send, ArrowDown, ShieldCheck, Zap, Radio, FileText } from "lucide-react";
 
 export function Hero() {
   return (
@@ -127,7 +127,7 @@ export function Hero() {
               </p>
             </div>
 
-            {/* Spec Deck Download Callout */}
+            {/* Spec Deck View Callout */}
             <div className="p-4 bg-[#F2F2F2] flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <FileText className="h-3.5 w-3.5 text-[#FF3000]" />
@@ -136,13 +136,11 @@ export function Hero() {
                 </span>
               </div>
               <a
-                href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-                download="Velora_AI_Agent_Pipeline_Beta.pdf"
+                href="#pipeline-spec"
                 className="inline-flex items-center gap-1 font-mono text-[11px] font-black text-[#FF3000] hover:text-black hover:underline"
-                title="Download 10-slide PDF"
+                title="View interactive 9-slide architecture specification"
               >
-                <Download className="h-3 w-3" />
-                <span>PDF (1.8MB)</span>
+                <span>VIEW SLIDES (9) →</span>
               </a>
             </div>
           </div>

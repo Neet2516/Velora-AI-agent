@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Activity, Send, ArrowUpRight, Download, FileText } from "lucide-react";
+import { Activity, Send, ArrowUpRight, FileText } from "lucide-react";
 
 export function Footer() {
   const currentYear = 2026;
@@ -74,16 +74,15 @@ export function Footer() {
             <ul className="space-y-3 text-xs text-black">
               <li>
                 <a
-                  href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-                  download="Velora_AI_Agent_Pipeline_Beta.pdf"
-                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-[#FF3000] hover:border-[#FF3000] hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
-                  title="Download Velora Pipeline PDF"
+                  href="#pipeline-spec"
+                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
+                  title="View interactive Velora Pipeline Specification Deck"
                 >
                   <span className="flex items-center gap-1.5">
-                    <Download className="h-3.5 w-3.5 text-[#FF3000]" />
-                    <span>DOWNLOAD SPEC (PDF)</span>
+                    <FileText className="h-3.5 w-3.5 text-[#FF3000]" />
+                    <span>VIEW SPEC DECK</span>
                   </span>
-                  <span className="text-[10px] bg-black text-white px-1.5 py-0.5">1.8 MB</span>
+                  <span className="text-[10px] bg-black text-white px-1.5 py-0.5">9 SLIDES</span>
                 </a>
               </li>
               <li>

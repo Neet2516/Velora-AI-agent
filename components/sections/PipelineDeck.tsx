@@ -7,8 +7,6 @@ import { PIPELINE_SLIDES, PipelineSlide } from "@/lib/constants/pipelineSlides";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Download,
-  ExternalLink,
   ChevronLeft,
   ChevronRight,
   Maximize2,
@@ -146,39 +144,31 @@ export function PipelineDeck() {
               <span className="text-[#FF3000]">SPECIFICATION DECK</span>
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[#555555] font-medium max-w-2xl leading-relaxed">
-              Explore the complete 10-slide architectural whitepaper on how the Velora multi-agent
-              signal engine collects, debates, and risk-verifies market setups. Available to view
-              interactively or download as PDF.
+              Explore the complete 9-slide architectural whitepaper on how the Velora multi-agent
+              signal engine collects, debates, and risk-verifies market setups with the interactive viewer below.
             </p>
           </div>
 
-          {/* Action CTAs: Direct PDF Download & View Options */}
+          {/* Action CTAs: Fullscreen & Autoplay Controls */}
           <div className="flex flex-col xs:flex-row items-stretch sm:items-center gap-3">
-            <a
-              href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-              download="Velora_AI_Agent_Pipeline_Beta.pdf"
-              className="w-full xs:w-auto"
-              title="Download Velora AI Agent Pipeline PDF (1.8 MB)"
+            <Button
+              onClick={() => setIsFullscreen(true)}
+              size="lg"
+              className="w-full xs:w-auto gap-2.5 bg-black hover:bg-[#FF3000] text-white transition-colors"
             >
-              <Button size="lg" className="w-full gap-2.5 bg-black hover:bg-[#FF3000]">
-                <Download className="h-4 w-4" />
-                <span>DOWNLOAD PDF</span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 bg-white/20">1.8 MB</span>
-              </Button>
-            </a>
+              <Maximize2 className="h-4 w-4" />
+              <span>VIEW FULLSCREEN</span>
+            </Button>
 
-            <a
-              href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full xs:w-auto"
-              title="Open full PDF in a new browser tab"
+            <Button
+              onClick={() => setIsPlaying(!isPlaying)}
+              variant="secondary"
+              size="lg"
+              className="w-full xs:w-auto gap-2 border-2 border-black hover:border-[#FF3000] transition-colors"
             >
-              <Button variant="secondary" size="lg" className="w-full gap-2">
-                <ExternalLink className="h-4 w-4" />
-                <span>OPEN IN TAB</span>
-              </Button>
-            </a>
+              {isPlaying ? <Pause className="h-4 w-4 text-[#FF3000]" /> : <Play className="h-4 w-4 text-[#FF3000]" />}
+              <span>{isPlaying ? "PAUSE SLIDES" : "AUTOPLAY DECK"}</span>
+            </Button>
           </div>
         </div>
 
@@ -483,20 +473,18 @@ export function PipelineDeck() {
               ))}
             </div>
 
-            {/* Bottom Download Bar in Spec Sheet */}
-            <div className="p-4 bg-white flex flex-col gap-2">
-              <a
-                href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-                download="Velora_AI_Agent_Pipeline_Beta.pdf"
-                className="w-full"
+            {/* Bottom Presentation Action Bar */}
+            <div className="p-4 bg-white flex flex-col gap-2 border-t-2 border-black">
+              <Button
+                onClick={() => setIsFullscreen(true)}
+                size="sm"
+                className="w-full gap-2 justify-center bg-black hover:bg-[#FF3000] text-white"
               >
-                <Button size="sm" className="w-full gap-2 justify-center">
-                  <Download className="h-3.5 w-3.5" />
-                  <span>DOWNLOAD FULL 10-PAGE SPEC (PDF)</span>
-                </Button>
-              </a>
-              <div className="text-[10px] font-mono text-[#555555] text-center">
-                PDF SIZE: 1.8 MB • BETA ARCHITECTURE EDITION
+                <Maximize2 className="h-3.5 w-3.5" />
+                <span>EXPAND SLIDE FULLSCREEN</span>
+              </Button>
+              <div className="text-[10px] font-mono text-[#555555] text-center uppercase">
+                INTERACTIVE 9-SLIDE PIPELINE SPEC • BETA ARCHITECTURE EDITION
               </div>
             </div>
           </div>
@@ -527,17 +515,6 @@ export function PipelineDeck() {
             </div>
 
             <div className="flex items-center gap-3">
-              <a
-                href="/Velora_AI_Agent_Pipeline_Beta.pdf"
-                download="Velora_AI_Agent_Pipeline_Beta.pdf"
-                className="hidden xs:inline-flex"
-              >
-                <Button size="sm" variant="secondary" className="gap-2">
-                  <Download className="h-3.5 w-3.5" />
-                  <span>Download PDF</span>
-                </Button>
-              </a>
-
               <button
                 type="button"
                 onClick={() => setIsFullscreen(false)}
