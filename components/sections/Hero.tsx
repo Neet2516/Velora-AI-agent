@@ -38,10 +38,7 @@ export function Hero() {
               AUTOMATED <br />
               TRADING <br />
               SIGNALS. <br />
-              DELIVERED{" "}
-              <span className="bg-gradient-to-r from-[#4F75FF] via-[#7B5CFF] to-[#EC4899] bg-clip-text text-transparent">
-                LIVE.
-              </span>
+              DELIVERED <span className="text-[#FF4B2B]">LIVE.</span>
             </h1>
 
             <p className="max-w-2xl text-sm sm:text-base md:text-lg text-foreground/90 font-medium leading-relaxed text-left pt-1">
@@ -55,7 +52,7 @@ export function Hero() {
               <a href="#live-signals" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto gap-2.5 bg-black dark:bg-[#5B7CFF] hover:bg-[#5B7CFF] dark:hover:bg-[#4A6FE8] text-white border-2 border-black dark:border-[#6F94FF] dark:shadow-[0_0_15px_rgba(91,124,255,0.3)] transition-colors"
+                  className="w-full sm:w-auto gap-2.5 bg-black dark:bg-[#5B7CFF] hover:bg-[#FF4B2B] dark:hover:bg-[#4A6FE8] text-white border-2 border-black dark:border-[#263B70] transition-colors"
                 >
                   <Activity className="h-4 w-4" />
                   <span>VIEW LIVE SIGNALS</span>
@@ -66,9 +63,9 @@ export function Hero() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="w-full sm:w-auto gap-2.5 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:border-[#5B7CFF] dark:hover:border-[#6F94FF] transition-colors"
+                  className="w-full sm:w-auto gap-2.5 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:bg-black hover:text-white dark:hover:bg-[#101D42] transition-colors"
                 >
-                  <FileText className="h-4 w-4 text-[#5B7CFF] dark:text-[#6F94FF]" />
+                  <FileText className="h-4 w-4 text-[#FF4B2B]" />
                   <span>READ SPEC DECK</span>
                 </Button>
               </a>
@@ -81,7 +78,7 @@ export function Hero() {
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/90">
                 SYSTEM TELEMETRY SPEC
               </span>
-              <span className="font-mono text-xs text-[#5B7CFF] dark:text-[#6F94FF] font-black">
+              <span className="font-mono text-xs text-[#FF4B2B] font-black">
                 2026
               </span>
             </div>
@@ -125,14 +122,14 @@ export function Hero() {
             {/* Spec Deck View Callout */}
             <div className="p-4 bg-[#F2F2F2] dark:bg-[#0D1838] flex items-center justify-between">
               <div className="flex items-center gap-1.5">
-                <FileText className="h-3.5 w-3.5 text-[#5B7CFF] dark:text-[#6F94FF]" />
+                <FileText className="h-3.5 w-3.5 text-[#FF4B2B]" />
                 <span className="font-mono text-[11px] font-black uppercase text-foreground">
                   PIPELINE SPEC DECK
                 </span>
               </div>
               <a
                 href="#pipeline-spec"
-                className="inline-flex items-center gap-1 font-mono text-[11px] font-black text-[#5B7CFF] dark:text-[#6F94FF] hover:underline"
+                className="inline-flex items-center gap-1 font-mono text-[11px] font-black text-[#FF4B2B] hover:text-foreground hover:underline transition-colors"
                 title="View interactive 9-slide architecture specification"
               >
                 <span>VIEW SLIDES (9) →</span>

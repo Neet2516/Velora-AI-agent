@@ -9,9 +9,6 @@ import { Footer } from "@/components/layout/Footer";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-[#5B7CFF] selection:text-white transition-colors duration-300 relative">
-      {/* Velora Background Canvas (from velora-background.png) */}
-      <div className="fixed inset-0 velora-background-canvas z-0" aria-hidden="true" />
-
       {/* Sticky Top Navbar */}
       <Navbar />
 

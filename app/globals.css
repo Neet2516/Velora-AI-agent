@@ -1,42 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  /* THEME 01 — LIGHT MODE */
-  --background: #F8F9FB;
+  /* THEME 01 — LIGHT MODE (Swiss Brutalist High-Contrast) */
+  --background: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-secondary: #F2F4F8;
+  --surface-secondary: #F4F4F4;
   --surface-elevated: #FFFFFF;
-  --foreground: #080B12;
-  --text-secondary: #4B5563;
-  --border: #111827;
-  --border-subtle: #D9DEE8;
+  --foreground: #000000;
+  --text-secondary: #1F2937;
+  --border: #000000;
+  --border-subtle: #E5E7EB;
   
   --velora-blue: #5B7CFF;
-  --blue-hover: #7EA7FF;
-  --blue-soft: #DCE6FF;
+  --blue-hover: #3E63EA;
+  --blue-soft: #EEF2FF;
   --trading-orange: #FF4B2B;
   
-  --grid-line: rgba(17, 24, 39, 0.05);
+  --grid-line: rgba(0, 0, 0, 0.06);
   --blue-glow: transparent;
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --bg-overlay-opacity: 0.15;
-  --bg-overlay-blend: multiply;
+  --card-shadow: 4px 4px 0px 0px #000000;
 
   /* Card and muted mappings */
-  --card: var(--surface);
-  --card-foreground: var(--foreground);
-  --muted: var(--surface-secondary);
-  --muted-foreground: var(--text-secondary);
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --muted: #F4F4F4;
+  --muted-foreground: #4B5563;
 }
 
 [data-theme="dark"],
 .dark {
-  /* THEME 02 — DARK MODE */
+  /* THEME 02 — DARK MODE (Cinematic Institutional Navy) */
   --background: #050A1F;
   --surface: #081331;
   --surface-secondary: #0D1838;
   --surface-elevated: #101D42;
-  --foreground: #F5F7FF;
+  --foreground: #FFFFFF;
   --text-secondary: #AAB7D4;
   --border: #263B70;
   --border-subtle: #182A52;
@@ -46,11 +44,9 @@
   --blue-soft: #182A52;
   --trading-orange: #FF4B2B;
   
-  --grid-line: rgba(91, 124, 255, 0.07);
+  --grid-line: rgba(91, 124, 255, 0.08);
   --blue-glow: rgba(91, 124, 255, 0.25);
-  --card-shadow: 0 4px 20px rgba(5, 10, 31, 0.6), 0 0 1px rgba(111, 148, 255, 0.2);
-  --bg-overlay-opacity: 0.65;
-  --bg-overlay-blend: normal;
+  --card-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.6);
 
   /* Card and muted mappings */
   --card: var(--surface);
@@ -94,19 +90,6 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Velora Background Overlay (uses velora-background.png) */
-.velora-background-canvas {
-  background-image: url('/velora-background.png');
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  opacity: var(--bg-overlay-opacity);
-  mix-blend-mode: var(--bg-overlay-blend);
-  pointer-events: none;
-  transition: opacity 0.3s ease;
 }
 
 /* Structural CSS Patterns */
