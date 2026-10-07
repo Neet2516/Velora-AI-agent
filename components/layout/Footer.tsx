@@ -93,14 +93,12 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs !text-black dark:!text-white font-mono font-black">
           <div>
-            &copy; {currentYear} VELORA AI. ALL RIGHTS RESERVED. SWISS TYPOGRAPHIC EDITION.
+            &copy; {currentYear} VELORA AI. ALL RIGHTS RESERVED.
           </div>
           <div className="flex items-center gap-4 flex-wrap">
-            <span className="!text-black dark:!text-white">PUBLIC READ-ONLY DASHBOARD</span>
-            <span>•</span>
             <span className="inline-flex items-center gap-1.5 !text-black dark:!text-white">
               <span className="h-2 w-2 bg-[#FF4B2B]" />
-              <span>SYSTEM STATUS: NORMAL</span>
+              <span>SYSTEM STATUS: ONLINE</span>
             </span>
           </div>
         </div>
