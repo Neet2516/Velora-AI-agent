@@ -145,7 +145,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
             )}
             <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-black dark:border-[#263B70] bg-[#F2F2F2] dark:bg-[#0D1838] font-mono text-[10px] font-bold uppercase text-foreground">
               <Send className="h-3 w-3 text-[#FF4B2B]" />
-              <span>TELEGRAM DISPATCH</span>
+              <span>MULTI-AGENT DISPATCH</span>
             </span>
           </div>
 
@@ -167,7 +167,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
             <div className="flex items-center justify-between pb-2 mb-3 border-b border-black/20 dark:border-white/10">
               <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-foreground">
                 <Terminal className="h-3.5 w-3.5 text-[#FF4B2B]" />
-                <span>RAW TELEGRAM PAYLOAD</span>
+                <span>RAW MULTI-AGENT PAYLOAD</span>
               </div>
               <button
                 type="button"
@@ -182,31 +182,31 @@ export function SignalCard({ signal, className }: SignalCardProps) {
             </pre>
           </div>
         ) : (
-          /* TWO-COLUMN LAYOUT: Column 1 (Telegram Dispatch) | Column 2 (Execution Matrix) */
+          /* TWO-COLUMN LAYOUT: Column 1 (Multi-Agent Dispatch) | Column 2 (Execution Matrix) */
           <div className="grid grid-cols-1 lg:grid-cols-12 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-black dark:divide-[#263B70]">
-            {/* COLUMN 1: Original Telegram Message Dispatch (5 Cols) */}
+            {/* COLUMN 1: Multi-Agent Message Dispatch (5 Cols) */}
             <div className="lg:col-span-5 p-5 bg-[#FAFAFA] dark:bg-[#0B1536] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="flex items-center justify-between pb-2 border-b border-black/20 dark:border-white/10">
                   <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-foreground">
                     <Terminal className="h-3.5 w-3.5 text-[#FF4B2B]" />
-                    <span>01 / TELEGRAM DISPATCH</span>
+                    <span>01 / MULTI-AGENT DISPATCH</span>
                   </div>
                   <button
                     type="button"
                     onClick={handleCopy}
                     className="inline-flex items-center gap-1 text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-foreground transition-colors cursor-pointer"
-                    title="Copy original Telegram message"
+                    title="Copy original signal payload"
                   >
                     {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
                     <span>{copied ? "COPIED" : "COPY TEXT"}</span>
                   </button>
                 </div>
 
-                {/* Telegram Chat Bubble Window */}
+                {/* Multi-Agent Console Chat Bubble */}
                 <div className="border-2 border-black dark:border-[#263B70] bg-[#111111] dark:bg-[#050A1F] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
                   <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/20 text-[10px] text-white/60">
-                    <span>@Velora Telegram Channel</span>
+                    <span>Velora Multi-Agent Swarm</span>
                     <span className="text-[#FF4B2B] font-bold">VERIFIED</span>
                   </div>
                   <pre className="font-mono text-xs whitespace-pre-wrap leading-relaxed text-white">
@@ -215,19 +215,13 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                 </div>
               </div>
 
-              {/* Telegram Channel Link & Source info */}
+              {/* Source Info */}
               <div className="pt-2 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                <a
-                  href="https://t.me/+SUyvL9H24dtmOGQ9"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-foreground font-bold hover:text-[#FF4B2B] transition-colors"
-                >
+                <span className="inline-flex items-center gap-1 text-foreground font-bold">
                   <Send className="h-3 w-3 text-[#FF4B2B]" />
-                  <span>View in Channel</span>
-                  <ExternalLink className="h-2.5 w-2.5" />
-                </a>
-                <span>BOT: @VlgSignal_bot</span>
+                  <span>Agent Consensus Feed</span>
+                </span>
+                <span>ENGINE: VELORA AI AGENTS</span>
               </div>
             </div>
 

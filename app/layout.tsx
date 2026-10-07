@@ -24,12 +24,13 @@ export const metadata: Metadata = {
     template: "%s | Velora AI",
   },
   description:
-    "Velora AI delivers high-precision trading signals directly from our Telegram and backend intelligence pipeline to your live dashboard in near real time.",
+    "Velora AI delivers high-precision trading signals directly from our autonomous multi-agent intelligence pipeline to your live dashboard in near real time.",
   keywords: [
     "AI trading signals",
+    "multi-agent trading systems",
     "crypto signals",
     "forex signals",
-    "Telegram signals",
+    "autonomous AI agents",
     "Velora AI",
     "real-time trading telemetry",
   ],
@@ -48,13 +49,13 @@ export const metadata: Metadata = {
     siteName: "Velora AI",
     title: "Velora AI — Real-Time AI Trading Signals (Beta)",
     description:
-      "High-precision trading signals dispatched from Telegram & backend intelligence directly to a live streaming web dashboard.",
+      "High-precision trading signals dispatched from autonomous multi-agent intelligence directly to a live streaming web dashboard.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Velora AI — Real-Time AI Trading Signals (Beta)",
     description:
-      "High-precision trading signals dispatched from Telegram & backend intelligence directly to a live streaming web dashboard.",
+      "High-precision trading signals dispatched from autonomous multi-agent intelligence directly to a live streaming web dashboard.",
     creator: "@VeloraAI",
   },
   icons: {

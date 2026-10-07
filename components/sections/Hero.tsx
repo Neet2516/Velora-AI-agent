@@ -45,8 +45,8 @@ export function Hero() {
             </h1>
 
             <p className="max-w-2xl text-sm sm:text-base md:text-lg text-foreground/90 font-medium leading-relaxed text-left pt-1">
-              Velora AI continuously mirrors algorithmic market signals from our private
-              Telegram and backend intelligence pipeline into a live, transparent dashboard.
+              Velora AI continuously mirrors algorithmic market signals from our autonomous
+              multi-agent intelligence pipeline into a live, transparent dashboard.
               Zero execution latency delay, strictly read-only for public verification.
             </p>
 
@@ -72,21 +72,6 @@ export function Hero() {
                   <span>READ SPEC DECK</span>
                 </Button>
               </a>
-              <a
-                href="https://t.me/+SUyvL9H24dtmOGQ9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full sm:w-auto gap-2.5 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:border-[#5B7CFF] dark:hover:border-[#6F94FF] transition-colors"
-                >
-                  <Send className="h-4 w-4 text-[#5B7CFF] dark:text-[#6F94FF]" />
-                  <span>JOIN TELEGRAM BOT</span>
-                </Button>
-              </a>
             </div>
           </div>
 
@@ -109,7 +94,7 @@ export function Hero() {
                 &lt; 10 SECONDS
               </div>
               <p className="text-xs text-muted-foreground font-medium pt-1">
-                Sub-second webhook ingestion from Telegram Bot API with instant client propagation.
+                Sub-second multi-agent signal ingestion and consensus synthesis with instant client propagation.
               </p>
             </div>
 
@@ -118,10 +103,10 @@ export function Hero() {
                 02 / PIPELINE ARCHITECTURE
               </div>
               <div className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
-                BOT TO WEB STREAM
+                MULTI-AGENT SWARM STREAM
               </div>
               <p className="text-xs text-muted-foreground font-medium pt-1">
-                Automated parsing of canonical trading setups with stateful lifecycle progression.
+                Autonomous multi-agent consensus parsing of canonical trading setups with stateful lifecycle progression.
               </p>
             </div>
 

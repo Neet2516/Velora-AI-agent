@@ -4,17 +4,17 @@ export function HowItWorks() {
   const steps = [
     {
       number: "01",
-      subtitle: "INGESTION PHASE",
-      title: "Telegram Signal Dispatch",
+      subtitle: "MULTI-AGENT CONSENSUS",
+      title: "Agent Swarm Market Analysis",
       description:
-        "The automated intelligence engine identifies an actionable market setup and dispatches the raw signal message to the Telegram channel with entry, target, and stop parameters.",
+        "The autonomous multi-agent intelligence engine identifies actionable market setups, cross-verifies risk-reward metrics, and dispatches structured telemetry with entry, target, and stop parameters.",
     },
     {
       number: "02",
       subtitle: "PARSING & STATE MACHINE",
-      title: "Backend Validation Pipeline",
+      title: "Multi-Agent State Machine",
       description:
-        "The Velora ingestion pipeline validates signal fields into structured schemas, tracks lifecycle transitions (TP hits, SL triggers), and publishes updates to the API.",
+        "The Velora validation pipeline validates multi-agent setup schemas, tracks lifecycle transitions (TP hits, SL triggers), and publishes updates to the live streaming API.",
     },
     {
       number: "03",
@@ -45,7 +45,7 @@ export function HowItWorks() {
             HOW THE PIPELINE OPERATES
           </h2>
           <p className="mt-3 text-base sm:text-lg text-muted-foreground font-medium max-w-2xl leading-relaxed">
-            A three-stage streaming pipeline connecting Telegram intelligence directly to your browser without human intervention.
+            A three-stage streaming pipeline connecting autonomous multi-agent intelligence directly to your browser without human intervention.
           </p>
         </div>
 

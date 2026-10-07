@@ -166,16 +166,13 @@ export function Navbar() {
                 </Button>
               </a>
               <a
-                href="https://t.me/+SUyvL9H24dtmOGQ9"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#pipeline-spec"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full"
               >
                 <Button size="sm" className="w-full justify-center gap-2 bg-black dark:bg-[#5B7CFF] text-white hover:bg-[#5B7CFF]">
-                  <Send className="h-3.5 w-3.5" />
-                  <span>Join Telegram Channel</span>
-                  <ArrowUpRight className="h-3 w-3" />
+                  <ArrowRight className="h-3.5 w-3.5" />
+                  <span>Multi-Agent Architecture</span>
                 </Button>
               </a>
             </div>

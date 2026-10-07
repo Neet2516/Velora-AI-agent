@@ -112,7 +112,7 @@ export function SignalStatusBanner({
             onClick={handleClear}
             disabled={isClearing}
             className="inline-flex items-center gap-1 px-2.5 py-1 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#0D1838] hover:bg-[#FF4B2B] hover:border-[#FF4B2B] hover:text-white text-muted-foreground hover:text-white transition-colors cursor-pointer text-xs font-mono font-bold uppercase"
-            title="Clear the current signals in memory to wait for real Telegram signals"
+            title="Clear the current signals in memory to wait for incoming multi-agent signals"
           >
             <Trash2 className="h-3 w-3" />
             <span>{isClearing ? "CLEARING..." : "CLEAR BUFFER"}</span>

@@ -15,8 +15,8 @@ export function Footer() {
           <div className="md:col-span-2 space-y-4">
             <VeloraLogo />
             <p className="text-sm text-muted-foreground max-w-md font-medium leading-relaxed">
-              Real-time trading signal telemetry mirrored directly from our private Telegram
-              and algorithmic backend pipeline. Transparent, instantaneous, and strictly read-only.
+              Real-time trading signal telemetry mirrored directly from our autonomous multi-agent
+              intelligence pipeline. Transparent, instantaneous, and strictly read-only.
             </p>
           </div>
 
@@ -54,10 +54,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Community & Access */}
+          {/* Column 3: Architecture & Dispatch */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono font-black uppercase tracking-widest text-foreground">
-              RESOURCES & DISPATCH
+              INTELLIGENCE & SPEC
             </h4>
             <ul className="space-y-3 text-xs text-foreground">
               <li>
@@ -75,34 +75,18 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://t.me/+SUyvL9H24dtmOGQ9"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#live-signals"
                   className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:bg-black hover:text-white dark:hover:bg-[#101D42] px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
                 >
                   <span className="flex items-center gap-1.5">
-                    <Send className="h-3.5 w-3.5 text-[#FF4B2B]" />
-                    <span>JOIN TELEGRAM CHANNEL</span>
-                  </span>
-                  <ArrowUpRight className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://t.me/VlgSignal_bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:bg-black hover:text-white dark:hover:bg-[#101D42] px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
-                >
-                  <span className="flex items-center gap-1.5">
-                    <Send className="h-3.5 w-3.5" />
-                    <span>TELEGRAM BOT (@VlgSignal_bot)</span>
+                    <Activity className="h-3.5 w-3.5 text-[#FF4B2B]" />
+                    <span>MULTI-AGENT STREAM</span>
                   </span>
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
               </li>
               <li className="text-xs text-muted-foreground font-mono leading-relaxed pt-1">
-                Telemetry feed updates continuously. All signal transmissions subject to market latency.
+                Telemetry feed updates continuously. Multi-agent consensus transmissions subject to live market latency.
               </li>
             </ul>
           </div>

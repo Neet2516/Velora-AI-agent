@@ -11,10 +11,10 @@ export function WhatVeloraAIDoes() {
     },
     {
       step: "02",
-      tag: "DISPATCH",
-      title: "Direct Telegram Dispatch",
+      tag: "SYNTHESIS",
+      title: "Multi-Agent Swarm Intelligence",
       description:
-        "Signals originate in real time and are immediately distributed to the Velora Telegram community, minimizing communication latency for active market participants.",
+        "Autonomous specialized intelligence agents debate, cross-validate risk parameters, and verify signals before instant real-time telemetry dispatch.",
     },
     {
       step: "03",
