@@ -68,15 +68,15 @@ export async function fetchSignals(): Promise<{ signals: Signal[]; isFallback: b
       }
     }
 
-    // Graceful fallback to initial mock fixtures when API shape is incomplete
+    // Graceful fallback to empty buffer when API is empty
     return {
-      signals: deduplicateSignals(INITIAL_MOCK_SIGNALS),
+      signals: [],
       isFallback: true,
     };
   } catch {
-    // When backend API is offline during development, utilize the development boundary
+    // When backend API is offline during development, return empty buffer
     return {
-      signals: deduplicateSignals(INITIAL_MOCK_SIGNALS),
+      signals: [],
       isFallback: true,
     };
   }

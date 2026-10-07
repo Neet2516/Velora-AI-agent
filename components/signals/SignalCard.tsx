@@ -1,12 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Signal, getSignalSymbol } from "@/lib/types/signal";
 import { sanitizeRawText } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
 import { StatusBadge, DirectionBadge } from "./SignalBadge";
-import { Check, X, Clock, Terminal } from "lucide-react";
+import {
+  Check,
+  X,
+  Clock,
+  Terminal,
+  Send,
+  Copy,
+  ExternalLink,
+  ShieldCheck,
+  TrendingUp,
+  Target,
+  ArrowRight,
+} from "lucide-react";
 
 interface SignalCardProps {
   signal: Signal;
@@ -43,8 +54,22 @@ function formatPrice(value?: number | null): string {
   }).format(value);
 }
 
+/**
+ * Format distance in points/ticks from entry
+ */
+function formatDistance(entry?: number | null, target?: number | null): string | null {
+  if (entry === null || entry === undefined || target === null || target === undefined) {
+    return null;
+  }
+  const diff = target - entry;
+  const sign = diff >= 0 ? "+" : "";
+  return `${sign}${diff.toFixed(2)}`;
+}
+
 export function SignalCard({ signal, className }: SignalCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [copied, setCopied] = useState(false);
+
   const isUnparsed = signal.status === "UNPARSED";
   const symbol = getSignalSymbol(signal);
   const formattedTime = formatSignalTime(signal.created_at);
@@ -57,6 +82,31 @@ export function SignalCard({ signal, className }: SignalCardProps) {
   const tp3Hit = signal.status === "TP3_HIT";
   const slHit = signal.status === "SL_HIT";
 
+  // Calculate Risk-to-Reward ratio
+  let rrRatio: string | null = null;
+  if (signal.entry && signal.sl && signal.tp1) {
+    const risk = Math.abs(signal.entry - signal.sl);
+    const reward = Math.abs(signal.tp1 - signal.entry);
+    if (risk > 0) {
+      rrRatio = `1 : ${(reward / risk).toFixed(1)}`;
+    }
+  }
+
+  // Construct raw text display if missing
+  const rawTextDisplay =
+    signal.raw_text ||
+    `NEW SIGNAL\nSymbol: ${symbol}\nType: ${signal.direction || "BUY"}\nEntry: ${formatPrice(
+      signal.entry
+    )}\nSL: ${formatPrice(signal.sl)}\nTP1: ${formatPrice(signal.tp1)}${
+      signal.tp2 ? `\nTP2: ${formatPrice(signal.tp2)}` : ""
+    }${signal.tp3 ? `\nTP3: ${formatPrice(signal.tp3)}` : ""}`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(rawTextDisplay);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <motion.div
       layout={!shouldReduceMotion}
@@ -67,16 +117,16 @@ export function SignalCard({ signal, className }: SignalCardProps) {
       className="w-full"
     >
       <div
-        className={`relative overflow-hidden rounded-none border-2 border-black bg-white transition-all duration-150 ${
+        className={`relative overflow-hidden rounded-none border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000000] transition-all duration-150 ${
           signal.status === "ACTIVE" ? "ring-2 ring-black" : ""
         } ${className || ""}`}
       >
         {/* Top Status Accent Bar */}
         <div
-          className={`h-1.5 w-full transition-colors duration-150 ${
+          className={`h-2 w-full transition-colors duration-150 ${
             signal.status === "ACTIVE"
               ? "bg-[#FF3000]"
-              : tp3Hit || tp1Hit
+              : tp3Hit || tp2Hit || tp1Hit
               ? "bg-black"
               : slHit
               ? "bg-[#FF3000]"
@@ -84,128 +134,247 @@ export function SignalCard({ signal, className }: SignalCardProps) {
           }`}
         />
 
-        <div className="p-5 sm:p-6">
-          {/* Header: Symbol + Badges */}
-          <div className="flex items-start justify-between gap-3 mb-6 pb-4 border-b-2 border-black">
-            <div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-mono text-xl sm:text-2xl font-black tracking-tight text-black">
-                  {isUnparsed ? "TRANSMISSION" : symbol}
-                </span>
-                {!isUnparsed && signal.direction && (
-                  <DirectionBadge direction={signal.direction} />
-                )}
-              </div>
-              <div className="flex items-center gap-2 mt-1.5 text-xs text-[#555555] font-mono font-bold">
-                <Clock className="h-3 w-3" />
-                <span>{formattedTime}</span>
-                <span>/</span>
-                <span className="truncate max-w-[120px]">
-                  #{signal.id.slice(0, 8)}
-                </span>
-              </div>
-            </div>
-
-            <StatusBadge status={signal.status} />
+        {/* Card Header Bar */}
+        <div className="p-4 sm:p-5 bg-white border-b-2 border-black flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="font-mono text-2xl sm:text-3xl font-black tracking-tight text-black">
+              {isUnparsed ? "TRANSMISSION" : symbol}
+            </span>
+            {!isUnparsed && signal.direction && (
+              <DirectionBadge direction={signal.direction} />
+            )}
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-black bg-[#F2F2F2] font-mono text-[10px] font-bold uppercase text-black">
+              <Send className="h-3 w-3 text-[#FF3000]" />
+              <span>TELEGRAM DISPATCH</span>
+            </span>
           </div>
 
-          {/* Content Body: Structured Data OR Unparsed Fallback */}
-          {isUnparsed ? (
-            /* UNPARSED RAW MESSAGE FALLBACK */
-            <div className="border-2 border-black bg-[#F2F2F2] p-4">
-              <div className="flex items-center gap-2 mb-2 text-xs font-mono font-bold uppercase text-black">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 text-xs text-[#555555] font-mono font-bold">
+              <Clock className="h-3 w-3" />
+              <span>{formattedTime}</span>
+              <span>/</span>
+              <span className="truncate max-w-[100px]">#{signal.id.slice(0, 8)}</span>
+            </div>
+            <StatusBadge status={signal.status} />
+          </div>
+        </div>
+
+        {/* Card Body: Interactive Two-Column Split Architecture */}
+        {isUnparsed ? (
+          /* UNPARSED RAW MESSAGE FALLBACK */
+          <div className="p-5 sm:p-6 bg-[#F2F2F2]">
+            <div className="flex items-center justify-between pb-2 mb-3 border-b border-black/20">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-black">
                 <Terminal className="h-3.5 w-3.5 text-[#FF3000]" />
                 <span>RAW TELEGRAM PAYLOAD</span>
               </div>
-              <pre className="font-mono text-xs text-black whitespace-pre-wrap break-words leading-relaxed select-text font-medium">
-                {sanitizeRawText(signal.raw_text)}
-              </pre>
-            </div>
-          ) : (
-            /* STRUCTURED SIGNAL LEVELS AS ARCHITECTURAL DATA TABLE */
-            <div className="border-2 border-black divide-y-2 divide-black text-xs font-mono">
-              {/* Entry Price */}
-              <div className="flex items-center justify-between p-2.5 bg-white">
-                <span className="font-bold text-[#555555] uppercase tracking-wider">ENTRY</span>
-                <span className="font-black text-black text-sm">
-                  {formatPrice(signal.entry)}
-                </span>
-              </div>
-
-              {/* Stop Loss (SL) */}
-              <div
-                className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
-                  slHit
-                    ? "bg-[#FF3000] text-white font-black"
-                    : "bg-white text-black"
-                }`}
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="text-[11px] font-mono font-bold uppercase text-[#FF3000] hover:text-black transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-1.5">
-                  <span className="font-bold uppercase tracking-wider">STOP LOSS (SL)</span>
-                  {slHit && <X className="h-3.5 w-3.5 stroke-[3]" />}
-                </div>
-                <span className="font-black text-sm">
-                  {formatPrice(signal.sl)}
-                </span>
-              </div>
-
-              {/* Take Profit 1 (TP1) */}
-              <div
-                className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
-                  tp1Hit
-                    ? "bg-black text-white font-black"
-                    : "bg-white text-black"
-                }`}
-              >
-                <div className="flex items-center gap-1.5">
-                  <span className="font-bold uppercase tracking-wider">TARGET 01 (TP1)</span>
-                  {tp1Hit && <Check className="h-3.5 w-3.5 text-[#FF3000] stroke-[3]" />}
-                </div>
-                <span className="font-black text-sm">
-                  {formatPrice(signal.tp1)}
-                </span>
-              </div>
-
-              {/* Take Profit 2 (Optional) */}
-              {signal.tp2 !== null && signal.tp2 !== undefined && (
-                <div
-                  className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
-                    tp2Hit
-                      ? "bg-black text-white font-black"
-                      : "bg-white text-black"
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-bold uppercase tracking-wider">TARGET 02 (TP2)</span>
-                    {tp2Hit && <Check className="h-3.5 w-3.5 text-[#FF3000] stroke-[3]" />}
-                  </div>
-                  <span className="font-black text-sm">
-                    {formatPrice(signal.tp2)}
-                  </span>
-                </div>
-              )}
-
-              {/* Take Profit 3 (Optional) */}
-              {signal.tp3 !== null && signal.tp3 !== undefined && (
-                <div
-                  className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
-                    tp3Hit
-                      ? "bg-[#FF3000] text-white font-black"
-                      : "bg-white text-black"
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-bold uppercase tracking-wider">TARGET 03 (TP3)</span>
-                    {tp3Hit && <Check className="h-3.5 w-3.5 stroke-[3]" />}
-                  </div>
-                  <span className="font-black text-sm">
-                    {formatPrice(signal.tp3)}
-                  </span>
-                </div>
-              )}
+                {copied ? "COPIED!" : "COPY"}
+              </button>
             </div>
-          )}
-        </div>
+            <pre className="font-mono text-xs text-black whitespace-pre-wrap break-words leading-relaxed select-text font-medium bg-white p-4 border border-black">
+              {sanitizeRawText(signal.raw_text)}
+            </pre>
+          </div>
+        ) : (
+          /* TWO-COLUMN LAYOUT: Column 1 (Telegram Dispatch) | Column 2 (Execution Matrix) */
+          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-black">
+            {/* COLUMN 1: Original Telegram Message Dispatch (5 Cols) */}
+            <div className="lg:col-span-5 p-5 bg-[#FAFAFA] flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-black/20">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-black">
+                    <Terminal className="h-3.5 w-3.5 text-[#FF3000]" />
+                    <span>01 / TELEGRAM DISPATCH</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className="inline-flex items-center gap-1 text-[11px] font-mono font-bold uppercase text-[#FF3000] hover:text-black transition-colors cursor-pointer"
+                    title="Copy original Telegram message"
+                  >
+                    {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                    <span>{copied ? "COPIED" : "COPY TEXT"}</span>
+                  </button>
+                </div>
+
+                {/* Telegram Chat Bubble Window */}
+                <div className="border-2 border-black bg-[#111111] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
+                  <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/20 text-[10px] text-white/60">
+                    <span>@Velora Telegram Channel</span>
+                    <span className="text-[#FF3000] font-bold">VERIFIED</span>
+                  </div>
+                  <pre className="font-mono text-xs whitespace-pre-wrap leading-relaxed text-white">
+                    {rawTextDisplay}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Telegram Channel Link & Source info */}
+              <div className="pt-2 flex items-center justify-between font-mono text-[10px] text-[#555555]">
+                <a
+                  href="https://t.me/+SUyvL9H24dtmOGQ9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-black font-bold hover:text-[#FF3000] transition-colors"
+                >
+                  <Send className="h-3 w-3 text-[#FF3000]" />
+                  <span>View in Channel</span>
+                  <ExternalLink className="h-2.5 w-2.5" />
+                </a>
+                <span>BOT: @VlgSignal_bot</span>
+              </div>
+            </div>
+
+            {/* COLUMN 2: Execution Levels & Take Profit Matrix (7 Cols) */}
+            <div className="lg:col-span-7 p-5 bg-white flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-black/20">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-black">
+                    <Target className="h-3.5 w-3.5 text-[#FF3000]" />
+                    <span>02 / EXECUTION LEVELS & TARGETS</span>
+                  </div>
+                  {rrRatio && (
+                    <span className="font-mono text-[10px] font-black bg-black text-white px-2 py-0.5 uppercase">
+                      R : R = {rrRatio}
+                    </span>
+                  )}
+                </div>
+
+                {/* Structured Architectural Price Grid */}
+                <div className="border-2 border-black divide-y-2 divide-black text-xs font-mono">
+                  {/* Entry Price */}
+                  <div className="flex items-center justify-between p-2.5 bg-white">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2 w-2 bg-black" />
+                      <span className="font-bold text-[#555555] uppercase tracking-wider">ENTRY PRICE</span>
+                    </div>
+                    <span className="font-black text-black text-sm">
+                      {formatPrice(signal.entry)}
+                    </span>
+                  </div>
+
+                  {/* Stop Loss (SL) */}
+                  <div
+                    className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
+                      slHit
+                        ? "bg-[#FF3000] text-white font-black"
+                        : "bg-white text-black"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="h-2 w-2 bg-[#FF3000]" />
+                      <span className="font-bold uppercase tracking-wider">STOP LOSS (SL)</span>
+                      {signal.entry && signal.sl && (
+                        <span className="text-[10px] opacity-70">
+                          ({formatDistance(signal.entry, signal.sl)} pts)
+                        </span>
+                      )}
+                      {slHit && <X className="h-3.5 w-3.5 stroke-[3]" />}
+                    </div>
+                    <span className="font-black text-sm">
+                      {formatPrice(signal.sl)}
+                    </span>
+                  </div>
+
+                  {/* Take Profit 1 (TP1) */}
+                  <div
+                    className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
+                      tp1Hit
+                        ? "bg-black text-white font-black"
+                        : "bg-white text-black"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="h-2 w-2 bg-black" />
+                      <span className="font-bold uppercase tracking-wider">TARGET 01 (TP1)</span>
+                      {signal.entry && signal.tp1 && (
+                        <span className="text-[10px] opacity-70">
+                          ({formatDistance(signal.entry, signal.tp1)} pts)
+                        </span>
+                      )}
+                      {tp1Hit && <Check className="h-3.5 w-3.5 text-[#FF3000] stroke-[3]" />}
+                    </div>
+                    <span className="font-black text-sm">
+                      {formatPrice(signal.tp1)}
+                    </span>
+                  </div>
+
+                  {/* Take Profit 2 (Optional) */}
+                  {signal.tp2 !== null && signal.tp2 !== undefined && (
+                    <div
+                      className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
+                        tp2Hit
+                          ? "bg-black text-white font-black"
+                          : "bg-white text-black"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 bg-black" />
+                        <span className="font-bold uppercase tracking-wider">TARGET 02 (TP2)</span>
+                        {signal.entry && signal.tp2 && (
+                          <span className="text-[10px] opacity-70">
+                            ({formatDistance(signal.entry, signal.tp2)} pts)
+                          </span>
+                        )}
+                        {tp2Hit && <Check className="h-3.5 w-3.5 text-[#FF3000] stroke-[3]" />}
+                      </div>
+                      <span className="font-black text-sm">
+                        {formatPrice(signal.tp2)}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Take Profit 3 (Optional) */}
+                  {signal.tp3 !== null && signal.tp3 !== undefined && (
+                    <div
+                      className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
+                        tp3Hit
+                          ? "bg-[#FF3000] text-white font-black"
+                          : "bg-white text-black"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 bg-[#FF3000]" />
+                        <span className="font-bold uppercase tracking-wider">TARGET 03 (TP3)</span>
+                        {signal.entry && signal.tp3 && (
+                          <span className="text-[10px] opacity-70">
+                            ({formatDistance(signal.entry, signal.tp3)} pts)
+                          </span>
+                        )}
+                        {tp3Hit && <Check className="h-3.5 w-3.5 stroke-[3]" />}
+                      </div>
+                      <span className="font-black text-sm">
+                        {formatPrice(signal.tp3)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Status Milestone Indicator Footer */}
+              <div className="p-2.5 bg-[#F2F2F2] border border-black flex items-center justify-between font-mono text-[11px]">
+                <span className="text-[#555555] font-bold">STATE TRANSITION:</span>
+                <span className="font-black text-black">
+                  {tp3Hit
+                    ? "COMPLETED (TP3 HIT)"
+                    : tp2Hit
+                    ? "RUNNER (TP2 HIT)"
+                    : tp1Hit
+                    ? "SECURED (TP1 HIT)"
+                    : slHit
+                    ? "STOPPED OUT (SL HIT)"
+                    : "ACTIVE IN RUN"}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </motion.div>
   );

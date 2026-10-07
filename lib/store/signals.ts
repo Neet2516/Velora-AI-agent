@@ -13,7 +13,7 @@ declare global {
 export class SignalStore {
   private signals: Map<string, Signal> = new Map();
 
-  constructor(seedSignals: Signal[] = INITIAL_MOCK_SIGNALS) {
+  constructor(seedSignals: Signal[] = []) {
     this.seed(seedSignals);
   }
 
