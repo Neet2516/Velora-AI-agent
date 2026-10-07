@@ -43,9 +43,74 @@ export const SignalSchema = z.object({
   updated_at: z.string().optional(),
   confidence: z.number().nullable().optional(),
   source: z.string().optional(),
+  is_demo: z.boolean().optional(),
 });
 
 export type Signal = z.infer<typeof SignalSchema>;
+
+/**
+ * Validates buy/sell trade parameters for mathematical consistency.
+ * For BUY: SL < Entry < TP1 < TP2 < TP3
+ * For SELL: TP3 < TP2 < TP1 < Entry < SL
+ */
+export function validateSignalMetrics(signal: Partial<Signal>): { isValid: boolean; reason?: string } {
+  const dir = normalizeDirection(signal.direction);
+  const { entry, sl, tp1, tp2, tp3 } = signal;
+
+  if (entry == null || sl == null) {
+    return { isValid: true };
+  }
+
+  if (dir === "BUY") {
+    if (sl >= entry) {
+      return { isValid: false, reason: "SL must be below Entry for BUY signals." };
+    }
+    if (tp1 != null && tp1 <= entry) {
+      return { isValid: false, reason: "TP1 must be above Entry for BUY signals." };
+    }
+    if (tp2 != null && tp1 != null && tp2 <= tp1) {
+      return { isValid: false, reason: "TP2 must be above TP1 for BUY signals." };
+    }
+    if (tp3 != null && tp2 != null && tp3 <= tp2) {
+      return { isValid: false, reason: "TP3 must be above TP2 for BUY signals." };
+    }
+  } else if (dir === "SELL") {
+    if (sl <= entry) {
+      return { isValid: false, reason: "SL must be above Entry for SELL signals." };
+    }
+    if (tp1 != null && tp1 >= entry) {
+      return { isValid: false, reason: "TP1 must be below Entry for SELL signals." };
+    }
+    if (tp2 != null && tp1 != null && tp2 >= tp1) {
+      return { isValid: false, reason: "TP2 must be below TP1 for SELL signals." };
+    }
+    if (tp3 != null && tp2 != null && tp3 >= tp2) {
+      return { isValid: false, reason: "TP3 must be below TP2 for SELL signals." };
+    }
+  }
+
+  return { isValid: true };
+}
+
+/**
+ * Calculates dynamic mathematical Risk-to-Reward ratio
+ * Risk = abs(Entry - SL)
+ * Reward = abs(Target - Entry)
+ * R:R = Reward / Risk
+ */
+export function calculateRR(
+  entry?: number | null,
+  sl?: number | null,
+  target?: number | null
+): string | null {
+  if (entry == null || sl == null || target == null) return null;
+  const risk = Math.abs(entry - sl);
+  const reward = Math.abs(target - entry);
+  if (risk === 0) return null;
+  const ratio = reward / risk;
+  const formatted = Math.abs(ratio - Math.round(ratio)) < 0.05 ? Math.round(ratio).toString() : ratio.toFixed(1);
+  return `1:${formatted}`;
+}
 
 /**
  * Normalized getter helper to resolve symbol/asset

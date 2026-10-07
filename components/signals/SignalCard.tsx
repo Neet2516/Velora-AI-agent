@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Signal, getSignalSymbol } from "@/lib/types/signal";
+import { Signal, getSignalSymbol, calculateRR, validateSignalMetrics } from "@/lib/types/signal";
 import { sanitizeRawText } from "@/lib/utils";
-import { StatusBadge, DirectionBadge } from "./SignalBadge";
+import { StatusBadge, DirectionBadge, DemoBadge } from "./SignalBadge";
 import {
   Check,
   X,
@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Target,
   ArrowRight,
+  AlertTriangle,
 } from "lucide-react";
 
 interface SignalCardProps {
@@ -82,20 +83,18 @@ export function SignalCard({ signal, className }: SignalCardProps) {
   const tp3Hit = signal.status === "TP3_HIT";
   const slHit = signal.status === "SL_HIT";
 
-  // Calculate Risk-to-Reward ratio
-  let rrRatio: string | null = null;
-  if (signal.entry && signal.sl && signal.tp1) {
-    const risk = Math.abs(signal.entry - signal.sl);
-    const reward = Math.abs(signal.tp1 - signal.entry);
-    if (risk > 0) {
-      rrRatio = `1 : ${(reward / risk).toFixed(1)}`;
-    }
-  }
+  // Mathematical validation check
+  const validation = validateSignalMetrics(signal);
+
+  // Dynamically calculate mathematically exact Risk-to-Reward ratios per target
+  const rr1 = calculateRR(signal.entry, signal.sl, signal.tp1);
+  const rr2 = calculateRR(signal.entry, signal.sl, signal.tp2);
+  const rr3 = calculateRR(signal.entry, signal.sl, signal.tp3);
 
   // Construct raw text display if missing
   const rawTextDisplay =
     signal.raw_text ||
-    `NEW SIGNAL\nSymbol: ${symbol}\nType: ${signal.direction || "BUY"}\nEntry: ${formatPrice(
+    `${signal.is_demo ? "@Velora Multi-Agent Feed [SIMULATED]\n" : ""}NEW SIGNAL\nSymbol: ${symbol}\nType: ${signal.direction || "BUY"}\nEntry: ${formatPrice(
       signal.entry
     )}\nSL: ${formatPrice(signal.sl)}\nTP1: ${formatPrice(signal.tp1)}${
       signal.tp2 ? `\nTP2: ${formatPrice(signal.tp2)}` : ""
@@ -143,6 +142,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
             {!isUnparsed && signal.direction && (
               <DirectionBadge direction={signal.direction} />
             )}
+            {signal.is_demo && <DemoBadge />}
             <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-black dark:border-[#263B70] bg-[#F2F2F2] dark:bg-[#0D1838] font-mono text-[10px] font-bold uppercase text-foreground">
               <Send className="h-3 w-3 text-[#FF4B2B]" />
               <span>MULTI-AGENT DISPATCH</span>
@@ -207,7 +207,11 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                 <div className="border-2 border-black dark:border-[#263B70] bg-[#111111] dark:bg-[#050A1F] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
                   <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/20 text-[10px] text-white/60">
                     <span>Velora Multi-Agent Swarm</span>
-                    <span className="text-[#FF4B2B] font-bold">VERIFIED</span>
+                    {signal.is_demo ? (
+                      <span className="text-[#C4B5FD] font-mono font-bold tracking-wider">SIMULATED</span>
+                    ) : (
+                      <span className="text-[#FF4B2B] font-bold">VERIFIED LIVE</span>
+                    )}
                   </div>
                   <pre className="font-mono text-xs whitespace-pre-wrap leading-relaxed text-white">
                     {rawTextDisplay}
@@ -233,12 +237,20 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     <Target className="h-3.5 w-3.5 text-[#FF4B2B]" />
                     <span>02 / EXECUTION LEVELS & TARGETS</span>
                   </div>
-                  {rrRatio && (
+                  {rr1 && (
                     <span className="font-mono text-[10px] font-black bg-black dark:bg-[#101D42] text-white px-2 py-0.5 uppercase border border-transparent dark:border-[#263B70]">
-                      R : R = {rrRatio}
+                      PRIMARY R : R = {rr1}
                     </span>
                   )}
                 </div>
+
+                {/* Mathematical Validation Guard */}
+                {!validation.isValid && (
+                  <div className="p-3 bg-[#FF4B2B]/10 border-2 border-[#FF4B2B] text-[#FF4B2B] font-mono text-xs font-bold flex items-center gap-2">
+                    <AlertTriangle className="h-4 w-4 shrink-0" />
+                    <span>INVALID SETUP: {validation.reason}</span>
+                  </div>
+                )}
 
                 {/* Structured Architectural Price Grid */}
                 <div className="border-2 border-black dark:border-[#263B70] divide-y-2 divide-black dark:divide-[#263B70] text-xs font-mono">
@@ -289,7 +301,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                       <span className="font-bold uppercase tracking-wider">TARGET 01 (TP1)</span>
                       {signal.entry && signal.tp1 && (
                         <span className="text-[10px] opacity-70">
-                          ({formatDistance(signal.entry, signal.tp1)} pts)
+                          ({formatDistance(signal.entry, signal.tp1)} pts{rr1 ? ` · R:R ${rr1}` : ""})
                         </span>
                       )}
                       {tp1Hit && <Check className="h-3.5 w-3.5 text-[#FF4B2B] stroke-[3]" />}
@@ -313,7 +325,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                         <span className="font-bold uppercase tracking-wider">TARGET 02 (TP2)</span>
                         {signal.entry && signal.tp2 && (
                           <span className="text-[10px] opacity-70">
-                            ({formatDistance(signal.entry, signal.tp2)} pts)
+                            ({formatDistance(signal.entry, signal.tp2)} pts{rr2 ? ` · R:R ${rr2}` : ""})
                           </span>
                         )}
                         {tp2Hit && <Check className="h-3.5 w-3.5 text-[#FF4B2B] stroke-[3]" />}
@@ -338,7 +350,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                         <span className="font-bold uppercase tracking-wider">TARGET 03 (TP3)</span>
                         {signal.entry && signal.tp3 && (
                           <span className="text-[10px] opacity-70">
-                            ({formatDistance(signal.entry, signal.tp3)} pts)
+                            ({formatDistance(signal.entry, signal.tp3)} pts{rr3 ? ` · R:R ${rr3}` : ""})
                           </span>
                         )}
                         {tp3Hit && <Check className="h-3.5 w-3.5 stroke-[3]" />}
@@ -364,6 +376,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     : slHit
                     ? "STOPPED OUT (SL HIT)"
                     : "ACTIVE IN RUN"}
+                  {signal.is_demo ? " · SIMULATED" : ""}
                 </span>
               </div>
             </div>

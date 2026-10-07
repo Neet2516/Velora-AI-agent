@@ -1,20 +1,18 @@
 import React from "react";
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { VeloraLogo } from "@/components/ui/VeloraLogo";
-import { Activity, Send, ArrowUpRight, FileText } from "lucide-react";
+import { Activity, ArrowUpRight, FileText } from "lucide-react";
 
 export function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer id="footer" className="w-full border-t-4 border-black dark:border-[#263B70] bg-white dark:bg-[#050A1F] pt-12 sm:pt-16 pb-12">
+    <footer id="footer" className="w-full border-t-4 border-black dark:border-[#263B70] bg-white dark:bg-[#050A1F] text-black dark:text-white pt-12 sm:pt-16 pb-12">
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-10 pb-12 border-b-2 border-black dark:border-[#263B70]">
           {/* Column 1: Brand & Bio */}
           <div className="md:col-span-2 space-y-4">
             <VeloraLogo />
-            <p className="text-sm text-muted-foreground max-w-md font-medium leading-relaxed">
+            <p className="text-sm text-black dark:text-gray-200 max-w-md font-medium leading-relaxed">
               Real-time trading signal telemetry mirrored directly from our autonomous multi-agent
               intelligence pipeline. Transparent, instantaneous, and strictly read-only.
             </p>
@@ -22,32 +20,32 @@ export function Footer() {
 
           {/* Column 2: Navigation */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-black uppercase tracking-widest text-foreground">
+            <h4 className="text-xs font-mono font-black uppercase tracking-widest text-black dark:text-white">
               INDEX
             </h4>
-            <ul className="space-y-2 text-xs font-mono font-bold text-foreground uppercase">
+            <ul className="space-y-2 text-xs font-mono font-bold text-black dark:text-white uppercase">
               <li>
-                <a href="#hero" className="hover:text-[#FF4B2B] transition-colors duration-150">
+                <a href="#hero" className="text-black dark:text-white hover:text-[#FF4B2B] transition-colors duration-150">
                   01 / OVERVIEW
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-[#FF4B2B] transition-colors duration-150">
+                <a href="#features" className="text-black dark:text-white hover:text-[#FF4B2B] transition-colors duration-150">
                   02 / CAPABILITIES
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="hover:text-[#FF4B2B] transition-colors duration-150">
+                <a href="#how-it-works" className="text-black dark:text-white hover:text-[#FF4B2B] transition-colors duration-150">
                   03 / ARCHITECTURE
                 </a>
               </li>
               <li>
-                <a href="#pipeline-spec" className="hover:text-[#FF4B2B] transition-colors duration-150">
+                <a href="#pipeline-spec" className="text-black dark:text-white hover:text-[#FF4B2B] transition-colors duration-150">
                   04 / SPEC DECK (10 SLIDES)
                 </a>
               </li>
               <li>
-                <a href="#live-signals" className="hover:text-[#FF4B2B] transition-colors duration-150">
+                <a href="#live-signals" className="text-black dark:text-white hover:text-[#FF4B2B] transition-colors duration-150">
                   05 / LIVE SIGNALS
                 </a>
               </li>
@@ -56,14 +54,14 @@ export function Footer() {
 
           {/* Column 3: Architecture & Dispatch */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-black uppercase tracking-widest text-foreground">
+            <h4 className="text-xs font-mono font-black uppercase tracking-widest text-black dark:text-white">
               INTELLIGENCE & SPEC
             </h4>
-            <ul className="space-y-3 text-xs text-foreground">
+            <ul className="space-y-3 text-xs text-black dark:text-white">
               <li>
                 <a
                   href="#pipeline-spec"
-                  className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:bg-black hover:text-white dark:hover:bg-[#101D42] px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
+                  className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-[#101D42] px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
                   title="View interactive Velora Pipeline Specification Deck"
                 >
                   <span className="flex items-center gap-1.5">
@@ -76,7 +74,7 @@ export function Footer() {
               <li>
                 <a
                   href="#live-signals"
-                  className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:bg-black hover:text-white dark:hover:bg-[#101D42] px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
+                  className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-[#101D42] px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
                 >
                   <span className="flex items-center gap-1.5">
                     <Activity className="h-3.5 w-3.5 text-[#FF4B2B]" />
@@ -85,7 +83,7 @@ export function Footer() {
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
               </li>
-              <li className="text-xs text-muted-foreground font-mono leading-relaxed pt-1">
+              <li className="text-xs text-black dark:text-gray-300 font-mono leading-relaxed pt-1">
                 Telemetry feed updates continuously. Multi-agent consensus transmissions subject to live market latency.
               </li>
             </ul>
@@ -93,7 +91,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-foreground font-mono font-bold">
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-black dark:text-white font-mono font-bold">
           <div>
             &copy; {currentYear} VELORA AI. ALL RIGHTS RESERVED. SWISS TYPOGRAPHIC EDITION.
           </div>

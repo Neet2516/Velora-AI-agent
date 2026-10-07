@@ -62,7 +62,7 @@ export function SignalStatusBanner({
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF4B2B]" />
             </span>
             <span className="font-mono text-[11px] font-black uppercase tracking-wider">
-              TELEMETRY LIVE
+              SIMULATED TELEMETRY FEED
             </span>
           </div>
         )}
@@ -102,7 +102,7 @@ export function SignalStatusBanner({
           title="Send a simulated XAUUSD signal to preview the two-column card"
         >
           <Zap className="h-3 w-3 text-[#5B7CFF] dark:text-[#6F94FF] group-hover:text-white" />
-          <span>{isSimulating ? "SENDING..." : "+ TEST XAUUSD"}</span>
+          <span>{isSimulating ? "SIMULATING..." : "+ SIMULATE XAUUSD"}</span>
         </button>
 
         {/* Clear Buffer Button */}

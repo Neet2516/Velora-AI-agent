@@ -26,7 +26,7 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-14 sm:py-16 md:py-24 border-b-2 border-black dark:border-[#263B70] bg-[#F2F4F8] dark:bg-[#050A1F] relative transition-colors duration-300">
+    <section id="how-it-works" className="py-14 sm:py-16 md:py-24 border-b-2 border-black dark:border-[#263B70] bg-transparent relative transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
         <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">

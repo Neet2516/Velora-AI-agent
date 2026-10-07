@@ -34,7 +34,7 @@ export function VeloraLogo({ className = "" }: { className?: string }) {
     <div className={`flex items-center gap-2.5 ${className}`}>
       <VeloraInfinityMark className="h-7 w-12 shrink-0 drop-shadow-[0_2px_8px_rgba(91,124,255,0.35)]" />
       <div className="flex items-baseline">
-        <span className="text-lg font-black tracking-tight text-foreground uppercase whitespace-nowrap">
+        <span className="text-lg font-black tracking-tight text-black dark:text-foreground uppercase whitespace-nowrap">
           VELORA <span className="text-[#5B7CFF] dark:text-[#6F94FF]">AI</span>
         </span>
       </div>

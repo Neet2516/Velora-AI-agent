@@ -12,4 +12,7 @@ export {
   SignalListResponseSchema,
   getSignalSymbol,
   normalizeDirection,
+  normalizeSymbol,
+  validateSignalMetrics,
+  calculateRR,
 } from "@/lib/schemas/signal";

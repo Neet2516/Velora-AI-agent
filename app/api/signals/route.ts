@@ -75,22 +75,23 @@ export async function POST(req: NextRequest) {
 
     if (action === "simulate_xauusd") {
       const now = new Date().toISOString();
-      const rawText = `NEW SIGNAL\nSymbol: XAUUSD\nType: BUY\nEntry: 2650.50\nSL: 2645.00\nTP1: 2656.00\nTP2: 2661.00\nTP3: 2666.00`;
+      const rawText = `@Velora Multi-Agent Feed [SIMULATED]\nNEW SIGNAL\nSymbol: XAUUSD\nType: BUY\nEntry: 4112.50\nSL: 4103.50\nTP1: 4121.50\nTP2: 4130.50\nTP3: 4139.50`;
       const signal = signalStore.add({
-        id: `tg-sim-${Date.now()}`,
+        id: `sim-xauusd-${Date.now()}`,
         symbol: "XAUUSD",
         asset: "XAUUSD",
         direction: "BUY",
-        entry: 2650.5,
-        entry_price: 2650.5,
-        sl: 2645.0,
-        tp1: 2656.0,
-        tp2: 2661.0,
-        tp3: 2666.0,
+        entry: 4112.5,
+        entry_price: 4112.5,
+        sl: 4103.5,
+        tp1: 4121.5,
+        tp2: 4130.5,
+        tp3: 4139.5,
         status: "ACTIVE",
         raw_text: rawText,
         created_at: now,
-        source: "Velora Telegram Channel",
+        source: "Velora Multi-Agent Feed [SIMULATED]",
+        is_demo: true,
       });
       return NextResponse.json({ ok: true, action: "created", signal });
     }

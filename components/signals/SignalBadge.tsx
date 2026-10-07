@@ -112,3 +112,14 @@ export function DirectionBadge({ direction, className }: DirectionBadgeProps) {
     </div>
   );
 }
+
+export function DemoBadge({ className }: { className?: string }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1 border border-[#7B5CFF] dark:border-[#987EFF] bg-[#7B5CFF]/10 dark:bg-[#7B5CFF]/20 text-[#6B46C1] dark:text-[#C4B5FD] px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-wider ${className || ""}`}
+      title="Simulated demo data for market telemetry visualization"
+    >
+      <span>SIMULATED</span>
+    </span>
+  );
+}

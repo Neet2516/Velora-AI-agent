@@ -15,11 +15,11 @@ export function SignalListEmpty({ onSimulate }: SignalListEmptyProps) {
   const sampleFormat = `NEW SIGNAL
 Symbol: XAUUSD
 Type: BUY
-Entry: 2650.50
-SL: 2645.00
-TP1: 2656.00
-TP2: 2661.00
-TP3: 2666.00`;
+Entry: 4112.50
+SL: 4103.50
+TP1: 4121.50
+TP2: 4130.50
+TP3: 4139.50`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(sampleFormat);
@@ -145,11 +145,11 @@ TP3: 2666.00`;
               <div className="text-[#5B7CFF] dark:text-[#6F94FF] font-black">NEW SIGNAL</div>
               <div className="text-white"><span className="text-[#888888]">Symbol:</span> XAUUSD</div>
               <div className="text-white"><span className="text-[#888888]">Type:</span> BUY</div>
-              <div className="text-white"><span className="text-[#888888]">Entry:</span> 2650.50</div>
-              <div className="text-white"><span className="text-[#888888]">SL:</span> 2645.00</div>
-              <div className="text-white"><span className="text-[#888888]">TP1:</span> 2656.00</div>
-              <div className="text-white"><span className="text-[#888888]">TP2:</span> 2661.00</div>
-              <div className="text-white"><span className="text-[#888888]">TP3:</span> 2666.00</div>
+              <div className="text-white"><span className="text-[#888888]">Entry:</span> 4112.50</div>
+              <div className="text-white"><span className="text-[#888888]">SL:</span> 4103.50</div>
+              <div className="text-white"><span className="text-[#888888]">TP1:</span> 4121.50</div>
+              <div className="text-white"><span className="text-[#888888]">TP2:</span> 4130.50</div>
+              <div className="text-white"><span className="text-[#888888]">TP3:</span> 4139.50</div>
             </div>
 
             <p className="text-xs text-muted-foreground font-mono leading-relaxed pt-1">

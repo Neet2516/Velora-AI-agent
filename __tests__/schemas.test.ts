@@ -4,6 +4,8 @@ import {
   SignalListResponseSchema,
   normalizeSymbol,
   normalizeDirection,
+  validateSignalMetrics,
+  calculateRR,
 } from "@/lib/schemas/signal";
 
 describe("SignalSchema validation", () => {
@@ -169,5 +171,67 @@ describe("Signal normalizers", () => {
     expect(normalizeDirection("sell")).toBe("SELL");
     expect(normalizeDirection("short")).toBe("SELL");
     expect(normalizeDirection(null)).toBe("UNKNOWN");
+  });
+});
+
+describe("Signal mathematical validation and R:R calculations", () => {
+  it("validates a mathematically sound BUY signal (SL < Entry < TP1 < TP2 < TP3)", () => {
+    const buySignal = {
+      direction: "BUY" as const,
+      entry: 4112.5,
+      sl: 4103.5,
+      tp1: 4121.5,
+      tp2: 4130.5,
+      tp3: 4139.5,
+    };
+    const res = validateSignalMetrics(buySignal);
+    expect(res.isValid).toBe(true);
+  });
+
+  it("invalidates a corrupted BUY signal where SL >= Entry", () => {
+    const corrupted = {
+      direction: "BUY" as const,
+      entry: 4112.5,
+      sl: 4115.0, // Invalid!
+      tp1: 4121.5,
+    };
+    const res = validateSignalMetrics(corrupted);
+    expect(res.isValid).toBe(false);
+    expect(res.reason).toContain("SL must be below Entry");
+  });
+
+  it("validates a mathematically sound SELL signal (TP3 < TP2 < TP1 < Entry < SL)", () => {
+    const sellSignal = {
+      direction: "SELL" as const,
+      entry: 4118.0,
+      sl: 4127.0,
+      tp1: 4109.0,
+      tp2: 4100.0,
+      tp3: 4091.0,
+    };
+    const res = validateSignalMetrics(sellSignal);
+    expect(res.isValid).toBe(true);
+  });
+
+  it("invalidates a corrupted SELL signal where TP1 >= Entry", () => {
+    const corrupted = {
+      direction: "SELL" as const,
+      entry: 4118.0,
+      sl: 4127.0,
+      tp1: 4120.0, // Invalid!
+    };
+    const res = validateSignalMetrics(corrupted);
+    expect(res.isValid).toBe(false);
+    expect(res.reason).toContain("TP1 must be below Entry");
+  });
+
+  it("calculates exact dynamic R:R ratios matching market math", () => {
+    // Risk = 9.00
+    // TP1 = 4121.50 -> Reward = 9.00 -> 1:1
+    // TP2 = 4130.50 -> Reward = 18.00 -> 1:2
+    // TP3 = 4139.50 -> Reward = 27.00 -> 1:3
+    expect(calculateRR(4112.5, 4103.5, 4121.5)).toBe("1:1");
+    expect(calculateRR(4112.5, 4103.5, 4130.5)).toBe("1:2");
+    expect(calculateRR(4112.5, 4103.5, 4139.5)).toBe("1:3");
   });
 });
