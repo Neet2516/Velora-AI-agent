@@ -17,12 +17,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Read stored theme or system preference
+    // Default strictly to light mode
     const storedTheme = localStorage.getItem("velora-theme") as Theme | null;
-    const initialTheme: Theme =
-      storedTheme === "dark" || storedTheme === "light"
-        ? storedTheme
-        : "dark";
+    const initialTheme: Theme = storedTheme === "dark" ? "dark" : "light";
 
     setThemeState(initialTheme);
     applyTheme(initialTheme);

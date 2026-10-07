@@ -38,7 +38,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b-2 border-black dark:border-[#263B70] bg-white/95 dark:bg-[#050A1F]/95 backdrop-blur-md transition-colors duration-300">
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md transition-colors duration-300">
       <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand / Logo with Infinity Gradient Mark */}
         <div className="flex items-center gap-3 shrink-0">
@@ -62,15 +62,15 @@ export function Navbar() {
                 onClick={() => setActiveSection(link.href)}
                 className={`group relative flex items-center gap-1 text-[11px] xl:text-xs font-mono font-bold uppercase tracking-wider py-1.5 transition-colors duration-150 whitespace-nowrap ${
                   isActive
-                    ? "text-[#5B7CFF] dark:text-[#6F94FF]"
-                    : "text-foreground/80 hover:text-[#5B7CFF] dark:hover:text-[#6F94FF]"
+                    ? "text-[#2563EB]"
+                    : "text-gray-700 hover:text-[#2563EB]"
                 }`}
               >
                 <span
                   className={
                     isActive
-                      ? "text-[#5B7CFF] dark:text-[#6F94FF]"
-                      : "text-muted-foreground group-hover:text-[#5B7CFF] dark:group-hover:text-[#6F94FF] transition-colors"
+                      ? "text-[#2563EB]"
+                      : "text-gray-400 group-hover:text-[#2563EB] transition-colors"
                   }
                 >
                   {link.num}/
@@ -79,7 +79,7 @@ export function Navbar() {
 
                 {/* Active Indicator Underline */}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#5B7CFF] dark:bg-[#6F94FF] shadow-[0_0_8px_rgba(91,124,255,0.6)]" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#2563EB]" />
                 )}
               </a>
             );
@@ -89,14 +89,10 @@ export function Navbar() {
         {/* Desktop Action Buttons: Signals Feed */}
         <div className="hidden sm:flex items-center gap-3 shrink-0">
           <a href="#live-signals" className="shrink-0">
-            <Button
-              variant="secondary"
-              size="sm"
-              className="h-9 px-4 text-xs font-mono font-bold uppercase gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:border-[#5B7CFF] hover:text-[#5B7CFF] dark:hover:border-[#6F94FF] dark:hover:text-[#6F94FF] transition-colors"
-            >
+            <button className="h-9 px-4 text-xs font-mono font-bold uppercase gap-2 border border-[#FF3366] bg-transparent text-gray-900 hover:bg-[#FF3366]/5 rounded-md flex items-center transition-colors">
               <span>SIGNALS FEED</span>
-              <ArrowRight className="h-3.5 w-3.5 text-[#5B7CFF] dark:text-[#6F94FF]" />
-            </Button>
+              <ArrowRight className="h-3.5 w-3.5 text-[#FF3366]" />
+            </button>
           </a>
         </div>
 
@@ -107,13 +103,9 @@ export function Navbar() {
             className="sm:hidden"
             title="Signals Feed"
           >
-            <Button
-              variant="secondary"
-              size="sm"
-              className="h-9 px-2.5 text-[11px] font-mono font-bold border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331]"
-            >
+            <button className="h-9 px-3 text-[11px] font-mono font-bold border border-[#FF3366] bg-transparent text-gray-900 rounded-md">
               <span>FEED</span>
-            </Button>
+            </button>
           </a>
           <button
             type="button"

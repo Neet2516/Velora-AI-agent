@@ -6,13 +6,13 @@ export function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer id="footer" className="relative z-10 w-full border-t-4 border-black dark:border-[#263B70] bg-white dark:bg-[#050A1F] !text-black dark:!text-white pt-12 sm:pt-16 pb-12">
+    <footer id="footer" className="relative z-10 w-full border-t border-gray-200 bg-white/95 text-black pt-12 sm:pt-16 pb-12">
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-10 pb-12 border-b-2 border-black dark:border-[#263B70]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-10 pb-12 border-b border-gray-200">
           {/* Column 1: Brand & Bio */}
           <div className="md:col-span-2 space-y-4">
             <VeloraLogo />
-            <p className="text-sm !text-black dark:!text-gray-100 max-w-md font-bold leading-relaxed">
+            <p className="text-sm text-black max-w-md font-semibold leading-relaxed">
               Real-time trading signal telemetry mirrored directly from our autonomous multi-agent
               intelligence pipeline. Transparent, instantaneous, and strictly read-only.
             </p>
