@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Send, Menu, X, ArrowUpRight, ArrowRight } from "lucide-react";
 import { VeloraLogo } from "@/components/ui/VeloraLogo";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -87,11 +86,8 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Desktop Action Buttons: Theme Toggle & Signals Feed */}
+        {/* Desktop Action Buttons: Signals Feed */}
         <div className="hidden sm:flex items-center gap-3 shrink-0">
-          {/* Polished Compact Theme Toggle */}
-          <ThemeToggle />
-
           <a href="#live-signals" className="shrink-0">
             <Button
               variant="secondary"
@@ -106,8 +102,6 @@ export function Navbar() {
 
         {/* Mobile Header Actions */}
         <div className="flex items-center gap-2 lg:hidden shrink-0">
-          <ThemeToggle className="sm:hidden" />
-
           <a
             href="#live-signals"
             className="sm:hidden"
