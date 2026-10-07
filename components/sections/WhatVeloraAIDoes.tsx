@@ -29,20 +29,20 @@ export function WhatVeloraAIDoes() {
   ];
 
   return (
-    <section id="features" className="py-16 md:py-24 border-b-2 border-black bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="features" className="py-14 sm:py-16 md:py-24 border-b-2 border-black bg-white">
+      <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
           <span className="font-mono text-sm font-black text-[#FF3000]">02</span>
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
             / CAPABILITIES
           </span>
-          <div className="h-0.5 w-12 bg-black" />
+          <div className="h-0.5 w-8 sm:w-12 bg-black" />
         </div>
 
         {/* Section Header */}
-        <div className="mb-12">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase">
+        <div className="mb-10 sm:mb-12">
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase leading-tight">
             WHAT VELORA AI DOES
           </h2>
           <p className="mt-3 text-base sm:text-lg text-[#555555] font-medium max-w-2xl leading-relaxed">

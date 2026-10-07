@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { WhatVeloraAIDoes } from "@/components/sections/WhatVeloraAIDoes";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { PipelineDeck } from "@/components/sections/PipelineDeck";
 import { LiveSignals } from "@/components/sections/LiveSignals";
 import { RiskDisclaimer } from "@/components/sections/RiskDisclaimer";
 import { Footer } from "@/components/layout/Footer";
@@ -13,7 +14,7 @@ export default function Home() {
       <Navbar />
 
       {/* Main Landing Page Landmark Structure in exact specified sequence */}
-      <main id="main-content" className="flex-1 flex flex-col w-full">
+      <main id="main-content" className="flex-1 flex flex-col w-full overflow-x-hidden">
         {/* 1. Hero */}
         <Hero />
 
@@ -23,14 +24,17 @@ export default function Home() {
         {/* 3. How It Works */}
         <HowItWorks />
 
-        {/* 4. Live Signals */}
+        {/* 4. AI Agent Pipeline Specification Deck & PDF */}
+        <PipelineDeck />
+
+        {/* 5. Live Signals */}
         <LiveSignals />
 
-        {/* 5. Risk Disclaimer */}
+        {/* 6. Risk Disclaimer */}
         <RiskDisclaimer />
       </main>
 
-      {/* 6. Footer */}
+      {/* 7. Footer */}
       <Footer />
     </div>
   );

@@ -8,14 +8,14 @@ export function RiskDisclaimer() {
       aria-label="Risk Disclosure"
       className="py-16 md:py-20 border-b-2 border-black bg-white"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-sm font-black text-[#FF3000]">05</span>
+        <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
+          <span className="font-mono text-sm font-black text-[#FF3000]">06</span>
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
             / RISK DISCLOSURE
           </span>
-          <div className="h-0.5 w-12 bg-black" />
+          <div className="h-0.5 w-8 sm:w-12 bg-black" />
         </div>
 
         {/* Structured Warning Block */}

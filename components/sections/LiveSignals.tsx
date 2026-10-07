@@ -40,14 +40,14 @@ export function LiveSignals() {
 
   return (
     <section id="live-signals" className="py-16 md:py-24 border-b-2 border-black bg-white relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-sm font-black text-[#FF3000]">04</span>
+        <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
+          <span className="font-mono text-sm font-black text-[#FF3000]">05</span>
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
             / LIVE TELEMETRY
           </span>
-          <div className="h-0.5 w-12 bg-black" />
+          <div className="h-0.5 w-8 sm:w-12 bg-black" />
           <div className="inline-flex items-center gap-1.5 border border-black px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
             <span className="h-2 w-2 bg-[#FF3000]" />
             <span>STREAM ACTIVE</span>
@@ -57,7 +57,7 @@ export function LiveSignals() {
         {/* Section Header & Filters */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b-2 border-black">
           <div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase leading-tight">
               LIVE SIGNALS FEED
             </h2>
             <p className="mt-2 text-base text-[#555555] font-medium max-w-2xl leading-relaxed">

@@ -1,15 +1,15 @@
 import React from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Activity, Send, ArrowUpRight } from "lucide-react";
+import { Activity, Send, ArrowUpRight, Download, FileText } from "lucide-react";
 
 export function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer id="footer" className="w-full border-t-4 border-black bg-white pt-16 pb-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b-2 border-black">
+    <footer id="footer" className="w-full border-t-4 border-black bg-white pt-12 sm:pt-16 pb-12">
+      <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-10 pb-12 border-b-2 border-black">
           {/* Column 1: Brand & Bio */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
@@ -49,13 +49,18 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#pipeline-spec" className="hover:text-[#FF3000] transition-colors duration-150">
+                  04 / SPEC DECK (10 SLIDES)
+                </a>
+              </li>
+              <li>
                 <a href="#live-signals" className="hover:text-[#FF3000] transition-colors duration-150">
-                  04 / LIVE SIGNALS
+                  05 / LIVE SIGNALS
                 </a>
               </li>
               <li>
                 <a href="#disclaimer" className="hover:text-[#FF3000] transition-colors duration-150">
-                  05 / RISK DISCLOSURE
+                  06 / RISK DISCLOSURE
                 </a>
               </li>
             </ul>
@@ -64,18 +69,34 @@ export function Footer() {
           {/* Column 3: Community & Access */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono font-black uppercase tracking-widest text-black">
-              DISPATCH
+              RESOURCES & DISPATCH
             </h4>
             <ul className="space-y-3 text-xs text-black">
+              <li>
+                <a
+                  href="/Velora_AI_Agent_Pipeline_Beta.pdf"
+                  download="Velora_AI_Agent_Pipeline_Beta.pdf"
+                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-[#FF3000] hover:border-[#FF3000] hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
+                  title="Download Velora Pipeline PDF"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Download className="h-3.5 w-3.5 text-[#FF3000]" />
+                    <span>DOWNLOAD SPEC (PDF)</span>
+                  </span>
+                  <span className="text-[10px] bg-black text-white px-1.5 py-0.5">1.8 MB</span>
+                </a>
+              </li>
               <li>
                 <a
                   href="https://t.me/VeloraAI"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150"
+                  className="inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black hover:text-white px-3 py-1.5 font-mono text-xs font-bold uppercase transition-colors duration-150 w-full justify-between"
                 >
-                  <Send className="h-3.5 w-3.5" />
-                  <span>JOIN TELEGRAM</span>
+                  <span className="flex items-center gap-1.5">
+                    <Send className="h-3.5 w-3.5" />
+                    <span>JOIN TELEGRAM</span>
+                  </span>
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
               </li>
@@ -91,7 +112,7 @@ export function Footer() {
           <div>
             &copy; {currentYear} VELORA AI. ALL RIGHTS RESERVED. SWISS TYPOGRAPHIC EDITION.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap">
             <span>PUBLIC READ-ONLY DASHBOARD</span>
             <span>•</span>
             <span className="inline-flex items-center gap-1.5">
