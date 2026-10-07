@@ -28,19 +28,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const variantStyles = {
       default:
-        "bg-black dark:bg-[#5B7CFF] text-white border-2 border-black dark:border-[#6F94FF] hover:bg-[#5B7CFF] dark:hover:bg-[#4A6FE8] hover:border-[#5B7CFF] dark:hover:border-[#8BA8FF] dark:hover:shadow-[0_0_15px_rgba(111,148,255,0.35)] active:translate-y-px transition-all",
+        "bg-black text-white hover:bg-gray-800 active:translate-y-px transition-all rounded-lg shadow-sm",
       secondary:
-        "bg-white dark:bg-[#081331] text-foreground border-2 border-black dark:border-[#263B70] hover:border-[#5B7CFF] hover:text-[#5B7CFF] dark:hover:border-[#6F94FF] dark:hover:text-[#6F94FF] dark:hover:shadow-[0_0_12px_rgba(111,148,255,0.2)] active:translate-y-px transition-all",
+        "bg-white text-black border border-gray-200 hover:bg-gray-50 hover:border-gray-300 active:translate-y-px transition-all rounded-lg shadow-sm",
       outline:
-        "bg-transparent text-foreground border-2 border-black dark:border-[#263B70] hover:border-[#5B7CFF] dark:hover:border-[#6F94FF] active:translate-y-px transition-all",
+        "bg-transparent text-black border border-gray-300 hover:bg-gray-50 active:translate-y-px transition-all rounded-lg",
       ghost:
-        "bg-transparent text-foreground hover:bg-black/5 dark:hover:bg-white/5 border-2 border-transparent active:translate-y-px transition-all",
+        "bg-transparent text-black hover:bg-gray-100 active:translate-y-px transition-all rounded-lg",
       link:
-        "text-foreground underline-offset-4 hover:text-[#5B7CFF] dark:hover:text-[#6F94FF] hover:underline p-0 h-auto border-0",
+        "text-black underline-offset-4 hover:text-[#5B7CFF] hover:underline p-0 h-auto border-0",
       success:
-        "bg-black dark:bg-[#5B7CFF] text-white border-2 border-black dark:border-[#6F94FF] hover:bg-[#5B7CFF] active:translate-y-px transition-all",
+        "bg-emerald-600 text-white hover:bg-emerald-700 active:translate-y-px transition-all rounded-lg shadow-sm",
       destructive:
-        "bg-[#FF4B2B] text-white border-2 border-[#FF4B2B] hover:bg-black dark:hover:bg-[#101D42] active:translate-y-px transition-all",
+        "bg-[#FF4B2B] text-white hover:bg-red-700 active:translate-y-px transition-all rounded-lg shadow-sm",
     };
 
     const sizeStyles = {

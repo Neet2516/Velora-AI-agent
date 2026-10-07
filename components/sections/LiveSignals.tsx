@@ -37,38 +37,38 @@ export function LiveSignals() {
 
   return (
     <section id="live-signals" className="py-16 md:py-24 border-b-2 border-black dark:border-[#263B70] bg-transparent relative transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
-        <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#5B7CFF] dark:text-[#6F94FF]">
+        <div className="flex items-center gap-3 mb-6 flex-wrap">
+          <span className="font-mono text-sm font-black text-[#5B7CFF]">
             05
           </span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
             / LIVE TELEMETRY
           </span>
-          <div className="h-0.5 w-8 sm:w-12 bg-black dark:bg-[#263B70]" />
-          <div className="inline-flex items-center gap-1.5 border border-black dark:border-[#263B70] bg-white dark:bg-[#081331] px-2 py-0.5 font-mono text-[10px] font-bold uppercase">
+          <div className="h-0.5 w-10 sm:w-14 bg-black" />
+          <div className="inline-flex items-center gap-2 border border-gray-200 bg-white px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold uppercase shadow-sm">
             <span className="h-2 w-2 rounded-full bg-[#FF4B2B] animate-pulse" />
-            <span className="text-foreground">STREAM ACTIVE</span>
+            <span className="text-black">STREAM ACTIVE</span>
           </div>
         </div>
 
         {/* Section Header & Filters */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b-2 border-black dark:border-[#263B70]">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-gray-200/80">
           <div>
-            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-foreground uppercase leading-tight">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase leading-tight">
               LIVE SIGNALS FEED
             </h2>
-            <p className="mt-2 text-base text-muted-foreground font-medium max-w-2xl leading-relaxed">
+            <p className="mt-2 text-base text-gray-600 font-medium max-w-2xl leading-relaxed">
               Direct telemetry from the Velora algorithmic pipeline. Signals and target hits update in-place within 10 seconds.
             </p>
           </div>
 
-          {/* Filter Tabs in Architectural Sharp Bar */}
+          {/* Filter Tabs in Rounded Modern Bar */}
           <div
             role="tablist"
             aria-label="Signal status filters"
-            className="flex items-center border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] divide-x-2 divide-black dark:divide-[#263B70] dark-glow-card overflow-x-auto max-w-full"
+            className="flex items-center border border-gray-200 bg-white rounded-lg p-1 gap-1 overflow-x-auto max-w-full shadow-sm"
           >
             {(
               [
@@ -85,10 +85,10 @@ export function LiveSignals() {
                 aria-selected={activeTab === tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2.5 text-xs font-mono font-bold tracking-wider uppercase transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-none ${
+                className={`px-3.5 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-md transition-all whitespace-nowrap cursor-pointer focus-visible:outline-none ${
                   activeTab === tab.id
-                    ? "bg-black dark:bg-[#5B7CFF] text-white"
-                    : "bg-white dark:bg-[#081331] text-foreground hover:bg-[#F2F4F8] dark:hover:bg-[#0D1838]"
+                    ? "bg-black text-white shadow-sm"
+                    : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 {tab.label}

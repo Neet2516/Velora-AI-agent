@@ -17,31 +17,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Default strictly to light mode
-    const storedTheme = localStorage.getItem("velora-theme") as Theme | null;
-    const initialTheme: Theme = storedTheme === "dark" ? "dark" : "light";
-
-    setThemeState(initialTheme);
-    applyTheme(initialTheme);
+    localStorage.setItem("velora-theme", "light");
+    setThemeState("light");
+    applyTheme("light");
     setMounted(true);
   }, []);
 
   const applyTheme = (t: Theme) => {
     const root = document.documentElement;
-    root.setAttribute("data-theme", t);
-    if (t === "dark") {
-      root.classList.add("dark");
-      root.style.colorScheme = "dark";
-    } else {
-      root.classList.remove("dark");
-      root.style.colorScheme = "light";
-    }
+    root.setAttribute("data-theme", "light");
+    root.classList.remove("dark");
+    root.style.colorScheme = "light";
   };
 
   const setTheme = (t: Theme) => {
-    setThemeState(t);
-    localStorage.setItem("velora-theme", t);
-    applyTheme(t);
+    setThemeState("light");
+    localStorage.setItem("velora-theme", "light");
+    applyTheme("light");
   };
 
   const toggleTheme = () => {

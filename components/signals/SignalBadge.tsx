@@ -12,7 +12,7 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
     case "ACTIVE":
       return (
         <div
-          className={`inline-flex items-center gap-1.5 rounded-none border-2 border-black dark:border-[#263B70] bg-black dark:bg-[#101D42] text-white px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
+          className={`inline-flex items-center gap-1.5 rounded-md border border-gray-900 bg-black text-white px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#FF4B2B] animate-pulse" />
           <span>ACTIVE</span>
@@ -21,25 +21,25 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
     case "TP1_HIT":
       return (
         <div
-          className={`inline-flex items-center gap-1 rounded-none border-2 border-black dark:border-[#263B70] bg-[#F2F4F8] dark:bg-[#081331] text-foreground px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
+          className={`inline-flex items-center gap-1 rounded-md border border-gray-200 bg-gray-100 text-black px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <Check className="h-3 w-3 stroke-[3] text-[#5B7CFF] dark:text-[#6F94FF]" />
+          <Check className="h-3 w-3 stroke-[3] text-emerald-600" />
           <span>TP1 HIT</span>
         </div>
       );
     case "TP2_HIT":
       return (
         <div
-          className={`inline-flex items-center gap-1 rounded-none border-2 border-black dark:border-[#263B70] bg-black dark:bg-[#0D1838] text-white px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
+          className={`inline-flex items-center gap-1 rounded-md border border-gray-800 bg-gray-900 text-white px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <Check className="h-3 w-3 stroke-[3] text-[#5B7CFF] dark:text-[#6F94FF]" />
+          <Check className="h-3 w-3 stroke-[3] text-emerald-400" />
           <span>TP2 HIT</span>
         </div>
       );
     case "TP3_HIT":
       return (
         <div
-          className={`inline-flex items-center gap-1 rounded-none border-2 border-[#5B7CFF] dark:border-[#6F94FF] bg-[#5B7CFF] dark:bg-[#6F94FF] text-white px-2 py-0.5 font-mono text-[10px] font-black tracking-wider uppercase shadow-[0_0_10px_rgba(91,124,255,0.4)] ${className || ""}`}
+          className={`inline-flex items-center gap-1 rounded-md border border-emerald-600 bg-emerald-600 text-white px-2.5 py-0.5 font-mono text-[10px] font-black tracking-wider uppercase shadow-sm ${className || ""}`}
         >
           <Check className="h-3 w-3 stroke-[3]" />
           <span>TP3 HIT (ALL)</span>
@@ -48,25 +48,25 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
     case "SL_HIT":
       return (
         <div
-          className={`inline-flex items-center gap-1 rounded-none border-2 border-black dark:border-[#263B70] bg-black dark:bg-[#0D1838] text-white px-2 py-0.5 font-mono text-[10px] font-black tracking-wider uppercase ${className || ""}`}
+          className={`inline-flex items-center gap-1 rounded-md border border-red-600 bg-red-600 text-white px-2.5 py-0.5 font-mono text-[10px] font-black tracking-wider uppercase ${className || ""}`}
         >
-          <X className="h-3 w-3 text-[#FF4B2B] stroke-[3]" />
+          <X className="h-3 w-3 text-white stroke-[3]" />
           <span>SL HIT</span>
         </div>
       );
     case "UNPARSED":
       return (
         <div
-          className={`inline-flex items-center gap-1 rounded-none border-2 border-black dark:border-[#263B70] bg-[#F2F4F8] dark:bg-[#081331] text-foreground px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
+          className={`inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
-          <AlertTriangle className="h-3 w-3 text-[#FF4B2B]" />
+          <AlertTriangle className="h-3 w-3 text-amber-600" />
           <span>UNPARSED</span>
         </div>
       );
     default:
       return (
         <div
-          className={`inline-flex items-center rounded-none border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
+          className={`inline-flex items-center rounded-md border border-gray-200 bg-white text-black px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${className || ""}`}
         >
           {status}
         </div>
@@ -85,9 +85,9 @@ export function DirectionBadge({ direction, className }: DirectionBadgeProps) {
   if (normalized === "BUY") {
     return (
       <div
-        className={`inline-flex items-center gap-1 rounded-none border-2 border-black dark:border-[#263B70] bg-black dark:bg-[#101D42] text-white font-mono font-black text-xs px-2.5 py-0.5 tracking-wider uppercase ${className || ""}`}
+        className={`inline-flex items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 text-emerald-800 font-mono font-black text-xs px-2.5 py-0.5 tracking-wider uppercase ${className || ""}`}
       >
-        <ArrowUp className="h-3 w-3 stroke-[3] text-[#5B7CFF] dark:text-[#6F94FF]" />
+        <ArrowUp className="h-3 w-3 stroke-[3] text-emerald-600" />
         <span>BUY</span>
       </div>
     );
@@ -96,9 +96,9 @@ export function DirectionBadge({ direction, className }: DirectionBadgeProps) {
   if (normalized === "SELL") {
     return (
       <div
-        className={`inline-flex items-center gap-1 rounded-none border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground font-mono font-black text-xs px-2.5 py-0.5 tracking-wider uppercase ${className || ""}`}
+        className={`inline-flex items-center gap-1 rounded-md border border-red-200 bg-red-50 text-red-800 font-mono font-black text-xs px-2.5 py-0.5 tracking-wider uppercase ${className || ""}`}
       >
-        <ArrowDown className="h-3 w-3 stroke-[3] text-[#FF4B2B]" />
+        <ArrowDown className="h-3 w-3 stroke-[3] text-red-600" />
         <span>SELL</span>
       </div>
     );
@@ -106,7 +106,7 @@ export function DirectionBadge({ direction, className }: DirectionBadgeProps) {
 
   return (
     <div
-      className={`inline-flex items-center rounded-none border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground font-mono text-xs px-2 py-0.5 uppercase ${className || ""}`}
+      className={`inline-flex items-center rounded-md border border-gray-200 bg-white text-black font-mono text-xs px-2.5 py-0.5 uppercase ${className || ""}`}
     >
       {direction || "UNKNOWN"}
     </div>
@@ -116,7 +116,7 @@ export function DirectionBadge({ direction, className }: DirectionBadgeProps) {
 export function DemoBadge({ className }: { className?: string }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 border border-[#7B5CFF] dark:border-[#987EFF] bg-[#7B5CFF]/10 dark:bg-[#7B5CFF]/20 text-[#6B46C1] dark:text-[#C4B5FD] px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-wider ${className || ""}`}
+      className={`inline-flex items-center gap-1 rounded-full border border-purple-200 bg-purple-50 text-purple-700 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider ${className || ""}`}
       title="Simulated demo data for market telemetry visualization"
     >
       <span>SIMULATED</span>

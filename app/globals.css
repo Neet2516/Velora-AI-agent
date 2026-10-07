@@ -29,30 +29,30 @@
 
 [data-theme="dark"],
 .dark {
-  /* THEME 02 — DARK MODE (Cinematic Institutional Navy) */
-  --background: #050A1F;
-  --surface: #081331;
-  --surface-secondary: #0D1838;
-  --surface-elevated: #101D42;
-  --foreground: #FFFFFF;
-  --text-secondary: #AAB7D4;
-  --border: #263B70;
-  --border-subtle: #182A52;
+  /* Enforce Light Theme Color Invariants */
+  --background: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-secondary: #F4F4F4;
+  --surface-elevated: #FFFFFF;
+  --foreground: #000000;
+  --text-secondary: #1F2937;
+  --border: #E5E7EB;
+  --border-subtle: #F3F4F6;
   
-  --velora-blue: #6F94FF;
-  --blue-hover: #8BA8FF;
-  --blue-soft: #182A52;
+  --velora-blue: #5B7CFF;
+  --blue-hover: #3E63EA;
+  --blue-soft: #EEF2FF;
   --trading-orange: #FF4B2B;
   
-  --grid-line: rgba(91, 124, 255, 0.08);
-  --blue-glow: rgba(91, 124, 255, 0.25);
-  --card-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.6);
+  --grid-line: rgba(0, 0, 0, 0.06);
+  --blue-glow: transparent;
+  --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 
   /* Card and muted mappings */
-  --card: var(--surface);
-  --card-foreground: var(--foreground);
-  --muted: var(--surface-secondary);
-  --muted-foreground: var(--text-secondary);
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --muted: #F4F4F4;
+  --muted-foreground: #4B5563;
 }
 
 @theme inline {

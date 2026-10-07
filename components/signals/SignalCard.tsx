@@ -134,23 +134,23 @@ export function SignalCard({ signal, className }: SignalCardProps) {
         />
 
         {/* Card Header Bar */}
-        <div className="p-4 sm:p-5 bg-white dark:bg-[#081331] border-b-2 border-black dark:border-[#263B70] flex flex-wrap items-center justify-between gap-3">
+        <div className="p-4 sm:p-5 bg-white border-b border-gray-100 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="font-mono text-2xl sm:text-3xl font-black tracking-tight text-foreground">
+            <span className="font-mono text-2xl sm:text-3xl font-black tracking-tight text-black">
               {isUnparsed ? "TRANSMISSION" : symbol}
             </span>
             {!isUnparsed && signal.direction && (
               <DirectionBadge direction={signal.direction} />
             )}
             {signal.is_demo && <DemoBadge />}
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-black dark:border-[#263B70] bg-[#F2F2F2] dark:bg-[#0D1838] font-mono text-[10px] font-bold uppercase text-foreground">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-gray-200 bg-gray-50 font-mono text-[10px] font-bold uppercase text-gray-800">
               <Send className="h-3 w-3 text-[#FF4B2B]" />
               <span>MULTI-AGENT DISPATCH</span>
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono font-bold">
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 font-mono font-bold">
               <Clock className="h-3 w-3" />
               <span>{formattedTime}</span>
               <span>/</span>
@@ -163,39 +163,39 @@ export function SignalCard({ signal, className }: SignalCardProps) {
         {/* Card Body: Interactive Two-Column Split Architecture */}
         {isUnparsed ? (
           /* UNPARSED RAW MESSAGE FALLBACK */
-          <div className="p-5 sm:p-6 bg-[#F2F2F2] dark:bg-[#0D1838]">
-            <div className="flex items-center justify-between pb-2 mb-3 border-b border-black/20 dark:border-white/10">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-foreground">
+          <div className="p-5 sm:p-6 bg-gray-50">
+            <div className="flex items-center justify-between pb-2 mb-3 border-b border-gray-200">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-black">
                 <Terminal className="h-3.5 w-3.5 text-[#FF4B2B]" />
                 <span>RAW MULTI-AGENT PAYLOAD</span>
               </div>
               <button
                 type="button"
                 onClick={handleCopy}
-                className="text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-foreground transition-colors cursor-pointer"
+                className="text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-black transition-colors cursor-pointer"
               >
                 {copied ? "COPIED!" : "COPY"}
               </button>
             </div>
-            <pre className="font-mono text-xs text-foreground whitespace-pre-wrap break-words leading-relaxed select-text font-medium bg-white dark:bg-[#081331] p-4 border border-black dark:border-[#263B70]">
+            <pre className="font-mono text-xs text-black whitespace-pre-wrap break-words leading-relaxed select-text font-medium bg-white p-4 border border-gray-200 rounded-lg">
               {sanitizeRawText(signal.raw_text)}
             </pre>
           </div>
         ) : (
           /* TWO-COLUMN LAYOUT: Column 1 (Multi-Agent Dispatch) | Column 2 (Execution Matrix) */
-          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-black dark:divide-[#263B70]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-gray-100">
             {/* COLUMN 1: Multi-Agent Message Dispatch (5 Cols) */}
-            <div className="lg:col-span-5 p-5 bg-[#FAFAFA] dark:bg-[#0B1536] flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-5 p-5 bg-gray-50/70 flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-black/20 dark:border-white/10">
-                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-foreground">
+                <div className="flex items-center justify-between pb-2 border-b border-gray-200">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-black">
                     <Terminal className="h-3.5 w-3.5 text-[#FF4B2B]" />
                     <span>01 / MULTI-AGENT DISPATCH</span>
                   </div>
                   <button
                     type="button"
                     onClick={handleCopy}
-                    className="inline-flex items-center gap-1 text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-foreground transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] font-mono font-bold uppercase text-[#FF4B2B] hover:text-black transition-colors cursor-pointer"
                     title="Copy original signal payload"
                   >
                     {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -204,7 +204,7 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                 </div>
 
                 {/* Multi-Agent Console Chat Bubble */}
-                <div className="border-2 border-black dark:border-[#263B70] bg-[#111111] dark:bg-[#050A1F] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
+                <div className="rounded-lg border border-gray-800 bg-[#111111] text-white p-4 font-mono text-xs space-y-1.5 shadow-sm select-text">
                   <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/20 text-[10px] text-white/60">
                     <span>Velora Multi-Agent Swarm</span>
                     {signal.is_demo ? (
@@ -220,8 +220,8 @@ export function SignalCard({ signal, className }: SignalCardProps) {
               </div>
 
               {/* Source Info */}
-              <div className="pt-2 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                <span className="inline-flex items-center gap-1 text-foreground font-bold">
+              <div className="pt-2 flex items-center justify-between font-mono text-[10px] text-gray-500">
+                <span className="inline-flex items-center gap-1 text-black font-bold">
                   <Send className="h-3 w-3 text-[#FF4B2B]" />
                   <span>Agent Consensus Feed</span>
                 </span>
@@ -230,15 +230,15 @@ export function SignalCard({ signal, className }: SignalCardProps) {
             </div>
 
             {/* COLUMN 2: Execution Levels & Take Profit Matrix (7 Cols) */}
-            <div className="lg:col-span-7 p-5 bg-white dark:bg-[#081331] flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-7 p-5 bg-white flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-black/20 dark:border-white/10">
-                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-foreground">
+                <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase text-black">
                     <Target className="h-3.5 w-3.5 text-[#FF4B2B]" />
                     <span>02 / EXECUTION LEVELS & TARGETS</span>
                   </div>
                   {rr1 && (
-                    <span className="font-mono text-[10px] font-black bg-black dark:bg-[#101D42] text-white px-2 py-0.5 uppercase border border-transparent dark:border-[#263B70]">
+                    <span className="font-mono text-[10px] font-black bg-black text-white px-2 py-0.5 uppercase rounded">
                       PRIMARY R : R = {rr1}
                     </span>
                   )}
@@ -246,21 +246,21 @@ export function SignalCard({ signal, className }: SignalCardProps) {
 
                 {/* Mathematical Validation Guard */}
                 {!validation.isValid && (
-                  <div className="p-3 bg-[#FF4B2B]/10 border-2 border-[#FF4B2B] text-[#FF4B2B] font-mono text-xs font-bold flex items-center gap-2">
+                  <div className="p-3 bg-[#FF4B2B]/10 border border-[#FF4B2B] text-[#FF4B2B] font-mono text-xs font-bold flex items-center gap-2 rounded-lg">
                     <AlertTriangle className="h-4 w-4 shrink-0" />
                     <span>INVALID SETUP: {validation.reason}</span>
                   </div>
                 )}
 
-                {/* Structured Architectural Price Grid */}
-                <div className="border-2 border-black dark:border-[#263B70] divide-y-2 divide-black dark:divide-[#263B70] text-xs font-mono">
+                {/* Structured Price Grid */}
+                <div className="rounded-lg border border-gray-200 divide-y divide-gray-100 text-xs font-mono overflow-hidden">
                   {/* Entry Price */}
-                  <div className="flex items-center justify-between p-2.5 bg-white dark:bg-[#081331]">
+                  <div className="flex items-center justify-between p-2.5 bg-white">
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-black dark:bg-[var(--velora-blue)]" />
-                      <span className="font-bold text-muted-foreground uppercase tracking-wider">ENTRY PRICE</span>
+                      <span className="h-2 w-2 rounded-full bg-black" />
+                      <span className="font-bold text-gray-500 uppercase tracking-wider">ENTRY PRICE</span>
                     </div>
-                    <span className="font-black text-foreground text-sm">
+                    <span className="font-black text-black text-sm">
                       {formatPrice(signal.entry)}
                     </span>
                   </div>
@@ -270,20 +270,20 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                       slHit
                         ? "bg-[#FF4B2B] text-white font-black"
-                        : "bg-white dark:bg-[#081331] text-foreground"
+                        : "bg-white text-black"
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-[#FF4B2B]" />
-                      <span className="font-bold uppercase tracking-wider">STOP LOSS (SL)</span>
+                      <span className="h-2 w-2 rounded-full bg-[#FF4B2B]" />
+                      <span className="font-bold text-gray-500 uppercase tracking-wider">STOP LOSS (SL)</span>
                       {signal.entry && signal.sl && (
-                        <span className="text-[10px] opacity-70">
+                        <span className="text-[10px] text-gray-400">
                           ({formatDistance(signal.entry, signal.sl)} pts)
                         </span>
                       )}
                       {slHit && <X className="h-3.5 w-3.5 stroke-[3]" />}
                     </div>
-                    <span className="font-black text-sm">
+                    <span className="font-black text-black text-sm">
                       {formatPrice(signal.sl)}
                     </span>
                   </div>
@@ -292,21 +292,21 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                   <div
                     className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                       tp1Hit
-                        ? "bg-black dark:bg-[#101D42] text-white font-black"
-                        : "bg-white dark:bg-[#081331] text-foreground"
+                        ? "bg-black text-white font-black"
+                        : "bg-white text-black"
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-black dark:bg-[var(--velora-blue)]" />
-                      <span className="font-bold uppercase tracking-wider">TARGET 01 (TP1)</span>
+                      <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                      <span className="font-bold text-gray-500 uppercase tracking-wider">TARGET 01 (TP1)</span>
                       {signal.entry && signal.tp1 && (
-                        <span className="text-[10px] opacity-70">
+                        <span className="text-[10px] text-gray-400">
                           ({formatDistance(signal.entry, signal.tp1)} pts{rr1 ? ` · R:R ${rr1}` : ""})
                         </span>
                       )}
-                      {tp1Hit && <Check className="h-3.5 w-3.5 text-[#FF4B2B] stroke-[3]" />}
+                      {tp1Hit && <Check className="h-3.5 w-3.5 text-emerald-400 stroke-[3]" />}
                     </div>
-                    <span className="font-black text-sm">
+                    <span className="font-black text-black text-sm">
                       {formatPrice(signal.tp1)}
                     </span>
                   </div>
@@ -316,21 +316,21 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     <div
                       className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                         tp2Hit
-                          ? "bg-black dark:bg-[#101D42] text-white font-black"
-                          : "bg-white dark:bg-[#081331] text-foreground"
+                          ? "bg-black text-white font-black"
+                          : "bg-white text-black"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 bg-black dark:bg-[var(--velora-blue)]" />
-                        <span className="font-bold uppercase tracking-wider">TARGET 02 (TP2)</span>
+                        <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                        <span className="font-bold text-gray-500 uppercase tracking-wider">TARGET 02 (TP2)</span>
                         {signal.entry && signal.tp2 && (
-                          <span className="text-[10px] opacity-70">
+                          <span className="text-[10px] text-gray-400">
                             ({formatDistance(signal.entry, signal.tp2)} pts{rr2 ? ` · R:R ${rr2}` : ""})
                           </span>
                         )}
-                        {tp2Hit && <Check className="h-3.5 w-3.5 text-[#FF4B2B] stroke-[3]" />}
+                        {tp2Hit && <Check className="h-3.5 w-3.5 text-emerald-400 stroke-[3]" />}
                       </div>
-                      <span className="font-black text-sm">
+                      <span className="font-black text-black text-sm">
                         {formatPrice(signal.tp2)}
                       </span>
                     </div>
@@ -341,21 +341,21 @@ export function SignalCard({ signal, className }: SignalCardProps) {
                     <div
                       className={`flex items-center justify-between p-2.5 transition-colors duration-150 ${
                         tp3Hit
-                          ? "bg-[#FF4B2B] text-white font-black"
-                          : "bg-white dark:bg-[#081331] text-foreground"
+                          ? "bg-emerald-600 text-white font-black"
+                          : "bg-white text-black"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 bg-[#FF4B2B]" />
-                        <span className="font-bold uppercase tracking-wider">TARGET 03 (TP3)</span>
+                        <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                        <span className="font-bold text-gray-500 uppercase tracking-wider">TARGET 03 (TP3)</span>
                         {signal.entry && signal.tp3 && (
-                          <span className="text-[10px] opacity-70">
+                          <span className="text-[10px] text-gray-400">
                             ({formatDistance(signal.entry, signal.tp3)} pts{rr3 ? ` · R:R ${rr3}` : ""})
                           </span>
                         )}
                         {tp3Hit && <Check className="h-3.5 w-3.5 stroke-[3]" />}
                       </div>
-                      <span className="font-black text-sm">
+                      <span className="font-black text-black text-sm">
                         {formatPrice(signal.tp3)}
                       </span>
                     </div>
@@ -364,9 +364,9 @@ export function SignalCard({ signal, className }: SignalCardProps) {
               </div>
 
               {/* Status Milestone Indicator Footer */}
-              <div className="p-2.5 bg-[#F2F2F2] dark:bg-[#0D1838] border border-black dark:border-[#263B70] flex items-center justify-between font-mono text-[11px]">
-                <span className="text-muted-foreground font-bold">STATE TRANSITION:</span>
-                <span className="font-black text-foreground">
+              <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-between font-mono text-[11px]">
+                <span className="text-gray-500 font-bold">STATE TRANSITION:</span>
+                <span className="font-black text-black">
                   {tp3Hit
                     ? "COMPLETED (TP3 HIT)"
                     : tp2Hit

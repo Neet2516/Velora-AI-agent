@@ -117,28 +117,28 @@ export function PipelineDeck() {
     >
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Section Identifier */}
-        <div className="flex items-center gap-2 xs:gap-3 mb-6 flex-wrap">
-          <span className="font-mono text-sm font-black text-[#5B7CFF] dark:text-[#6F94FF]">
+        <div className="flex items-center gap-3 mb-6 flex-wrap">
+          <span className="font-mono text-sm font-black text-[#5B7CFF]">
             04
           </span>
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-black">
             / PIPELINE SPECIFICATION
           </span>
-          <div className="h-0.5 w-8 sm:w-12 bg-black dark:bg-[#263B70]" />
-          <div className="inline-flex items-center gap-2 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] px-2.5 py-0.5 text-[11px] font-bold font-mono uppercase">
-            <span className="h-2 w-2 bg-[#5B7CFF] dark:bg-[#6F94FF]" />
-            <span>OFFICIAL BETA DECK</span>
+          <div className="h-0.5 w-10 sm:w-14 bg-black" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-0.5 text-[11px] font-bold font-mono uppercase shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-[#5B7CFF]" />
+            <span className="text-gray-800">OFFICIAL BETA DECK</span>
           </div>
         </div>
 
         {/* Section Header & Primary Actions */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b-2 border-black dark:border-[#263B70]">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-gray-200/80">
           <div>
-            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-foreground uppercase leading-[1.05]">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black uppercase leading-[1.05]">
               AI AGENT PIPELINE <br />
-              <span className="text-[#5B7CFF] dark:text-[#6F94FF]">SPECIFICATION DECK</span>
+              <span className="text-[#5B7CFF]">SPECIFICATION DECK</span>
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-muted-foreground font-medium max-w-2xl leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-gray-600 font-medium max-w-2xl leading-relaxed">
               Explore the complete 9-slide architectural whitepaper on how the Velora multi-agent
               signal engine collects, debates, and risk-verifies market setups with the interactive viewer below.
             </p>
@@ -322,7 +322,7 @@ export function PipelineDeck() {
                       style={{ width: `${((currentIdx + 1) / totalSlides) * 100}%` }}
                     />
                   </div>
-                  <span className="font-mono text-xs font-bold text-foreground min-w-[36px] text-right">
+                  <span className="font-mono text-xs font-bold text-black min-w-[36px] text-right">
                     {Math.round(((currentIdx + 1) / totalSlides) * 100)}%
                   </span>
                 </div>
@@ -336,7 +336,7 @@ export function PipelineDeck() {
                     id="slide-jump-select"
                     value={currentIdx}
                     onChange={(e) => goToSlide(Number(e.target.value))}
-                    className="w-full sm:w-auto px-2.5 py-1.5 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground text-xs font-mono font-bold uppercase focus:ring-2 focus:ring-[#5B7CFF] cursor-pointer"
+                    className="w-full sm:w-auto px-2.5 py-1.5 border border-gray-300 bg-white text-black text-xs font-mono font-bold uppercase rounded-md focus:ring-2 focus:ring-[#5B7CFF] cursor-pointer"
                   >
                     {PIPELINE_SLIDES.map((slide, idx) => (
                       <option key={slide.id} value={idx}>
@@ -351,8 +351,8 @@ export function PipelineDeck() {
             {/* Slide Thumbnails Ribbon */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs font-mono font-bold uppercase">
-                <span className="text-foreground">SLIDE DECK THUMBNAILS ({totalSlides} SLIDES)</span>
-                <span className="text-muted-foreground">SCROLL OR TAP TO SELECT</span>
+                <span className="text-black">SLIDE DECK THUMBNAILS ({totalSlides} SLIDES)</span>
+                <span className="text-gray-500">SCROLL OR TAP TO SELECT</span>
               </div>
 
               <div
@@ -370,14 +370,14 @@ export function PipelineDeck() {
                       aria-selected={isActive}
                       type="button"
                       onClick={() => goToSlide(idx)}
-                      className={`shrink-0 w-28 sm:w-32 text-left border-2 transition-all cursor-pointer ${
+                      className={`shrink-0 w-28 sm:w-32 text-left rounded-lg border transition-all cursor-pointer ${
                         isActive
-                          ? "border-[#5B7CFF] dark:border-[#6F94FF] bg-black dark:bg-[#101D42] text-white shadow-[0_0_12px_rgba(91,124,255,0.4)]"
-                          : "border-black/30 dark:border-[#263B70] bg-white dark:bg-[#081331] text-foreground hover:border-[#5B7CFF]"
+                          ? "border-[#5B7CFF] bg-black text-white shadow-md"
+                          : "border-gray-200 bg-white text-black hover:border-gray-400"
                       }`}
                       title={`Go to Slide ${slide.id}: ${slide.title}`}
                     >
-                      <div className="relative aspect-[16/9] w-full bg-black border-b border-black/20 overflow-hidden">
+                      <div className="relative aspect-[16/9] w-full bg-black rounded-t-lg overflow-hidden">
                         <Image
                           src={slide.imageSrc}
                           alt={slide.title}
@@ -387,7 +387,7 @@ export function PipelineDeck() {
                           unoptimized
                         />
                         {isActive && (
-                          <div className="absolute top-1 left-1 bg-[#5B7CFF] dark:bg-[#6F94FF] text-white font-mono text-[9px] font-black px-1">
+                          <div className="absolute top-1 left-1 bg-[#5B7CFF] text-white font-mono text-[9px] font-black px-1 rounded-sm">
                             ACTIVE
                           </div>
                         )}
@@ -408,11 +408,11 @@ export function PipelineDeck() {
           </div>
 
           {/* Right Column: Slide Architecture Deep-Dive & Takeaways (4 Cols on Desktop) */}
-          <div className="lg:col-span-4 border-2 border-black dark:border-[#263B70] bg-white dark:bg-[#081331] divide-y-2 divide-black dark:divide-[#182A52] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#040817] dark-glow-card transition-colors duration-300">
+          <div className="lg:col-span-4 rounded-2xl bg-white/95 backdrop-blur-md border border-gray-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.04)] divide-y divide-gray-100 overflow-hidden">
             {/* Box Header */}
-            <div className="p-4 bg-black dark:bg-[#0D1838] text-white flex items-center justify-between">
+            <div className="p-4 bg-gray-900 text-white flex items-center justify-between">
               <div>
-                <span className="font-mono text-[10px] text-[#5B7CFF] dark:text-[#6F94FF] font-black uppercase tracking-widest block">
+                <span className="font-mono text-[10px] text-[#5B7CFF] font-black uppercase tracking-widest block">
                   ARCHITECTURE SPEC SHEET
                 </span>
                 <span className="font-mono text-sm font-bold uppercase tracking-wider">
@@ -423,37 +423,37 @@ export function PipelineDeck() {
             </div>
 
             {/* Slide Title & Subtitle */}
-            <div className="p-5 space-y-2 bg-white dark:bg-[#081331]">
-              <span className="font-mono text-[10px] font-black uppercase tracking-wider text-[#5B7CFF] dark:text-[#6F94FF]">
+            <div className="p-5 space-y-2 bg-white">
+              <span className="font-mono text-[10px] font-black uppercase tracking-wider text-[#5B7CFF]">
                 TOPIC FOCUS
               </span>
-              <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight uppercase leading-tight">
+              <h3 className="text-xl sm:text-2xl font-black text-black tracking-tight uppercase leading-tight">
                 {currentSlide.title}
               </h3>
-              <p className="text-xs text-muted-foreground font-mono font-bold uppercase">
+              <p className="text-xs text-gray-500 font-mono font-bold uppercase">
                 {currentSlide.subtitle}
               </p>
             </div>
 
             {/* Core Slide Summary */}
-            <div className="p-5 space-y-2">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="p-5 space-y-2 bg-white">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400">
                 EXECUTIVE SUMMARY
               </span>
-              <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm text-black font-medium leading-relaxed">
                 {currentSlide.summary}
               </p>
             </div>
 
             {/* Architectural Bullet Points */}
-            <div className="p-5 space-y-3">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="p-5 space-y-3 bg-white">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400">
                 SYSTEM SPECIFICATIONS
               </span>
               <ul className="space-y-2.5">
                 {currentSlide.bullets.map((bullet, bIdx) => (
-                  <li key={bIdx} className="flex items-start gap-2 text-xs text-foreground font-medium">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-[#5B7CFF] dark:text-[#6F94FF] shrink-0 mt-0.5" />
+                  <li key={bIdx} className="flex items-start gap-2 text-xs text-black font-medium">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#5B7CFF] shrink-0 mt-0.5" />
                     <span className="leading-snug">{bullet}</span>
                   </li>
                 ))}
@@ -461,11 +461,11 @@ export function PipelineDeck() {
             </div>
 
             {/* Tags / Keywords */}
-            <div className="p-4 bg-[#F2F4F8] dark:bg-[#0D1838] flex flex-wrap gap-1.5">
+            <div className="p-4 bg-gray-50 flex flex-wrap gap-1.5">
               {currentSlide.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-[10px] font-bold bg-white dark:bg-[#081331] text-foreground border border-black dark:border-[#263B70] px-2 py-0.5 uppercase"
+                  className="font-mono text-[10px] font-bold bg-white text-gray-800 border border-gray-200 px-2 py-0.5 rounded uppercase"
                 >
                   #{tag}
                 </span>
@@ -473,16 +473,16 @@ export function PipelineDeck() {
             </div>
 
             {/* Bottom Presentation Action Bar */}
-            <div className="p-4 bg-white dark:bg-[#081331] flex flex-col gap-2 border-t-2 border-black dark:border-[#263B70]">
+            <div className="p-4 bg-white flex flex-col gap-2 border-t border-gray-100">
               <Button
                 onClick={() => setIsFullscreen(true)}
                 size="sm"
-                className="w-full gap-2 justify-center bg-black dark:bg-[#5B7CFF] hover:bg-[#5B7CFF] dark:hover:bg-[#4365DF] text-white"
+                className="w-full gap-2 justify-center bg-black hover:bg-gray-800 text-white"
               >
                 <Maximize2 className="h-3.5 w-3.5" />
                 <span>EXPAND SLIDE FULLSCREEN</span>
               </Button>
-              <div className="text-[10px] font-mono text-muted-foreground text-center uppercase">
+              <div className="text-[10px] font-mono text-gray-500 text-center uppercase">
                 INTERACTIVE 9-SLIDE PIPELINE SPEC • BETA ARCHITECTURE EDITION
               </div>
             </div>
